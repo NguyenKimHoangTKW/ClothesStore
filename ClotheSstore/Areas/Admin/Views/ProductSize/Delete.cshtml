@@ -12,38 +12,41 @@
     <h4>Product_Size</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.quantityinstock)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.quantityinstock)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Product.codeProduct)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Product.codeProduct)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Size.nameSize)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Size.nameSize)
-        </dd>
-
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Thông tin khách hàng</h4>
+                <div class="table-responsive">
+                    <table class="product-info-table m-t-20">
+                        <tbody>
+                            <tr>
+                                <td>Mã sản phẩm:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.quantity)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tên sản phẩm:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.quantityinstock)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mô tả:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Product.codeProduct)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Hình ảnh:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Size.nameSize)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </dl>
 
     @using (Html.BeginForm()) {

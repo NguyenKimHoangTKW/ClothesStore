@@ -8,73 +8,54 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Customer</h4>
-    <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.codeCustomer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.codeCustomer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.nameCustomer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nameCustomer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.userName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.userName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.passWord)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.passWord)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.birthDay)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.birthDay)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.phone)
-        </dd>
-
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Thông tin khách hàng</h4>
+                <div class="table-responsive">
+                    <table class="product-info-table m-t-20">
+                        <tbody>
+                            <tr>
+                                <td>Mã khách hàng:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.codeCustomer)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tên khách hàng:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.nameCustomer)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tên tài khoản:</td>
+                                <td> @Html.DisplayFor(model => model.userName)</td>
+                            </tr>
+                            <tr>
+                                <td>Mật khẩu:</td>
+                                <td> @Html.DisplayFor(model => model.passWord)</td>
+                            </tr>
+                            <tr>
+                                <td>Ngày sinh:</td>
+                                <td> @Html.DisplayFor(model => model.birthDay)</td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td> @Html.DisplayFor(model => model.email)</td>
+                            </tr>
+                            <tr>
+                                <td>Địa chỉ:</td>
+                                <td> @Html.DisplayFor(model => model.address)</td>
+                            </tr>
+                            <tr>
+                                <td>Số điện thoại:</td>
+                                <td> @Html.DisplayFor(model => model.phone)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </dl>
 </div>
 <p>

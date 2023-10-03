@@ -16,71 +16,57 @@
     
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        Tên Sản phẩm
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.nameProduct, new { htmlAttributes = new { @class = "form-control" } })
-            @ViewData["err1"]
-        </div>
-      
-    </div>
-
-    <div class="form-group">
-        Mô Tả
-        <div class="col-md-10">
-            @Html.TextBox("MoTa")
-            @ViewData["err4"]
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.thumb, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.thumb, new { type = "file", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.thumb, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        Số Lượng
-        <div class="col-md-10">
-            @Html.TextBox("SoLuong")
-            @ViewData["err2"]
-        </div>
-    </div>
-
-    <div class="form-group">
-        Giá
-        <div class="col-md-10">
-            @Html.TextBox("Gia")
-            @ViewData["err3"]
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.idProductCategory, "idProductCategory", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("idProductCategory", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.idProductCategory, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        Ngày nhập
-        <div class="col-md-10">
-            <input type="date" name="updateDay" />
+<div class="card">
+    <div class="card-body">
+        <h4>Thêm Danh mục</h4>
+        <h2 style="color:red">@ViewBag.ThongBao</h2>
+        <div class="m-t-25">
+            <form id="form-validation">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Tên sản phẩm*</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="nameProduct">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Mô tả*</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="describe">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Hình ảnh*</label>
+                    <div class="col-md-5">
+                        <input type="file" class="form-control" name="thumb">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Số lượng*</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="quantity">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Giá*</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="price">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Ngày thêm*</label>
+                    <div class="col-md-5">
+                        <input type="date" class="form-control" name="updateDay">
+                    </div>
+                </div>
+                <div class="form-group text-left">
+                    <button class="btn btn-success btn-tone m-r-5">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
+    <div>
+        @Html.ActionLink("Quay về danh sách sản phẩm", "Index")
     </div>
+</div>
 </div>
 }
-
-<div>
-    <h4>@ViewBag.ThongBao</h4>  
-    @Html.ActionLink("Back to List", "Index")
-</div>

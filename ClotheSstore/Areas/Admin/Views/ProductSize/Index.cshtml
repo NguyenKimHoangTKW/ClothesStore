@@ -12,7 +12,6 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <p>
-    @Html.ActionLink("Create New", "Create")
 </p>
 <div class="table-responsive">
     <table class="table">
@@ -49,7 +48,11 @@
 
 
         </tbody>
+
     </table>
+    <a href="@Url.Action("Create", "ProductCategories")">
+        <button class="btn btn-primary btn-tone m-r-5">Thêm danh mục sản phẩm</button>
+    </a>
 </div>
 <!-- Thêm mã phân trang -->
 <br />
@@ -62,8 +65,9 @@
             </p>
         }
     </div>
+
     <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right">
-        Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        <h5 class="text-dark font-weight-semibold" style="margin-right: 20px">Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</h5>
     </div>
 </div>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.currentSize }))

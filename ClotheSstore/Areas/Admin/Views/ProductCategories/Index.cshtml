@@ -11,18 +11,25 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
 @using (Html.BeginForm("Index", "ProductCategories", FormMethod.Get, new { @class = "form-inline" }))
 {
-    <div class="form-group">
-        <label>Tên sản phẩm: </label>
-        <input type="Text" class="form-control mx-sm-3" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên danh mục cần tìm">
-        <input type="submit" class="btn btn-danger" value="Tìm danh mục">
+    <div class="card">
+        <div class="card-body">
+            <h4>Tên danh mục</h4>
+            <div class="m-t-25" style="max-width: 500px">
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <input type="Text" class="form-control" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập danh mục cần tìm">
+                            <input type="submit" class="btn btn-danger" value="Tìm">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     </div>
-    <hr />
 }
 
 <div class="table-responsive">
@@ -57,15 +64,19 @@
 
         </tbody>
     </table>
+    <a href="@Url.Action("Create", "ProductCategories")">
+        <button class="btn btn-primary btn-tone m-r-5">Thêm danh mục sản phẩm</button>
+    </a>
 </div>
 <!-- Thêm mã phân trang -->
 <br />
 <div class="row">
     <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
-        @using (Html.BeginForm("Index", "ProductCategories", FormMethod.Get))
+        @using (Html.BeginForm("Index", "Customers", FormMethod.Get))
         {
             <p>
-                Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.Size, new { @onchange = "this.form.submit();" })
+                Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.Size, new { @onchange = "this.form.submit();", @class = "ProductCategories-select", @style = "width: 70px;" })
+
             </p>
 
             @Html.Hidden("page", (object)ViewBag.Page)
@@ -76,7 +87,7 @@
         }
     </div>
     <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right">
-        Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        <h5 class="text-dark font-weight-semibold" style="margin-right: 20px">Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</h5>
     </div>
 </div>
 
