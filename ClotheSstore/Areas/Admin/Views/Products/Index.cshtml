@@ -1,0 +1,97 @@
+﻿@model PagedList.IPagedList<ClotheSstore.Models.Product>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Products", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-group">
+        <label>Danh mục :</label>@Html.DropDownList("ProductCategories", null, htmlAttributes: new { @class = "form-control" }) <label>Tên sản phẩm: </label>
+        <input type="Text" class="form-control mx-sm-3" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sản phẩm cần tìm">
+        <input type="submit" class="btn btn-danger" value="Tìm sản phẩm">
+    </div>
+    <hr />
+}
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Mã Sản phẩm</th>
+                <th scope="col">@Html.ActionLink("Tên sản phẩm", "Index", new { sortProperty = "nameProduct", sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword, productid = ViewBag.Subject })</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">@Html.ActionLink("Giá", "Index", new { sortProperty = "price", sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword, productid = ViewBag.Subject })</th>
+                <th scope="col">Category</th>
+                <th scope="col">Ngày Nhập</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Hình</th>
+                <th scope="col">#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    i++;
+                    <tr>
+                        <th scope="row">@i</th>
+                        <td>@item.codeProduct</td>
+                        <td>@item.nameProduct</td>
+                        <td>@item.quantity</td>
+                        <td>@string.Format("{0:#,0} VNĐ", item.price)</td>
+                        <td>@item.ProductCategory.nameProductCategory</td>
+                        <td>@string.Format("{0:dd-MM-yyyy}", item.updateDay)</td>
+                        <td>@item.describe</td>
+                        <td><img src="~/Areas/Admin/Images/Product_Images/@item.thumb" width="80px" height="50px" /></td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.idProduct }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.idProduct }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.idProduct })
+                        </td>
+                    </tr>
+                }
+            }
+
+
+        </tbody>
+    </table>
+</div>
+<!-- Thêm mã phân trang -->
+<br />
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
+        @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+        {
+            <p>
+                Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.Size, new { @onchange = "this.form.submit();" })
+            </p>
+
+            @Html.Hidden("page", (object)ViewBag.Page)
+            @Html.Hidden("sortProperty", (object)ViewBag.SortProperty)
+            @Html.Hidden("sortOrder", (object)ViewBag.SortOrder)
+            @Html.Hidden("searchString", (object)ViewBag.Keyword)
+            @Html.Hidden("categoryID", (object)ViewBag.Subject)
+        }
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right">
+        Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.CurrentSize, sortProperty = ViewBag.SortProperty, sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword }))
+<!-- Kết thúc -->

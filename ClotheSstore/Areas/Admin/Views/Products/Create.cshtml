@@ -1,0 +1,86 @@
+﻿@model ClotheSstore.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Product</h4>
+    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        Tên Sản phẩm
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.nameProduct, new { htmlAttributes = new { @class = "form-control" } })
+            @ViewData["err1"]
+        </div>
+      
+    </div>
+
+    <div class="form-group">
+        Mô Tả
+        <div class="col-md-10">
+            @Html.TextBox("MoTa")
+            @ViewData["err4"]
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.thumb, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.thumb, new { type = "file", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.thumb, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Số Lượng
+        <div class="col-md-10">
+            @Html.TextBox("SoLuong")
+            @ViewData["err2"]
+        </div>
+    </div>
+
+    <div class="form-group">
+        Giá
+        <div class="col-md-10">
+            @Html.TextBox("Gia")
+            @ViewData["err3"]
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.idProductCategory, "idProductCategory", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("idProductCategory", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.idProductCategory, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Ngày nhập
+        <div class="col-md-10">
+            <input type="date" name="updateDay" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    <h4>@ViewBag.ThongBao</h4>  
+    @Html.ActionLink("Back to List", "Index")
+</div>

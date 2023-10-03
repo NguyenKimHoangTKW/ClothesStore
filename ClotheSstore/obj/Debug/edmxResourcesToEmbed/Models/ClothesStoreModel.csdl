@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbClothesStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="idAdmin" />
+    </Key>
+    <Property Name="idAdmin" Type="Int32" Nullable="false" />
+    <Property Name="codeAdmin" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="nameAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="passWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="access" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="idCustomer" />
+    </Key>
+    <Property Name="idCustomer" Type="Int32" Nullable="false" />
+    <Property Name="codeCustomer" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="nameCustomer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="passWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="birthDay" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="idOrder" />
+    </Key>
+    <Property Name="idOrder" Type="Int32" Nullable="false" />
+    <Property Name="codeOrder" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="checkPay" Type="Boolean" Nullable="false" />
+    <Property Name="deliveryStatus" Type="Int32" Nullable="false" />
+    <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="deliveryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="idCustomer" Type="Int32" Nullable="false" />
+    <Property Name="idSize" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
+    <NavigationProperty Name="Size" Relationship="Self.FK_Order_Size" FromRole="Order" ToRole="Size" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="idOrder" />
+      <PropertyRef Name="idProduct" />
+    </Key>
+    <Property Name="idOrder" Type="Int32" Nullable="false" />
+    <Property Name="idProduct" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="idProduct" />
+    </Key>
+    <Property Name="idProduct" Type="Int32" Nullable="false" />
+    <Property Name="codeProduct" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="nameProduct" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="describe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="thumb" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Double" Nullable="false" />
+    <Property Name="idProductCategory" Type="Int32" Nullable="false" />
+    <Property Name="updateDay" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
+    <NavigationProperty Name="ProductCategory" Relationship="Self.FK_Product_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
+    <NavigationProperty Name="Product_Size" Relationship="Self.FK_Product_Size_Product" FromRole="Product" ToRole="Product_Size" />
+  </EntityType>
+  <EntityType Name="Product_Size">
+    <Key>
+      <PropertyRef Name="idProduct" />
+      <PropertyRef Name="idSize" />
+    </Key>
+    <Property Name="idProduct" Type="Int32" Nullable="false" />
+    <Property Name="idSize" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="quantityinstock" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Size_Product" FromRole="Product_Size" ToRole="Product" />
+    <NavigationProperty Name="Size" Relationship="Self.FK_Product_Size_Size" FromRole="Product_Size" ToRole="Size" />
+  </EntityType>
+  <EntityType Name="ProductCategory">
+    <Key>
+      <PropertyRef Name="idProductCategory" />
+    </Key>
+    <Property Name="idProductCategory" Type="Int32" Nullable="false" />
+    <Property Name="codeProductCategory" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="nameProductCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Size">
+    <Key>
+      <PropertyRef Name="idSize" />
+    </Key>
+    <Property Name="idSize" Type="Int32" Nullable="false" />
+    <Property Name="nameSize" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Size" FromRole="Size" ToRole="Order" />
+    <NavigationProperty Name="Product_Size" Relationship="Self.FK_Product_Size_Size" FromRole="Size" ToRole="Product_Size" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Order_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="idCustomer" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="idCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Size">
+    <End Role="Size" Type="Self.Size" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Size">
+        <PropertyRef Name="idSize" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="idSize" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="idOrder" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="idOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="idProduct" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductCategory">
+    <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategory">
+        <PropertyRef Name="idProductCategory" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="idProductCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Size_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Product_Size" Type="Self.Product_Size" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="idProduct" />
+      </Principal>
+      <Dependent Role="Product_Size">
+        <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Size_Size">
+    <End Role="Size" Type="Self.Size" Multiplicity="1" />
+    <End Role="Product_Size" Type="Self.Product_Size" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Size">
+        <PropertyRef Name="idSize" />
+      </Principal>
+      <Dependent Role="Product_Size">
+        <PropertyRef Name="idSize" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbClothesStoreEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Product_Size" EntityType="Self.Product_Size" />
+    <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
+    <EntitySet Name="Sizes" EntityType="Self.Size" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Size" Association="Self.FK_Order_Size">
+      <End Role="Size" EntitySet="Sizes" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductCategory" Association="Self.FK_Product_ProductCategory">
+      <End Role="ProductCategory" EntitySet="ProductCategories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Size_Product" Association="Self.FK_Product_Size_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Product_Size" EntitySet="Product_Size" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Size_Size" Association="Self.FK_Product_Size_Size">
+      <End Role="Size" EntitySet="Sizes" />
+      <End Role="Product_Size" EntitySet="Product_Size" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

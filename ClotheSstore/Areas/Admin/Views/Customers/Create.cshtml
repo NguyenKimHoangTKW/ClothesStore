@@ -1,0 +1,80 @@
+﻿@model ClotheSstore.Models.Customer
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="card">
+    <div class="card-body">
+        <h4>Thêm mới khách hàng</h4>
+        <h2 style="color:red">@ViewBag.ThongBao</h2>
+        <div class="m-t-25">
+            <form id="form-validation">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Tên khách hàng*</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="nameCustomer"> @ViewData["err1"]
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Tài khoản*</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="userName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Mật khẩu*</label>
+                    <div class="col-md-5">
+                        <input type="password" class="form-control" name="passWord">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Ngày sinh*</label>
+                    <div class="col-md-5">
+                        <input type="date" class="form-control" name="birthDay">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Email</label>
+                    <div class="col-md-5">
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Địa chỉ*</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="address">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Số điện thoại*</label>
+                    <div class="col-md-5">
+                        <input type="number" class="form-control" name="phone">
+                    </div>
+                </div>
+
+                <div class="form-group text-right">
+                    <button class="btn btn-success btn-tone m-r-5">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Quay về danh sách sản phẩm", "Index")
+    </div>
+</div>
+    
+</div>   
+}
+
+

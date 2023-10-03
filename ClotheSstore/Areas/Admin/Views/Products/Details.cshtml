@@ -1,0 +1,83 @@
+﻿@model ClotheSstore.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codeProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codeProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nameProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.describe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.describe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thumb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thumb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updateDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updateDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCategory.codeProductCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCategory.codeProductCategory)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idProduct }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

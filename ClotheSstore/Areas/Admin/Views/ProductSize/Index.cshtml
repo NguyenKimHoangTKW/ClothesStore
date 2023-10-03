@@ -1,0 +1,70 @@
+﻿@model PagedList.IPagedList<ClotheSstore.Models.Product_Size>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Tên Size</th>
+                <th scope="col">Số Lượng Tồn</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    i++;
+                    <tr>
+                        <th scope="row">@i</th>
+                        <td>@item.Product.nameProduct</td>
+                        <td>@item.Size.nameSize</td>
+                        <td>@item.quantity</td>
+                        <td>@item.quantityinstock</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.idProduct }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.idProduct }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.idProduct })
+                        </td>
+                    </tr>
+                }
+            }
+
+
+        </tbody>
+    </table>
+</div>
+<!-- Thêm mã phân trang -->
+<br />
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
+        @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+        {
+            <p>
+                Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+            </p>
+        }
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right">
+        Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    </div>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.currentSize }))
+<!-- Kết thúc -->

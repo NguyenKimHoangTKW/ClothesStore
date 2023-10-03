@@ -1,0 +1,89 @@
+﻿@model ClotheSstore.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codeCustomer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codeCustomer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nameCustomer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameCustomer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.passWord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.passWord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
