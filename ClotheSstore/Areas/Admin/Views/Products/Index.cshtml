@@ -98,13 +98,16 @@
                                 </div>
                             </td>
                          
-                            <td class="text-right">
-                                <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
-                                    <a href="/Admin/Products/Edit?id=@item.idProduct"><i class="anticon anticon-edit"></i></a>
-                                </button>
-                                <button class="btn btn-icon btn-hover btn-sm btn-rounded">
-                                    <a href="/Admin/Products/Delete?id=@item.idProduct"><i class="anticon anticon-delete"></i>
-                                </button>
+                            <td>
+                                <a href="/Admin/Products/Details?id=@item.idProduct">
+                                    <button class="btn btn-info btn-tone m-r-5">Xem</button>
+                                </a> |
+                                <a href="/Admin/Products/Edit?id=@item.idProduct">
+                                    <button class="btn btn-success btn-tone m-r-5">Sửa</button>
+                                </a> |
+                                <a href="/Admin/Products/Delete?id=@item.idProduct">
+                                    <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                                </a>
                             </td>
                         </tr>
 

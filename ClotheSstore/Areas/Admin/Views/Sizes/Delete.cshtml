@@ -10,13 +10,23 @@
     <h4>Size</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nameSize)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nameSize)
-        </dd>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Thông tin size</h4>
+                <div class="table-responsive">
+                    <table class="product-info-table m-t-20">
+                        <tbody>
+                            <tr>
+                                <td>Tên size:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.nameSize)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
     </dl>
 

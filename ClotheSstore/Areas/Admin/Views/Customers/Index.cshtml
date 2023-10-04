@@ -17,7 +17,7 @@
 @using (Html.BeginForm("Index", "Customers", FormMethod.Get, new { @class = "form-inline" }))
 {
         <div class="card-body">
-            <h4>Tên khách hàng</h4>
+            <h4>Tìm khách hàng</h4>
             <div class="m-t-25" style="max-width: 500px">
                 <form>
                     <div class="row">
@@ -64,10 +64,13 @@
                         <td>@item.email</td>
                         <td>@item.address</td>
                         <td>@item.phone</td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.idCustomer }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.idCustomer }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.idCustomer })
+                        <td class="text-right">
+                            <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                <a href="/Admin/Customers/Edit?id=@item.idCustomer"><i class="anticon anticon-edit"></i></a>
+                            </button>
+                            <button class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                <a href="/Admin/Customers/Delete?id=@item.idCustomer"><i class="anticon anticon-delete"></i>
+                            </button>
                         </td>
                     </tr>
                 }
@@ -76,9 +79,14 @@
 
         </tbody>
     </table>
-    <a href="@Url.Action("Create", "Customers")">
-        <button class="btn btn-primary btn-tone m-r-5">Thêm mới khách hàng</button>
-    </a>
+    <div class="col-lg-4 text-left">
+        <a href="@Url.Action("Create", "Customers")">
+            <button class="btn btn-primary btn-tone m-r-5">
+                <i class="anticon anticon-plus-circle m-r-5"></i>
+                Thêm khách hàng
+            </button>
+        </a>
+    </div>
 </div>
 
 <!-- Thêm mã phân trang -->

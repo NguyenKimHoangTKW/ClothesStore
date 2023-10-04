@@ -55,9 +55,15 @@
                         <td>@item.codeProductCategory</td>
                         <td>@item.nameProductCategory</td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.idProductCategory }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.idProductCategory }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.idProductCategory })
+                            <a href="/Admin/ProductCategories/Details?id=@item.idProductCategory">
+                                <button class="btn btn-info btn-tone m-r-5">Xem</button>
+                            </a> |
+                            <a href="/Admin/ProductCategories/Edit?id=@item.idProductCategory">
+                                <button class="btn btn-success btn-tone m-r-5">Sửa</button>
+                            </a> |
+                            <a href="/Admin/ProductCategories/Delete?id=@item.idProductCategory">
+                                <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                            </a>
                         </td>
                     </tr>
                 }

@@ -7,37 +7,36 @@
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Product_Size</h4>
     <hr />
     <dl class="dl-horizontal">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Thông tin khách hàng</h4>
+                <h4 class="card-title">Thông tin size sản phẩm</h4>
                 <div class="table-responsive">
                     <table class="product-info-table m-t-20">
                         <tbody>
                             <tr>
                                 <td>Mã sản phẩm:</td>
                                 <td>
-                                    @Html.DisplayFor(model => model.quantity)
+                                    @Html.DisplayFor(model => model.Product.codeProduct)
                                 </td>
                             </tr>
                             <tr>
                                 <td>Tên sản phẩm:</td>
                                 <td>
-                                    @Html.DisplayFor(model => model.quantityinstock)
+                                    @Html.DisplayFor(model => model.Product.nameProduct)
                                 </td>
                             </tr>
                             <tr>
-                                <td>Mô tả:</td>
+                                <td>Số lượng</td>
                                 <td>
-                                    @Html.DisplayFor(model => model.Product.codeProduct)
+                                    @Html.DisplayFor(model => model.quantity)
                                 </td>
                             </tr>
                             <tr>
-                                <td>Hình ảnh:</td>
+                                <td>Size:</td>
                                 <td>
                                     @Html.DisplayFor(model => model.Size.nameSize)
                                 </td>

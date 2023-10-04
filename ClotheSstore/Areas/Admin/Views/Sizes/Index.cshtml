@@ -30,9 +30,15 @@
                         <td>@item.nameSize</td>
                         <td>@item.status</td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.idSize }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.idSize }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.idSize })
+                            <a href="/Admin/Sizes/Details?id=@item.idSize">
+                                <button class="btn btn-info btn-tone m-r-5">Xem</button>
+                            </a> |
+                            <a href="/Admin/Sizes/Edit?id=@item.idSize">
+                                <button class="btn btn-success btn-tone m-r-5">Sửa</button>
+                            </a> |
+                            <a href="/Admin/Sizes/Delete?id=@item.idSize">
+                                <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                            </a>
                         </td>
                     </tr>
                 }
