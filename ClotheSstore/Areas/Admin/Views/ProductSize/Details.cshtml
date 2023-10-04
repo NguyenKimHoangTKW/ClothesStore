@@ -5,40 +5,37 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Product_Size</h4>
-    <hr />
+   
     <dl class="dl-horizontal">
-        <div class="card">
+        <div class="card" style=" margin-top: 74px;">
             <div class="card-body">
-                <h4 class="card-title">Thông tin khách hàng</h4>
+                <h4 class="card-title">Thông tin sản phẩm</h4>
                 <div class="table-responsive">
                     <table class="product-info-table m-t-20">
                         <tbody>
                             <tr>
-                                <td>Mã sản phẩm:</td>
+                                <td>Tên sản phẩm:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Product.nameProduct)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tên Size:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Size.nameSize)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Số lượng tồn kho:</td>
                                 <td>
                                     @Html.DisplayFor(model => model.quantity)
                                 </td>
                             </tr>
                             <tr>
-                                <td>Tên sản phẩm:</td>
+                                <td>Trạng thái mở bán :</td>
                                 <td>
                                     @Html.DisplayFor(model => model.quantityinstock)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mô tả:</td>
-                                <td>
-                                    @Html.DisplayFor(model => model.Product.codeProduct)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hình ảnh:</td>
-                                <td>
-                                    @Html.DisplayFor(model => model.Size.nameSize)
                                 </td>
                             </tr>
                         </tbody>

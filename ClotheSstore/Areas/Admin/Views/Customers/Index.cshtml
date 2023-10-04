@@ -16,7 +16,6 @@
 </p>
 @using (Html.BeginForm("Index", "Customers", FormMethod.Get, new { @class = "form-inline" }))
 {
-    <div class="card">
         <div class="card-body">
             <h4>Tên khách hàng</h4>
             <div class="m-t-25" style="max-width: 500px">
@@ -31,7 +30,6 @@
             </div>
 
         </div>
-    </div>
 
 }
 <div class="table-responsive">
@@ -57,7 +55,7 @@
                 {
                     i++;
                     <tr>
-                        <th scope="row">@i</th>
+                        <th scope="row">#@i</th>
                         <td>@item.codeCustomer</td>
                         <td>@item.nameCustomer</td>
                         <td>@item.userName</td>

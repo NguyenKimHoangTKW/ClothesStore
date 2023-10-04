@@ -23,6 +23,7 @@ namespace ClotheSstore.Models
     
         public int idSize { get; set; }
         public string nameSize { get; set; }
+        public string status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

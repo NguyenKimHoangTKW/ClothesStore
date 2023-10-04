@@ -68,16 +68,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Product_Size">
-      <EntityTypeMapping TypeName="dbClothesStoreModel.Product_Size">
-        <MappingFragment StoreEntitySet="Product_Size">
-          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
-          <ScalarProperty Name="idSize" ColumnName="idSize" />
-          <ScalarProperty Name="quantity" ColumnName="quantity" />
-          <ScalarProperty Name="quantityinstock" ColumnName="quantityinstock" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ProductCategories">
       <EntityTypeMapping TypeName="dbClothesStoreModel.ProductCategory">
         <MappingFragment StoreEntitySet="ProductCategory">
@@ -90,6 +80,7 @@
     <EntitySetMapping Name="Sizes">
       <EntityTypeMapping TypeName="dbClothesStoreModel.Size">
         <MappingFragment StoreEntitySet="Size">
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="idSize" ColumnName="idSize" />
           <ScalarProperty Name="nameSize" ColumnName="nameSize" />
         </MappingFragment>
@@ -103,6 +94,17 @@
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Size">
+      <EntityTypeMapping TypeName="dbClothesStoreModel.Product_Size">
+        <MappingFragment StoreEntitySet="Product_Size">
+          <ScalarProperty Name="quantityinstock" ColumnName="quantityinstock" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="idSize" ColumnName="idSize" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="idProduct_Size" ColumnName="idProduct_Size" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

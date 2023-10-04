@@ -7,23 +7,17 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Product</h4>
-    
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<div class="card">
+<div class="card" style="margin-top: 37px">
     <div class="card-body">
-        <h4>Thêm Danh mục</h4>
+        <h4>Thêm mới khách hàng</h4>
         <h2 style="color:red">@ViewBag.ThongBao</h2>
-        <div class="m-t-25">
+        <div class="m-t-15">
             <form id="form-validation">
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label control-label">Tên sản phẩm*</label>
+                    <label class="col-sm-2 col-form-label control-label">Tên Sản phẩm*</label>
                     <div class="col-md-5">
                         <input type="text" class="form-control" name="nameProduct">
                     </div>
@@ -35,29 +29,36 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label control-label">Hình ảnh*</label>
+                    <label class="col-sm-2 col-form-label control-label">Ảnh sản phẩm*</label>
                     <div class="col-md-5">
                         <input type="file" class="form-control" name="thumb">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label control-label">Số lượng*</label>
+                    <label class="col-sm-2 col-form-label control-label">Số lượng sản phẩm*</label>
                     <div class="col-md-5">
-                        <input type="text" class="form-control" name="quantity">
+                        <input type="number" class="form-control" name="quantity">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label control-label">Giá*</label>
+                    <label class="col-sm-2 col-form-label control-label">Giá sản phẩm*</label>
                     <div class="col-md-5">
-                        <input type="text" class="form-control" name="price">
+                        <input type="number" class="form-control" name="email">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label control-label">Ngày thêm*</label>
+                    <label class="col-sm-2 col-form-label control-label">Danh mục sản phẩm*</label>
+                    <div class="col-md-5">
+                        @Html.DropDownList("idProductCategory", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Ngày thêm sản phẩm*</label>
                     <div class="col-md-5">
                         <input type="date" class="form-control" name="updateDay">
                     </div>
                 </div>
+
                 <div class="form-group text-left">
                     <button class="btn btn-success btn-tone m-r-5">Submit</button>
                 </div>
@@ -68,5 +69,5 @@
         @Html.ActionLink("Quay về danh sách sản phẩm", "Index")
     </div>
 </div>
-</div>
 }
+

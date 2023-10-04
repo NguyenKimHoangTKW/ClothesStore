@@ -65,9 +65,9 @@
   </EntityType>
   <EntityType Name="Product_Size">
     <Key>
-      <PropertyRef Name="idProduct" />
-      <PropertyRef Name="idSize" />
+      <PropertyRef Name="idProduct_Size" />
     </Key>
+    <Property Name="idProduct_Size" Type="int" Nullable="false" />
     <Property Name="idProduct" Type="int" Nullable="false" />
     <Property Name="idSize" Type="int" Nullable="false" />
     <Property Name="quantity" Type="int" Nullable="false" />
@@ -87,6 +87,7 @@
     </Key>
     <Property Name="idSize" Type="int" Nullable="false" />
     <Property Name="nameSize" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

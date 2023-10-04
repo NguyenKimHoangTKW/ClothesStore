@@ -14,24 +14,26 @@
 
 @using (Html.BeginForm("Index", "ProductCategories", FormMethod.Get, new { @class = "form-inline" }))
 {
-    <div class="card">
-        <div class="card-body">
-            <h4>Tên danh mục</h4>
-            <div class="m-t-25" style="max-width: 500px">
-                <form>
-                    <div class="row">
-                        <div class="col">
-                            <input type="Text" class="form-control" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập danh mục cần tìm">
-                            <input type="submit" class="btn btn-danger" value="Tìm">
-                        </div>
-                    </div>
-                </form>
-            </div>
 
+    <div class="card-body">
+        <h4>Tên danh mục</h4>
+        <div class="m-t-25" style="max-width: 500px">
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <input type="Text" class="form-control" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập danh mục cần tìm">
+                        <input type="submit" class="btn btn-danger" value="Tìm">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-}
 
+
+}
+<a href="@Url.Action("Create", "ProductCategories")">
+    <button class="btn btn-primary btn-tone m-r-5" style="float: right;">Thêm danh mục sản phẩm</button>
+</a>
 <div class="table-responsive">
     <table class="table">
         <thead>
@@ -49,7 +51,7 @@
                 {
                     i++;
                     <tr>
-                        <th scope="row">@i</th>
+                        <th scope="row">#@i</th>
                         <td>@item.codeProductCategory</td>
                         <td>@item.nameProductCategory</td>
                         <td>
@@ -64,15 +66,13 @@
 
         </tbody>
     </table>
-    <a href="@Url.Action("Create", "ProductCategories")">
-        <button class="btn btn-primary btn-tone m-r-5">Thêm danh mục sản phẩm</button>
-    </a>
+
 </div>
 <!-- Thêm mã phân trang -->
 <br />
 <div class="row">
     <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
-        @using (Html.BeginForm("Index", "Customers", FormMethod.Get))
+        @using (Html.BeginForm("Index", "ProductCategories", FormMethod.Get))
         {
             <p>
                 Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.Size, new { @onchange = "this.form.submit();", @class = "ProductCategories-select", @style = "width: 70px;" })

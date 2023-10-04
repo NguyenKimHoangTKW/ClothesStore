@@ -14,6 +14,7 @@ namespace ClotheSstore.Models
     
     public partial class Product_Size
     {
+        public int idProduct_Size { get; set; }
         public int idProduct { get; set; }
         public int idSize { get; set; }
         public int quantity { get; set; }

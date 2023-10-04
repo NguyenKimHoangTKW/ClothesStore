@@ -72,7 +72,7 @@ namespace ClotheSstore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idSize,nameSize")] Size size)
+        public ActionResult Create(Size size)
         {
             if (ModelState.IsValid)
             {
