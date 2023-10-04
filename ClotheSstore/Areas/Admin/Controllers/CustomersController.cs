@@ -47,7 +47,7 @@ namespace ClotheSstore.Areas.Admin.Controllers
 
             // 3.1. Tạo danh sách chọn số trang
             List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = "1", Value = "1" });
+            items.Add(new SelectListItem { Text = "5", Value = "5" });
             items.Add(new SelectListItem { Text = "10", Value = "10" });
             items.Add(new SelectListItem { Text = "20", Value = "20" });
             items.Add(new SelectListItem { Text = "25", Value = "25" });

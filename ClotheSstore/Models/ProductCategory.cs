@@ -19,10 +19,9 @@ namespace ClotheSstore.Models
         {
             this.Products = new HashSet<Product>();
         }
-        public string codeProductCategory { get; set; }
-
+    
         public int idProductCategory { get; set; }
-        
+        public string codeProductCategory { get; set; }
         public string nameProductCategory { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

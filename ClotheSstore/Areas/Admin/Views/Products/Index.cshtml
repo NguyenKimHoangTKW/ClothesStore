@@ -12,40 +12,23 @@
 <p>
 
 </p>
+<p>
+    <a href="#">content</a>
+</p>
 
-@using (Html.BeginForm("Index", "Products", FormMethod.Get, new { @class = "form-inline" }))
-{
-}
+
 
 <div class="card">
     <div class="card-body">
         <div class="row m-b-30">
-            <div class="col-lg-8">
-                <div class="d-md-flex">
-                    <div class="m-b-10 m-r-15">
-                        <select class="custom-select" style="min-width: 180px;">
-                            <option selected="">Catergory</option>
-                            <option value="all">All</option>
-                            <option value="homeDeco">Home Decoration</option>
-                            <option value="eletronic">Eletronic</option>
-                            <option value="jewellery">Jewellery</option>
-                        </select>
-                    </div>
-                    <div class="m-b-10 m-r-15">
-                        <select class="custom-select" style="min-width: 180px;">
-                            <option selected="">Status</option>
-                            <option value="all">All</option>
-                            <option value="inStock">In Stock </option>
-                            <option value="outOfStock">Out of Stock</option>
-                        </select>
-                    </div>
-                    <div class="m-b-10 m-r-15">
-                        <select class="custom-select" style="min-width: 180px;">
-                            <option selected="">Danh mục</option>
-                            <option value=@Html.DropDownList("ProductCategories", null, htmlAttributes: new { @class = "form-control" })
-                            
-                        </select>   
-                    </diV>
+            @using (Html.BeginForm("Index", "Products", FormMethod.Get, new { @class = "form-inline" }))
+            {
+                <div class="col-lg-8">
+                    <div class="d-md-flex">
+
+                        <div class="m-b-10 m-r-15">
+                            @Html.DropDownList("product", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
                         <div class="m-b-10 m-r-15">
                             <input type="Text" class="form-control" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập sản phẩm cần tìm">
                         </div>
@@ -54,6 +37,8 @@
                         </div>
                     </div>
                 </div>
+
+            }
             <div class="col-lg-4 text-right">
                 <a href="@Url.Action("Create", "Products")">
                     <button class="btn btn-primary btn-tone m-r-5">
@@ -63,206 +48,69 @@
                 </a>
             </div>
         </div>
+
         <div class="table-responsive">
             <table class="table table-hover e-commerce-table">
                 <thead>
                     <tr>
-                        <th>
-                            <div class="checkbox">
-                                <input id="checkAll" type="checkbox">
-                                <label for="checkAll" class="m-b-0"></label>
-                            </div>
-                        </th>
                         <th scope="col">STT</th>
-                        <th scope="col">Mã Sản phẩm</th>
                         <th scope="col">@Html.ActionLink("Tên sản phẩm", "Index", new { sortProperty = "nameProduct", sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword, productid = ViewBag.Subject })</th>
-                        <th scope="col">Số Lượng</th>
+                        <th scope="col">Mã sản phẩm</th>
+                        <th scope="col">@Html.ActionLink("Số lượng", "Index", new { sortProperty = "quantity", sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword, productid = ViewBag.Subject })</th>
                         <th scope="col">@Html.ActionLink("Giá", "Index", new { sortProperty = "price", sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword, productid = ViewBag.Subject })</th>
                         <th scope="col">Category</th>
-                        <th scope="col">Ngày Nhập</th>
+                        <th scope="col">@Html.ActionLink("Ngày nhập", "Index", new { sortProperty = "updateDay", sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword, productid = ViewBag.Subject })</th>
                         <th scope="col">Mô tả</th>
-                        <th scope="col">Hình</th>
                         <th scope="col">#</th>
                     </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <input id="check-item-1" type="checkbox">
-                                <label for="check-item-1" class="m-b-0"></label>
-                            </div>
-                        </td>
-                        <td>
-                            #1
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img class="img-fluid rounded" src="/" style="max-width: 60px" alt="">
-                                <h6 class="m-b-0 m-l-10">/</h6>
-                            </div>
-                        </td>
-                        <td>/</td>
-                        <td>/</td>
-                        <td>/</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div>/</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <div>/</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <div>/</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <div>/</div>
-                            </div>
-                        </td>
-                        <td class="text-right">
-                            <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
-                                <i class="anticon anticon-edit"></i>
-                            </button>
-                            <button class="btn btn-icon btn-hover btn-sm btn-rounded">
-                                <i class="anticon anticon-delete"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <input id="check-item-2" type="checkbox">
-                                <label for="check-item-2" class="m-b-0"></label>
-                            </div>
-                        </td>
-                        <td>
-                            #2
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img class="img-fluid rounded" src="assets/images/others/thumb-10.jpg" style="max-width: 60px" alt="">
-                                <h6 class="m-b-0 m-l-10">/</h6>
-                            </div>
-                        </td>
-                        <td>/</td>
-                        <td>/</td>
-                        <td>/</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <div>/</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <div>/</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <div>/</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-
-                                <div>/</div>
-                            </div>
-                        </td>
-
-                        <td class="text-right">
-                            <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
-                                <i class="anticon anticon-edit"></i>
-                            </button>
-                            <button class="btn btn-icon btn-hover btn-sm btn-rounded">
-                                <i class="anticon anticon-delete"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <input id="check-item-3" type="checkbox">
-                                <label for="check-item-3" class="m-b-0"></label>
-                            </div>
-                        </td>
-                        <td>
-                            #3
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img class="img-fluid rounded" src="assets/images/others/thumb-11.jpg" style="max-width: 60px" alt="">
-                                <h6 class="m-b-0 m-l-10">/</h6>
-                            </div>
-                        </td>
-                        <td>/</td>
-                        <td>/</td>
-                        <td>/</td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div>/</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div>/</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div>/</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div>/</div>
-                            </div>
-                        </td>
-                        <td class="text-right">
-                            <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
-                                <i class="anticon anticon-edit"></i>
-                            </button>
-                            <button class="btn btn-icon btn-hover btn-sm btn-rounded">
-                                <i class="anticon anticon-delete"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
                     @if (Model != null)
                     {
                         foreach (var item in Model)
-                        {
-                            i++;
-                            <tr>
-                                <th scope="row">@i</th>
-                                <td>@item.codeProduct</td>
-                                <td>@item.nameProduct</td>
-                                <td>@item.quantity</td>
-                                <td>@string.Format("{0:#,0} VNĐ", item.price)</td>
-                                <td>@item.ProductCategory.nameProductCategory</td>
-                                <td>@string.Format("{0:dd-MM-yyyy}", item.updateDay)</td>
-                                <td>@item.describe</td>
-                                <td><img src="~/Areas/Admin/Images/Product_Images/@item.thumb" width="80px" height="50px" /></td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.idProduct }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.idProduct }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.idProduct })
-                                </td>
-                            </tr>
-                        }
+                    {
+                        i++;
+                        <tr>
+                            <td>
+                                #@i
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img class="img-fluid rounded" src="~/Areas/Admin/Images/Product_Images/@item.thumb" style="max-width: 60px" alt="">
+                                    <h6 class="m-b-0 m-l-10">@item.nameProduct</h6>
+                                </div>
+                            </td>
+                            <td>@item.codeProduct</td>
+                            <td>@item.quantity</td>
+                            <td>@string.Format("{0:#,0} VNĐ", item.price)</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div>@item.ProductCategory.nameProductCategory</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div>@string.Format("{0:dd-MM-yyyy}", item.updateDay)</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+
+                                    <div>@item.describe</div>
+                                </div>
+                            </td>
+                         
+                            <td class="text-right">
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                    <a href="/Admin/Products/Edit?id=@item.idProduct"><i class="anticon anticon-edit"></i></a>
+                                </button>
+                                <button class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                    <a href="/Admin/Products/Delete?id=@item.idProduct"><i class="anticon anticon-delete"></i>
+                                </button>
+                            </td>
+                        </tr>
+
                     }
-                  
-                </tbody>
+                    }
+                </thead>          
             </table>
         </div>
         <!-- Thêm mã phân trang -->

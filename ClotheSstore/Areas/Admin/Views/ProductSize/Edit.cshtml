@@ -30,10 +30,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.quantityinstock, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.quantityinstock)
-                    @Html.ValidationMessageFor(model => model.quantityinstock, "", new { @class = "text-danger" })
-                </div>
+                    <input type="checkbox" name="quantityinstock" >
             </div>
         </div>
 

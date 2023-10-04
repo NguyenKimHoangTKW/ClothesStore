@@ -28,14 +28,10 @@ namespace ClotheSstore.Areas.Admin.Controllers
             if (!String.IsNullOrEmpty(searchString))
                 products = products.Where(b => b.nameProduct.Contains(searchString));
 
-          
-            if (!String.IsNullOrEmpty(searchString))
-                products = products.Where(b => b.nameProduct.Contains(searchString));
-
-            if (product != 0)
+            if (product != 0)   
                 products = products.Where(c => c.idProductCategory == product);
 
-            ViewBag.ProductCategories = new SelectList(db.ProductCategories, "idProductCategory", "nameProductCategory"); // danh sách Category         
+            ViewBag.product = new SelectList(db.ProductCategories, "idProductCategory", "nameProductCategory");
 
             if (sortOrder == "asc") ViewBag.SortOrder = "desc";
             if (sortOrder == "desc") ViewBag.SortOrder = "";
@@ -108,7 +104,7 @@ namespace ClotheSstore.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public ActionResult Create()
         {
-            ViewBag.idProductCategory = new SelectList(db.ProductCategories, "idProductCategory", "codeProductCategory");
+            ViewBag.idProductCategory = new SelectList(db.ProductCategories, "idProductCategory", "nameProductCategory");
             return View();
         }
 
@@ -120,32 +116,12 @@ namespace ClotheSstore.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Create(Product product, HttpPostedFileBase thumb, FormCollection collection)
         {
-            var _nameProduct = collection["TenProduct"];
-            var _describe = collection["MoTa"];
-            var _quantity = collection["SoLuong"];
-            var _price = collection["Gia"];
             if (ModelState.IsValid)
             {
                 int nextId = GetNextId();
                 product.idProduct = nextId;
                 product.codeProduct = "SP" + nextId.ToString("2023PT");
-                if (string.IsNullOrEmpty(product.nameProduct))
-                {
-                    ViewData["err1"] = "Tên sản phẩm không được rỗng";
-                }
-                else if (string.IsNullOrEmpty(_quantity))
-                {
-                    ViewData["err2"] = "Số lượng không được rỗng";
-                }
-                else if (string.IsNullOrEmpty(_price))
-                {
-                    ViewData["err3"] = "Giá không được rỗng";
-                }
-                else if (string.IsNullOrEmpty(_describe))
-                {
-                    ViewData["err4"] = "Nhập 'Không' hoặc mô tả khác không để trống";
-                }
-                else if (db.Products.SingleOrDefault(p => p.nameProduct == _nameProduct) != null)
+                if (db.Products.SingleOrDefault(p => p.nameProduct == product.nameProduct) != null)
                 {
                     ViewBag.ThongBao = "Sản phẩm này đã tồn tại, Vui lòng nhập sản phẩm khác";
                 }
@@ -155,10 +131,6 @@ namespace ClotheSstore.Areas.Admin.Controllers
                     string _Tail = Path.GetExtension(thumb.FileName);
                     string fullLink = _Head + "-" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + _Tail;
                     string _path = Path.Combine(Server.MapPath("~/Areas/Admin/Images/Product_Images"), fullLink);
-
-                    product.quantity = int.Parse( _quantity);
-                    product.price = float.Parse (_price);
-                    product.describe = _describe;
                     thumb.SaveAs(_path);
                     product.thumb = fullLink;
                     db.Products.Add(product);
@@ -199,7 +171,7 @@ namespace ClotheSstore.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idProductCategory = new SelectList(db.ProductCategories, "idProductCategory", "codeProductCategory", product.idProductCategory);
+            ViewBag.idProductCategory = new SelectList(db.ProductCategories, "idProductCategory", "nameProductCategory", product.idProductCategory);
             return View(product);
         }
 
@@ -241,7 +213,7 @@ namespace ClotheSstore.Areas.Admin.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewBag.idProductCategory = new SelectList(db.ProductCategories, "idProductCategory", "codeProductCategory", product.idProductCategory);
+            ViewBag.idProductCategory = new SelectList(db.ProductCategories, "idProductCategory", "nameProductCategory", product.idProductCategory);
             return View(product);
         }
 

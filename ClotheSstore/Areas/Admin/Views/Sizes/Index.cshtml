@@ -8,31 +8,27 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<div class="table-responsive">
+
+<div class="table-responsive" style=" margin-top: 46px;">
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">STT</th>
                 <th scope="col">Tên Size</th>
+                <th scope="col">Mô tả</th>
                 <th scope="col">#</th>
             </tr>
         </thead>
         <tbody>
             @if (Model != null)
-            { 
+            {
                 foreach (var item in Model)
                 {
                     i++;
                     <tr>
-                        <th scope="row">@i</th>
+                        <th scope="row">#@i</th>
                         <td>@item.nameSize</td>
-                        
+                        <td>@item.status</td>
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { id = item.idSize }) |
                             @Html.ActionLink("Details", "Details", new { id = item.idSize }) |
@@ -45,6 +41,9 @@
 
         </tbody>
     </table>
+    <a href="@Url.Action("Create", "Sizes")">
+        <button class="btn btn-primary btn-tone m-r-5">Thêm Sizes</button>
+    </a>
 </div>
 <!-- Thêm mã phân trang -->
 <br />

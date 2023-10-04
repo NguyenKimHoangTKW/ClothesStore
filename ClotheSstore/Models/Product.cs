@@ -29,7 +29,7 @@ namespace ClotheSstore.Models
         public int quantity { get; set; }
         public double price { get; set; }
         public int idProductCategory { get; set; }
-        public Nullable<System.DateTime> updateDay { get; set; }
+        public System.DateTime updateDay { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

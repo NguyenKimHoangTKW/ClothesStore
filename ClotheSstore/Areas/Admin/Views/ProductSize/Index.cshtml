@@ -6,21 +6,33 @@
     int i = 0;
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<p>
-</p>
-<div class="table-responsive">
+<div class="table-responsive" style="margin-top:100px;">
+    @using (Html.BeginForm("Index", "ProductSize", FormMethod.Get, new { @class = "form-inline" }))
+    {
+        <div class="col-lg-8">
+            <div class="d-md-flex">
+
+                <div class="m-b-10 m-r-15">
+                    @Html.DropDownList("productSize", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="m-b-10 m-r-15">
+                    <input type="Text" class="form-control" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập sản phẩm cần tìm">
+                </div>
+                <div class="m-b-10">
+                    <input type="submit" class="btn btn-danger" value="Tìm">
+                </div>
+            </div>
+        </div>
+
+    }
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">STT</th>
-                <th scope="col">Tên sản phẩm</th>
-                <th scope="col">Tên Size</th>
-                <th scope="col">Số Lượng Tồn</th>
+                <th scope="col">@Html.ActionLink("Tên sản phẩm", "Index", new { sortProperty = "idProduct", sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword, productid = ViewBag.Subject })</th>
+                <th scope="col">@Html.ActionLink("Size", "Index", new { sortProperty = "idSize", sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword, productid = ViewBag.Subject })</th>
+                <th scope="col">@Html.ActionLink("Số lượng tồn", "Index", new { sortProperty = "quantity", sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword, productid = ViewBag.Subject })</th>
                 <th scope="col">Trạng thái</th>
                 <th scope="col">#</th>
             </tr>
@@ -32,15 +44,41 @@
                 {
                     i++;
                     <tr>
-                        <th scope="row">@i</th>
+                        <th scope="row">#@i</th>
                         <td>@item.Product.nameProduct</td>
                         <td>@item.Size.nameSize</td>
                         <td>@item.quantity</td>
-                        <td>@item.quantityinstock</td>
+
+
+                        @if (item.quantityinstock == true)
+                        {
+
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>In Stock</div>
+                                </div>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-danger badge-dot m-r-10"></div>
+                                    <div>Out of Stock</div>
+                                </div>
+                            </td>
+                        }
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.idProduct }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.idProduct }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.idProduct })
+                            <a href="/Admin/ProductSize/Details?id=@item.idProduct">
+                                <button class="btn btn-info btn-tone m-r-5">Xem</button>
+                            </a> |
+                            <a href="/Admin/ProductSize/Edit?id=@item.idProduct">
+                                <button class="btn btn-success btn-tone m-r-5">Sửa</button>
+                            </a> |
+                            <a href="/Admin/ProductSize/Delete?id=@item.idProduct">
+                                <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                            </a>
                         </td>
                     </tr>
                 }
@@ -50,7 +88,7 @@
         </tbody>
 
     </table>
-    <a href="@Url.Action("Create", "ProductCategories")">
+    <a href="@Url.Action("Create", "ProductSize")">
         <button class="btn btn-primary btn-tone m-r-5">Thêm danh mục sản phẩm</button>
     </a>
 </div>
@@ -58,17 +96,24 @@
 <br />
 <div class="row">
     <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
-        @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+        @using (Html.BeginForm("Index", "ProductSize", FormMethod.Get))
         {
             <p>
-                Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+                Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.Size, new { @onchange = "this.form.submit();", @class = "ProductCategories-select", @style = "width: 70px;" })
+
             </p>
+
+            @Html.Hidden("page", (object)ViewBag.Page)
+            @Html.Hidden("sortProperty", (object)ViewBag.SortProperty)
+            @Html.Hidden("sortOrder", (object)ViewBag.SortOrder)
+            @Html.Hidden("searchString", (object)ViewBag.Keyword)
+            @Html.Hidden("categoryID", (object)ViewBag.Subject)
         }
     </div>
-
     <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right">
         <h5 class="text-dark font-weight-semibold" style="margin-right: 20px">Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</h5>
     </div>
 </div>
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.currentSize }))
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.CurrentSize, sortProperty = ViewBag.SortProperty, sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword }))
 <!-- Kết thúc -->
