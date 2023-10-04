@@ -7,10 +7,9 @@
 
 
 <div style=" margin-top: 46px;">
-    <h4>Size</h4>
-    <hr />
+ 
     <dl class="dl-horizontal">
-        <div class="card">
+        <div class="card" style="margin-top:75px;">
             <div class="card-body">
                 <h4 class="card-title">Thông tin size</h4>
                 <div class="table-responsive">
@@ -20,6 +19,12 @@
                                 <td>Tên size:</td>
                                 <td>
                                     @Html.DisplayFor(model => model.nameSize)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mô tả</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.status)
                                 </td>
                             </tr>
                         </tbody>

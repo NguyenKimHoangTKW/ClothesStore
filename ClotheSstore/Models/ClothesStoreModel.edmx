@@ -271,8 +271,8 @@
           <Property Name="idCustomer" Type="Int32" Nullable="false" />
           <Property Name="idSize" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
-          <NavigationProperty Name="Size" Relationship="Self.FK_Order_Size" FromRole="Order" ToRole="Size" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+          <NavigationProperty Name="Size" Relationship="dbClothesStoreModel.FK_Order_Size" FromRole="Order" ToRole="Size" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -312,16 +312,6 @@
           <Property Name="nameProductCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Product_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
         </EntityType>
-        <EntityType Name="Size">
-          <Key>
-            <PropertyRef Name="idSize" />
-          </Key>
-          <Property Name="idSize" Type="Int32" Nullable="false" />
-          <Property Name="nameSize" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Size" FromRole="Size" ToRole="Order" />
-          <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product_Size" Relationship="dbClothesStoreModel.FK_Product_Size_Size" FromRole="Size" ToRole="Product_Size" />
-        </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -341,18 +331,6 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="idCustomer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_Size">
-          <End Role="Size" Type="Self.Size" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Size">
-              <PropertyRef Name="idSize" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="idSize" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -399,14 +377,9 @@
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
-          <EntitySet Name="Sizes" EntityType="Self.Size" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
             <End Role="Customer" EntitySet="Customers" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Size" Association="Self.FK_Order_Size">
-            <End Role="Size" EntitySet="Sizes" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
@@ -425,6 +398,11 @@
           <AssociationSet Name="FK_Product_Size_Product" Association="dbClothesStoreModel.FK_Product_Size_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="Product_Size" EntitySet="Product_Size" />
+          </AssociationSet>
+          <EntitySet Name="Sizes" EntityType="dbClothesStoreModel.Size" />
+          <AssociationSet Name="FK_Order_Size" Association="dbClothesStoreModel.FK_Order_Size">
+            <End Role="Size" EntitySet="Sizes" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Size_Size" Association="dbClothesStoreModel.FK_Product_Size_Size">
             <End Role="Size" EntitySet="Sizes" />
@@ -452,6 +430,28 @@
             </Principal>
             <Dependent Role="Product_Size">
               <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="idSize" />
+          </Key>
+          <Property Name="idSize" Type="Int32" Nullable="false" />
+          <Property Name="nameSize" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="dbClothesStoreModel.FK_Order_Size" FromRole="Size" ToRole="Order" />
+          <NavigationProperty Name="Product_Size" Relationship="dbClothesStoreModel.FK_Product_Size_Size" FromRole="Size" ToRole="Product_Size" />
+        </EntityType>
+        <Association Name="FK_Order_Size">
+          <End Type="dbClothesStoreModel.Size" Role="Size" Multiplicity="1" />
+          <End Type="dbClothesStoreModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="idSize" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="idSize" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -549,15 +549,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sizes">
-            <EntityTypeMapping TypeName="dbClothesStoreModel.Size">
-              <MappingFragment StoreEntitySet="Size">
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="idSize" ColumnName="idSize" />
-                <ScalarProperty Name="nameSize" ColumnName="nameSize" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="dbClothesStoreModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -577,6 +568,15 @@
                 <ScalarProperty Name="idSize" ColumnName="idSize" />
                 <ScalarProperty Name="idProduct" ColumnName="idProduct" />
                 <ScalarProperty Name="idProduct_Size" ColumnName="idProduct_Size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sizes">
+            <EntityTypeMapping TypeName="dbClothesStoreModel.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="nameSize" ColumnName="nameSize" />
+                <ScalarProperty Name="idSize" ColumnName="idSize" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

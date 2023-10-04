@@ -5,15 +5,13 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
 
 <div>
-    <h4>Product</h4>
-    <hr />
+  
     <dl class="dl-horizontal">
-        <div class="card">
+        <div class="card" style=" margin-top: 75px;">
             <div class="card-body">
-                <h4 class="card-title">Thông tin khách hàng</h4>
+                <h4 class="card-title">Thông tin sản phẩm</h4>
                 <div class="table-responsive">
                     <table class="product-info-table m-t-20">
                         <tbody>
@@ -38,7 +36,7 @@
                             <tr>
                                 <td>Hình ảnh:</td>
                                 <td>
-                                    @Html.DisplayFor(model => model.thumb)
+                                    <img src="~/Areas/Admin/Images/Product_Images/@Model.thumb" />
                                 </td>
                             </tr>
                             <tr>
@@ -50,13 +48,13 @@
                             <tr>
                                 <td>Giá:</td>
                                 <td>
-                                    @Html.DisplayFor(model => model.price)
+                                    @string.Format("{0:#,0} VNĐ", Model.price)
                                 </td>
                             </tr>
                             <tr>
                                 <td>Ngày thêm:</td>
                                 <td>
-                                    @Html.DisplayFor(model => model.updateDay)
+                                    @string.Format("{0:dd-MM-yyyy}",Model.updateDay)
                                 </td>
                             </tr>
                             <tr>

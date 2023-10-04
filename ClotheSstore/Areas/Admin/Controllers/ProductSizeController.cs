@@ -114,7 +114,7 @@ namespace ClotheSstore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idProduct,idSize,quantity,quantityinstock")] Product_Size product_Size)
+        public ActionResult Create( Product_Size product_Size)
         {
             if (ModelState.IsValid)
             {
@@ -164,7 +164,7 @@ namespace ClotheSstore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idProduct,idSize,quantity,quantityinstock")] Product_Size product_Size)
+        public ActionResult Edit([Bind(Include = "idProduct_Size,idProduct,idSize,quantity,quantityinstock")] Product_Size product_Size)
         {
             if (ModelState.IsValid)
             {

@@ -72,15 +72,22 @@ namespace ClotheSstore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Size size)
+        public ActionResult Create([Bind(Include = "idSize,nameSize,status")] Size size)
         {
             if (ModelState.IsValid)
             {
-                int nextId = GetNextId();
-                size.idSize = nextId;
-                db.Sizes.Add(size);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (db.Sizes.SingleOrDefault(s => s.nameSize == size.nameSize) != null)
+                {
+                    ViewBag.ThongBao = "Size này đã tồn tại trong list, vui lòng nhập size khác";
+                }
+                else
+                {
+                    int nextId = GetNextId();
+                    size.idSize = nextId;
+                    db.Sizes.Add(size);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(size);
@@ -118,7 +125,7 @@ namespace ClotheSstore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idSize,nameSize")] Size size)
+        public ActionResult Edit([Bind(Include = "idSize,nameSize,status")] Size size)
         {
             if (ModelState.IsValid)
             {

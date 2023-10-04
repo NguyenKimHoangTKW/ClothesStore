@@ -26,6 +26,7 @@
                         <label class="col-sm-2 col-form-label control-label">Tên danh mục*</label>
                         <div class="col-md-5">
                             <input type="text" class="form-control" name="nameProductCategory">
+                            @Html.ValidationMessageFor(model => model.nameProductCategory, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group text-left">

@@ -37,7 +37,7 @@
                         </tr>
                         <tr>
                             <td>Ngày sinh:</td>
-                            <td> @Html.DisplayFor(model => model.birthDay)</td>
+                            <td>@string.Format("{0:dd-MM-yyyy}",Model.birthDay)</td>
                         </tr>
                         <tr>
                             <td>Email:</td>

@@ -30,8 +30,8 @@ namespace ClotheSstore.Models
         public int idSize { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual Size Size { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual Size Size { get; set; }
     }
 }

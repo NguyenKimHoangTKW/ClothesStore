@@ -235,11 +235,7 @@
     <Content Include="Areas\Style\assets\images\avatars\thumb-7.jpg" />
     <Content Include="Areas\Style\assets\images\avatars\thumb-8.jpg" />
     <Content Include="Areas\Style\assets\images\avatars\thumb-9.jpg" />
-    <Content Include="Areas\Style\assets\images\logo\favicon.png" />
-    <Content Include="Areas\Style\assets\images\logo\logo-fold-white.png" />
-    <Content Include="Areas\Style\assets\images\logo\logo-fold.png" />
-    <Content Include="Areas\Style\assets\images\logo\logo-white.png" />
-    <Content Include="Areas\Style\assets\images\logo\logo.png" />
+    <Content Include="Areas\Style\assets\images\logo\logo3.png" />
     <Content Include="Areas\Style\assets\images\others\adobe-thumb.png" />
     <Content Include="Areas\Style\assets\images\others\amazon-thumb.png" />
     <Content Include="Areas\Style\assets\images\others\cambridge-thumb.png" />

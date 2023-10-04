@@ -14,9 +14,9 @@ namespace ClotheSstore.Areas.Admin.Controllers
         public ActionResult Index()
         {
             IList<Product> listsp = db.Products.ToList();
-            IList<Customer> customers = db.Customers.ToList();
+            IList<Customer> listcustomer = db.Customers.ToList();
             ViewBag.TotalProduct = listsp.Count;
-            ViewBag.TotalCustomer = customers.Count;
+            ViewBag.TotalCustomer = listcustomer.Count;
             return View();
         }
     }

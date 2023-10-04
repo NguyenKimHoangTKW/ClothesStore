@@ -31,8 +31,8 @@ namespace ClotheSstore.Models
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
-        public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Product_Size> Product_Size { get; set; }
+        public virtual DbSet<Size> Sizes { get; set; }
     }
 }

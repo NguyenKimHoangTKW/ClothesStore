@@ -5,43 +5,65 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Edit</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Product_Size</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.idProduct)
+<div class="form-horizontal">
 
-        @Html.HiddenFor(model => model.idSize)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idProduct_Size)
 
-        <div class="form-group">
-            <p>Số lượng</p>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+
+    <div class="card" >
+        <div class="card-body"style="margin-top: 100px">
+            <h4>Sửa sản phẩm</h4>
+            <h2 style="color:red">@ViewBag.ThongBao</h2>
+            <div class="m-t-15">
+                <form id="form-validation">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Tên Sản phẩm*</label>
+                        <div class="col-md-5">
+                            @Html.DropDownList("idProduct", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.idProduct, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Size*</label>
+                        <div class="col-md-5">
+                            @Html.DropDownList("idSize", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.idSize, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                  
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Số lượng tồn *</label>
+                        <div class="col-md-5">
+                            <input type="number" class="form-control" name="quantity" value="@Model.quantity">
+                            @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Trạng thái mở bán*</label>
+                        <div class="col-md-5">
+                            <div class="switch m-r-10">
+                                <input type="checkbox" id="switch-1" name="quantityinstock" value="true">
+                                <label for="switch-1"></label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group text-left">
+                        <button class="btn btn-success btn-tone m-r-5">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.quantityinstock, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                    <input type="checkbox" name="quantityinstock" >
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+        <div>
+            @Html.ActionLink("Quay về danh sách sản phẩm", "Index")
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+}

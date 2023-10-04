@@ -116,13 +116,19 @@ namespace ClotheSstore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                int nextId = GetNextId();
-
-                productCategory.idProductCategory = nextId;
-                productCategory.codeProductCategory = "DMSP" + nextId.ToString("2023PT"); ;
-                db.ProductCategories.Add(productCategory);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (db.ProductCategories.SingleOrDefault(pc => pc.nameProductCategory == productCategory.nameProductCategory) != null)
+                {
+                    ViewBag.ThongBao = "Danh mục sản phẩm này đã tồn tại, vui lòng nhập tên danh mục khác";
+                }
+                else
+                {
+                    int nextId = GetNextId();
+                    productCategory.idProductCategory = nextId;
+                    productCategory.codeProductCategory = "DMSP" + nextId.ToString("2023PT"); ;
+                    db.ProductCategories.Add(productCategory);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(productCategory);

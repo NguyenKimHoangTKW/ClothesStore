@@ -5,13 +5,11 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Delete</h2>
 
 <div>
-    <h4>Product_Size</h4>
-    <hr />
+
     <dl class="dl-horizontal">
-        <div class="card">
+        <div class="card" style="margin-top:75px;">
             <div class="card-body">
                 <h4 class="card-title">Thông tin size sản phẩm</h4>
                 <div class="table-responsive">
@@ -40,6 +38,28 @@
                                 <td>
                                     @Html.DisplayFor(model => model.Size.nameSize)
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>Trạng thái mở bán:</td>
+                                @if (Model.quantityinstock == true)
+                                {
+
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-success badge-dot m-r-10"></div>
+                                            <div>In Stock</div>
+                                        </div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-danger badge-dot m-r-10"></div>
+                                            <div>Out of Stock</div>
+                                        </div>
+                                    </td>
+                                }
                             </tr>
                         </tbody>
                     </table>

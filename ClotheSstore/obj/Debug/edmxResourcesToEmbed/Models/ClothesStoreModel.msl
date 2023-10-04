@@ -77,15 +77,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Sizes">
-      <EntityTypeMapping TypeName="dbClothesStoreModel.Size">
-        <MappingFragment StoreEntitySet="Size">
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="idSize" ColumnName="idSize" />
-          <ScalarProperty Name="nameSize" ColumnName="nameSize" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="dbClothesStoreModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
@@ -105,6 +96,15 @@
           <ScalarProperty Name="idSize" ColumnName="idSize" />
           <ScalarProperty Name="idProduct" ColumnName="idProduct" />
           <ScalarProperty Name="idProduct_Size" ColumnName="idProduct_Size" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sizes">
+      <EntityTypeMapping TypeName="dbClothesStoreModel.Size">
+        <MappingFragment StoreEntitySet="Size">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="nameSize" ColumnName="nameSize" />
+          <ScalarProperty Name="idSize" ColumnName="idSize" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
