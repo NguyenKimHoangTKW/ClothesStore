@@ -235,12 +235,20 @@ namespace ClotheSstore.Areas.Admin.Controllers
         // POST: Admin/Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, Product product)
         {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            product = db.Products.Find(id);
+            if (db.Product_Size.SingleOrDefault(pz => pz.idProduct == product.idProduct) != null)
+            {
+                ViewBag.ThongBao = "Không thể xóa vì Danh sách Size theo sản phẩm đang tồn tại sản phẩm này, vui lòng kiểm tra lại dữ liệu !!!";
+            }
+            else
+            {
+                db.Products.Remove(product);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(product);     
         }
 
         protected override void Dispose(bool disposing)

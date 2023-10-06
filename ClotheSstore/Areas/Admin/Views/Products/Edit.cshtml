@@ -71,7 +71,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label control-label">Ngày thêm sản phẩm*</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" name="updateDay" value="@string.Format("{0:dd-MM-yyyy}",Model.updateDay)">
+                            <input type="text" class="form-control" name="updateDay" value="@string.Format("{0:yyyy-MM-dd}",Model.updateDay)">
                             @Html.ValidationMessageFor(model => model.updateDay, "", new { @class = "text-danger" })
 
                         </div>

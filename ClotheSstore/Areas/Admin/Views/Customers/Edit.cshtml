@@ -44,7 +44,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label control-label">Ngày sinh*</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" name="birthDay" value="@string.Format("{0:dd-MM-yyyy}",Model.birthDay)">
+                            <input type="text" class="form-control" name="birthDay" value="@string.Format("{0:yyyy-MM-dd}",Model.birthDay)">
                             @Html.ValidationMessageFor(model => model.birthDay, "", new { @class = "text-danger" })
                         </div>
                     </div>
