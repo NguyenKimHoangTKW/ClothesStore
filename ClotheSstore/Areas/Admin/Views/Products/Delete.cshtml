@@ -40,10 +40,26 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Số lượng:</td>
-                                <td>
-                                    @Html.DisplayFor(model => model.quantity)
-                                </td>
+                                <td>Trạng thái mở bán:</td>
+                                @if (Model.stock == true)
+                                {
+
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-success badge-dot m-r-10"></div>
+                                            <div>In Stock</div>
+                                        </div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-danger badge-dot m-r-10"></div>
+                                            <div>Out of Stock</div>
+                                        </div>
+                                    </td>
+                                }
                             </tr>
                             <tr>
                                 <td>Giá:</td>

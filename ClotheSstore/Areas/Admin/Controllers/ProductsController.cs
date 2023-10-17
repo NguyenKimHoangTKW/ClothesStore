@@ -180,7 +180,8 @@ namespace ClotheSstore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idProduct,codeProduct,nameProduct,describe,thumb,quantity,price,idProductCategory,updateDay")] Product product, HttpPostedFileBase Thumb, FormCollection form)
+        [ValidateInput(false)]
+        public ActionResult Edit([Bind(Include = "idProduct,codeProduct,nameProduct,describe,thumb,stock,price,idProductCategory,updateDay")] Product product, HttpPostedFileBase Thumb, FormCollection form)
         {
             if (ModelState.IsValid)
             {

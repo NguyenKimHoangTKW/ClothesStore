@@ -39,28 +39,7 @@
                                     @Html.DisplayFor(model => model.Size.nameSize)
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Trạng thái mở bán:</td>
-                                @if (Model.quantityinstock == true)
-                                {
-
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="badge badge-success badge-dot m-r-10"></div>
-                                            <div>In Stock</div>
-                                        </div>
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="badge badge-danger badge-dot m-r-10"></div>
-                                            <div>Out of Stock</div>
-                                        </div>
-                                    </td>
-                                }
-                            </tr>
+                         
                         </tbody>
                     </table>
                 </div>

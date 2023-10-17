@@ -79,7 +79,25 @@
                                 </div>
                             </td>
                             <td>@item.codeProduct</td>
-                            <td>@item.quantity</td>
+                            @if (item.stock == true)
+                            {
+
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="badge badge-success badge-dot m-r-10"></div>
+                                        <div>In Stock</div>
+                                    </div>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="badge badge-danger badge-dot m-r-10"></div>
+                                        <div>Out of Stock</div>
+                                    </div>
+                                </td>
+                            }
                             <td>@string.Format("{0:#,0} VNĐ", item.price)</td>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -93,11 +111,10 @@
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
-
-                                    <div>@item.describe</div>
+                                    <div>@Html.Raw(item.describe)</div>
                                 </div>
                             </td>
-                         
+
                             <td>
                                 <a href="/Admin/Products/Details?id=@item.idProduct">
                                     <button class="btn btn-info btn-tone m-r-5">Xem</button>

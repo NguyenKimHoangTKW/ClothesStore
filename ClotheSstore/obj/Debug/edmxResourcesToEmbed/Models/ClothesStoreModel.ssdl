@@ -56,9 +56,9 @@
     <Property Name="idProduct" Type="int" Nullable="false" />
     <Property Name="codeProduct" Type="char" MaxLength="13" Nullable="false" />
     <Property Name="nameProduct" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="describe" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="describe" Type="ntext" Nullable="false" />
     <Property Name="thumb" Type="nvarchar" MaxLength="2000" Nullable="false" />
-    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="stock" Type="bit" Nullable="false" />
     <Property Name="price" Type="float" Nullable="false" />
     <Property Name="idProductCategory" Type="int" Nullable="false" />
     <Property Name="updateDay" Type="smalldatetime" Nullable="false" />
@@ -71,7 +71,6 @@
     <Property Name="idProduct" Type="int" Nullable="false" />
     <Property Name="idSize" Type="int" Nullable="false" />
     <Property Name="quantity" Type="int" Nullable="false" />
-    <Property Name="quantityinstock" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductCategory">
     <Key>

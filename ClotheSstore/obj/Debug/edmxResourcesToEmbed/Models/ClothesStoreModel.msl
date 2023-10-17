@@ -53,21 +53,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="dbClothesStoreModel.Product">
-        <MappingFragment StoreEntitySet="Product">
-          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
-          <ScalarProperty Name="codeProduct" ColumnName="codeProduct" />
-          <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
-          <ScalarProperty Name="describe" ColumnName="describe" />
-          <ScalarProperty Name="thumb" ColumnName="thumb" />
-          <ScalarProperty Name="quantity" ColumnName="quantity" />
-          <ScalarProperty Name="price" ColumnName="price" />
-          <ScalarProperty Name="idProductCategory" ColumnName="idProductCategory" />
-          <ScalarProperty Name="updateDay" ColumnName="updateDay" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ProductCategories">
       <EntityTypeMapping TypeName="dbClothesStoreModel.ProductCategory">
         <MappingFragment StoreEntitySet="ProductCategory">
@@ -88,10 +73,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Sizes">
+      <EntityTypeMapping TypeName="dbClothesStoreModel.Size">
+        <MappingFragment StoreEntitySet="Size">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="nameSize" ColumnName="nameSize" />
+          <ScalarProperty Name="idSize" ColumnName="idSize" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Product_Size">
       <EntityTypeMapping TypeName="dbClothesStoreModel.Product_Size">
         <MappingFragment StoreEntitySet="Product_Size">
-          <ScalarProperty Name="quantityinstock" ColumnName="quantityinstock" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
           <ScalarProperty Name="idSize" ColumnName="idSize" />
           <ScalarProperty Name="idProduct" ColumnName="idProduct" />
@@ -99,12 +92,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Sizes">
-      <EntityTypeMapping TypeName="dbClothesStoreModel.Size">
-        <MappingFragment StoreEntitySet="Size">
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="nameSize" ColumnName="nameSize" />
-          <ScalarProperty Name="idSize" ColumnName="idSize" />
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="dbClothesStoreModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="updateDay" ColumnName="updateDay" />
+          <ScalarProperty Name="idProductCategory" ColumnName="idProductCategory" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="thumb" ColumnName="thumb" />
+          <ScalarProperty Name="describe" ColumnName="describe" />
+          <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
+          <ScalarProperty Name="codeProduct" ColumnName="codeProduct" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

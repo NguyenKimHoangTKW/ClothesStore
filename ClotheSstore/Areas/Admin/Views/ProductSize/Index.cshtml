@@ -50,25 +50,7 @@
                         <td>@item.quantity</td>
 
 
-                        @if (item.quantityinstock == true)
-                        {
-
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="badge badge-success badge-dot m-r-10"></div>
-                                    <div>In Stock</div>
-                                </div>
-                            </td>
-                        }
-                        else
-                        {
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="badge badge-danger badge-dot m-r-10"></div>
-                                    <div>Out of Stock</div>
-                                </div>
-                            </td>
-                        }
+                        
                         <td>
                             <a href="/Admin/ProductSize/Details?id=@item.idProduct">
                                 <button class="btn btn-info btn-tone m-r-5">Xem</button>
