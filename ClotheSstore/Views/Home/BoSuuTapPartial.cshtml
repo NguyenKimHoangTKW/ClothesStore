@@ -1,0 +1,10 @@
+﻿@model IEnumerable<ClotheSstore.Models.ProductCategory>
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    
+        <li id="menu-item-2231297" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2231297"><a href="@Url.Action("ListSanPhamTheoCat","Home", new {id = item.idProductCategory})" style=" color: black;">@item.nameProductCategory</a></li>
+
+}

@@ -1617,6 +1617,10 @@
     <Content Include="Views\Shared\_NavPartialView.cshtml" />
     <Content Include="Views\Shared\_RheaderPartialView.cshtml" />
     <Content Include="Views\Home\AoSoMiPartial.cshtml" />
+    <Content Include="Views\Home\QuanTayPartial.cshtml" />
+    <Content Include="Views\Home\BoSuuTapPartial.cshtml" />
+    <Content Include="Views\Home\ListSanPhamTheoCat.cshtml" />
+    <Content Include="Views\Home\ChiTietDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

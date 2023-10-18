@@ -30,7 +30,7 @@
             <div class="product-small box ">
                 <div class="box-image">
                     <div class="image-fade_in_back">
-                        <a href="/" aria-label="@item.nameProduct">
+                        <a href="@Url.Action("ChiTietDonHang", "Home", new {id = item.idProduct})" aria-label="@item.nameProduct">
                             <img width="800" height="800" src="~/Areas/Admin/Images/Product_Images/@item.thumb" class="lazy-load lazy-load attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" decoding="async" loading="lazy" />
                         </a>
                     </div>

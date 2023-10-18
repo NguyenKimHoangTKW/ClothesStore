@@ -1,0 +1,188 @@
+﻿@model ClotheSstore.Models.Product
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="product-container">
+    <div class="product-main">
+        <div class="row content-row mb-0">
+
+            <div class="product-gallery large-6 col">
+
+                <div class="product-images relative mb-half has-hover woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4">
+
+                    <div class="badge-container is-larger absolute left top z-1">
+                    </div>
+
+                    <div class="image-tools absolute top show-on-hover right z-3">
+                    </div>
+
+                    <figure class="woocommerce-product-gallery__wrapper product-gallery-slider slider slider-nav-small mb-half"
+                            data-flickity-options='{
+                "cellAlign": "center",
+                "wrapAround": true,
+                "autoPlay": false,
+                "prevNextButtons":true,
+                "adaptiveHeight": true,
+                "imagesLoaded": true,
+                "lazyLoad": 1,
+                "dragThreshold" : 15,
+                "pageDots": false,
+                "rightToLeft": false       }'>
+                        <div data-thumb="../trangchu/workshirti.com/wp-content/uploads/2023/07/ao-so-mi-xanh.jpg" class="woocommerce-product-gallery__image slide first"><a href="../../wp-content/uploads/2023/07/ao-so-mi-xanh.jpg"><img width="800" height="800" src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20800%20800%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E" class="lazy-load lazy-load wp-post-image " alt="" decoding="async" loading="lazy" title="w1" data-caption="" data-src="/trangchu/workshirti.com/wp-content/uploads/2023/07/ao-so-mi-xanh.jpg" data-large_image="/trangchu/workshirti.com/wp-content/uploads/2023/07/ao-so-mi-xanh.jpg" data-large_image_width="800" data-large_image_height="800" /></a></div>
+                    </figure>
+
+                    <div class="image-tools absolute bottom left z-3">
+                        <a href="#product-zoom" class="zoom-button button is-outline circle icon tooltip hide-for-small" title="Zoom">
+                            <i class="icon-expand"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="product-info summary col-fit col entry-summary product-summary">
+
+                <nav class="woocommerce-breadcrumb breadcrumbs uppercase"><a href="@Url.Action("Index","Home")">Trang chủ</a> <span class="divider">&#47;</span> <a href="/">@Model.nameProduct</a></nav><h1 class="product-title product_title entry-title">
+                    @Model.nameProduct
+                </h1>
+
+                <div class="is-divider small"></div>
+                <div class='jdgm-widget jdgm-preview-badge' data-id='2231384'>
+                </div>
+                <div class="price-wrapper">
+                    <p class="price product-page-price ">
+                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>@string.Format("{0:#,0} VNĐ", Model.price) </bdi></span>
+                    </p>
+                </div>
+
+                <form class="variations_form cart" action="https://workshirti.com/product/pink-pulse-floral-square-neck-midi-dress-workshirti/" method="post" enctype='multipart/form-data' data-product_id="2231384" data-product_variations="[{&quot;attributes&quot;:{&quot;attribute_pa_size&quot;:&quot;xxs&quot;},&quot;availability_html&quot;:&quot;&lt;p class=\&quot;stock in-stock\&quot;&gt;382 in stock&lt;\/p&gt;\n&quot;,&quot;backorders_allowed&quot;:false,&quot;dimensions&quot;:{&quot;length&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;dimensions_html&quot;:&quot;N\/A&quot;,&quot;display_price&quot;:46.95,&quot;display_regular_price&quot;:46.95,&quot;image&quot;:{&quot;title&quot;:&quot;w1&quot;,&quot;caption&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;alt&quot;:&quot;w1&quot;,&quot;src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;srcset&quot;:false,&quot;sizes&quot;:[],&quot;full_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;full_src_w&quot;:800,&quot;full_src_h&quot;:800,&quot;gallery_thumbnail_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;gallery_thumbnail_src_w&quot;:100,&quot;gallery_thumbnail_src_h&quot;:100,&quot;thumb_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;thumb_src_w&quot;:800,&quot;thumb_src_h&quot;:800,&quot;src_w&quot;:800,&quot;src_h&quot;:800},&quot;image_id&quot;:2231410,&quot;is_downloadable&quot;:false,&quot;is_in_stock&quot;:true,&quot;is_purchasable&quot;:true,&quot;is_sold_individually&quot;:&quot;no&quot;,&quot;is_virtual&quot;:false,&quot;max_qty&quot;:382,&quot;min_qty&quot;:1,&quot;price_html&quot;:&quot;&quot;,&quot;sku&quot;:&quot;W324032&quot;,&quot;variation_description&quot;:&quot;&quot;,&quot;variation_id&quot;:2231402,&quot;variation_is_active&quot;:true,&quot;variation_is_visible&quot;:true,&quot;weight&quot;:&quot;&quot;,&quot;weight_html&quot;:&quot;N\/A&quot;},{&quot;attributes&quot;:{&quot;attribute_pa_size&quot;:&quot;extra-small&quot;},&quot;availability_html&quot;:&quot;&lt;p class=\&quot;stock in-stock\&quot;&gt;383 in stock&lt;\/p&gt;\n&quot;,&quot;backorders_allowed&quot;:false,&quot;dimensions&quot;:{&quot;length&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;dimensions_html&quot;:&quot;N\/A&quot;,&quot;display_price&quot;:46.95,&quot;display_regular_price&quot;:46.95,&quot;image&quot;:{&quot;title&quot;:&quot;w1&quot;,&quot;caption&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;alt&quot;:&quot;w1&quot;,&quot;src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;srcset&quot;:false,&quot;sizes&quot;:[],&quot;full_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;full_src_w&quot;:800,&quot;full_src_h&quot;:800,&quot;gallery_thumbnail_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;gallery_thumbnail_src_w&quot;:100,&quot;gallery_thumbnail_src_h&quot;:100,&quot;thumb_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;thumb_src_w&quot;:800,&quot;thumb_src_h&quot;:800,&quot;src_w&quot;:800,&quot;src_h&quot;:800},&quot;image_id&quot;:2231410,&quot;is_downloadable&quot;:false,&quot;is_in_stock&quot;:true,&quot;is_purchasable&quot;:true,&quot;is_sold_individually&quot;:&quot;no&quot;,&quot;is_virtual&quot;:false,&quot;max_qty&quot;:383,&quot;min_qty&quot;:1,&quot;price_html&quot;:&quot;&quot;,&quot;sku&quot;:&quot;W324033&quot;,&quot;variation_description&quot;:&quot;&quot;,&quot;variation_id&quot;:2231403,&quot;variation_is_active&quot;:true,&quot;variation_is_visible&quot;:true,&quot;weight&quot;:&quot;&quot;,&quot;weight_html&quot;:&quot;N\/A&quot;},{&quot;attributes&quot;:{&quot;attribute_pa_size&quot;:&quot;small&quot;},&quot;availability_html&quot;:&quot;&lt;p class=\&quot;stock in-stock\&quot;&gt;384 in stock&lt;\/p&gt;\n&quot;,&quot;backorders_allowed&quot;:false,&quot;dimensions&quot;:{&quot;length&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;dimensions_html&quot;:&quot;N\/A&quot;,&quot;display_price&quot;:46.95,&quot;display_regular_price&quot;:46.95,&quot;image&quot;:{&quot;title&quot;:&quot;w1&quot;,&quot;caption&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;alt&quot;:&quot;w1&quot;,&quot;src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;srcset&quot;:false,&quot;sizes&quot;:[],&quot;full_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;full_src_w&quot;:800,&quot;full_src_h&quot;:800,&quot;gallery_thumbnail_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;gallery_thumbnail_src_w&quot;:100,&quot;gallery_thumbnail_src_h&quot;:100,&quot;thumb_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;thumb_src_w&quot;:800,&quot;thumb_src_h&quot;:800,&quot;src_w&quot;:800,&quot;src_h&quot;:800},&quot;image_id&quot;:2231410,&quot;is_downloadable&quot;:false,&quot;is_in_stock&quot;:true,&quot;is_purchasable&quot;:true,&quot;is_sold_individually&quot;:&quot;no&quot;,&quot;is_virtual&quot;:false,&quot;max_qty&quot;:384,&quot;min_qty&quot;:1,&quot;price_html&quot;:&quot;&quot;,&quot;sku&quot;:&quot;W324034&quot;,&quot;variation_description&quot;:&quot;&quot;,&quot;variation_id&quot;:2231404,&quot;variation_is_active&quot;:true,&quot;variation_is_visible&quot;:true,&quot;weight&quot;:&quot;&quot;,&quot;weight_html&quot;:&quot;N\/A&quot;},{&quot;attributes&quot;:{&quot;attribute_pa_size&quot;:&quot;medium&quot;},&quot;availability_html&quot;:&quot;&lt;p class=\&quot;stock in-stock\&quot;&gt;385 in stock&lt;\/p&gt;\n&quot;,&quot;backorders_allowed&quot;:false,&quot;dimensions&quot;:{&quot;length&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;dimensions_html&quot;:&quot;N\/A&quot;,&quot;display_price&quot;:46.95,&quot;display_regular_price&quot;:46.95,&quot;image&quot;:{&quot;title&quot;:&quot;w1&quot;,&quot;caption&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;alt&quot;:&quot;w1&quot;,&quot;src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;srcset&quot;:false,&quot;sizes&quot;:[],&quot;full_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;full_src_w&quot;:800,&quot;full_src_h&quot;:800,&quot;gallery_thumbnail_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;gallery_thumbnail_src_w&quot;:100,&quot;gallery_thumbnail_src_h&quot;:100,&quot;thumb_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;thumb_src_w&quot;:800,&quot;thumb_src_h&quot;:800,&quot;src_w&quot;:800,&quot;src_h&quot;:800},&quot;image_id&quot;:2231410,&quot;is_downloadable&quot;:false,&quot;is_in_stock&quot;:true,&quot;is_purchasable&quot;:true,&quot;is_sold_individually&quot;:&quot;no&quot;,&quot;is_virtual&quot;:false,&quot;max_qty&quot;:385,&quot;min_qty&quot;:1,&quot;price_html&quot;:&quot;&quot;,&quot;sku&quot;:&quot;W324035&quot;,&quot;variation_description&quot;:&quot;&quot;,&quot;variation_id&quot;:2231405,&quot;variation_is_active&quot;:true,&quot;variation_is_visible&quot;:true,&quot;weight&quot;:&quot;&quot;,&quot;weight_html&quot;:&quot;N\/A&quot;},{&quot;attributes&quot;:{&quot;attribute_pa_size&quot;:&quot;large&quot;},&quot;availability_html&quot;:&quot;&lt;p class=\&quot;stock in-stock\&quot;&gt;386 in stock&lt;\/p&gt;\n&quot;,&quot;backorders_allowed&quot;:false,&quot;dimensions&quot;:{&quot;length&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;dimensions_html&quot;:&quot;N\/A&quot;,&quot;display_price&quot;:46.95,&quot;display_regular_price&quot;:46.95,&quot;image&quot;:{&quot;title&quot;:&quot;w1&quot;,&quot;caption&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;alt&quot;:&quot;w1&quot;,&quot;src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;srcset&quot;:false,&quot;sizes&quot;:[],&quot;full_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;full_src_w&quot;:800,&quot;full_src_h&quot;:800,&quot;gallery_thumbnail_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;gallery_thumbnail_src_w&quot;:100,&quot;gallery_thumbnail_src_h&quot;:100,&quot;thumb_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;thumb_src_w&quot;:800,&quot;thumb_src_h&quot;:800,&quot;src_w&quot;:800,&quot;src_h&quot;:800},&quot;image_id&quot;:2231410,&quot;is_downloadable&quot;:false,&quot;is_in_stock&quot;:true,&quot;is_purchasable&quot;:true,&quot;is_sold_individually&quot;:&quot;no&quot;,&quot;is_virtual&quot;:false,&quot;max_qty&quot;:386,&quot;min_qty&quot;:1,&quot;price_html&quot;:&quot;&quot;,&quot;sku&quot;:&quot;W324036&quot;,&quot;variation_description&quot;:&quot;&quot;,&quot;variation_id&quot;:2231406,&quot;variation_is_active&quot;:true,&quot;variation_is_visible&quot;:true,&quot;weight&quot;:&quot;&quot;,&quot;weight_html&quot;:&quot;N\/A&quot;},{&quot;attributes&quot;:{&quot;attribute_pa_size&quot;:&quot;extra-large&quot;},&quot;availability_html&quot;:&quot;&lt;p class=\&quot;stock in-stock\&quot;&gt;387 in stock&lt;\/p&gt;\n&quot;,&quot;backorders_allowed&quot;:false,&quot;dimensions&quot;:{&quot;length&quot;:&quot;&quot;,&quot;width&quot;:&quot;&quot;,&quot;height&quot;:&quot;&quot;},&quot;dimensions_html&quot;:&quot;N\/A&quot;,&quot;display_price&quot;:46.95,&quot;display_regular_price&quot;:46.95,&quot;image&quot;:{&quot;title&quot;:&quot;w1&quot;,&quot;caption&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;alt&quot;:&quot;w1&quot;,&quot;src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;srcset&quot;:false,&quot;sizes&quot;:[],&quot;full_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;full_src_w&quot;:800,&quot;full_src_h&quot;:800,&quot;gallery_thumbnail_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;gallery_thumbnail_src_w&quot;:100,&quot;gallery_thumbnail_src_h&quot;:100,&quot;thumb_src&quot;:&quot;https:\/\/workshirti.com\/wp-content\/uploads\/2023\/07\/w1-1.webp&quot;,&quot;thumb_src_w&quot;:800,&quot;thumb_src_h&quot;:800,&quot;src_w&quot;:800,&quot;src_h&quot;:800},&quot;image_id&quot;:2231410,&quot;is_downloadable&quot;:false,&quot;is_in_stock&quot;:true,&quot;is_purchasable&quot;:true,&quot;is_sold_individually&quot;:&quot;no&quot;,&quot;is_virtual&quot;:false,&quot;max_qty&quot;:387,&quot;min_qty&quot;:1,&quot;price_html&quot;:&quot;&quot;,&quot;sku&quot;:&quot;W324037&quot;,&quot;variation_description&quot;:&quot;&quot;,&quot;variation_id&quot;:2231407,&quot;variation_is_active&quot;:true,&quot;variation_is_visible&quot;:true,&quot;weight&quot;:&quot;&quot;,&quot;weight_html&quot;:&quot;N\/A&quot;}]">
+                    <div data-product_id="2231384" data-threshold_min="30" data-threshold_max="100" data-total="6">
+                        <table class="variations" cellspacing="0" role="presentation">
+                            <tbody>
+                                <tr>
+                                    <th class="label"><label for="pa_size">Size</label></th>
+                                    <td class="value">
+                                        <select style="display:none" id="pa_size" class=" woo-variation-raw-select" name="attribute_pa_size" data-attribute_name="attribute_pa_size" data-show_option_none="yes"><option value="">Choose an option</option><option value="large">L</option><option value="medium">M</option><option value="small">S</option><option value="extra-large">XL</option><option value="extra-small">XS</option><option value="xxs">XXS</option></select><ul role="radiogroup" aria-label="Size" class="variable-items-wrapper button-variable-items-wrapper wvs-style-squared" data-attribute_name="attribute_pa_size" data-attribute_values="[&quot;xxs&quot;,&quot;extra-small&quot;,&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;,&quot;extra-large&quot;]"><li aria-checked="false" tabindex="0" data-wvstooltip="L" class="variable-item button-variable-item button-variable-item-large " title="L" data-title="L" data-value="large" role="radio" tabindex="0"><div class="variable-item-contents"><span class="variable-item-span variable-item-span-button">L</span></div></li><li aria-checked="false" tabindex="0" data-wvstooltip="M" class="variable-item button-variable-item button-variable-item-medium " title="M" data-title="M" data-value="medium" role="radio" tabindex="0"><div class="variable-item-contents"><span class="variable-item-span variable-item-span-button">M</span></div></li><li aria-checked="false" tabindex="0" data-wvstooltip="S" class="variable-item button-variable-item button-variable-item-small " title="S" data-title="S" data-value="small" role="radio" tabindex="0"><div class="variable-item-contents"><span class="variable-item-span variable-item-span-button">S</span></div></li><li aria-checked="false" tabindex="0" data-wvstooltip="XL" class="variable-item button-variable-item button-variable-item-extra-large " title="XL" data-title="XL" data-value="extra-large" role="radio" tabindex="0"><div class="variable-item-contents"><span class="variable-item-span variable-item-span-button">XL</span></div></li><li aria-checked="false" tabindex="0" data-wvstooltip="XS" class="variable-item button-variable-item button-variable-item-extra-small " title="XS" data-title="XS" data-value="extra-small" role="radio" tabindex="0"><div class="variable-item-contents"><span class="variable-item-span variable-item-span-button">XS</span></div></li><li aria-checked="false" tabindex="0" data-wvstooltip="XXS" class="variable-item button-variable-item button-variable-item-xxs " title="XXS" data-title="XXS" data-value="xxs" role="radio" tabindex="0"><div class="variable-item-contents"><span class="variable-item-span variable-item-span-button">XXS</span></div></li></ul><a class="reset_variations" href="#">Clear</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="single_variation_wrap">
+                            <div class="woocommerce-variation single_variation"></div><div class="woocommerce-variation-add-to-cart variations_button">
+                                <div class="sticky-add-to-cart-wrapper">
+                                    <div class="sticky-add-to-cart">
+                                        <div class="sticky-add-to-cart__product"><img src="../../wp-content/uploads/2023/07/ao-so-mi-xanh.jpg" alt="" class="sticky-add-to-cart-img" /><div class="product-title-small hide-for-small"><strong>Áo sơ mi xanh tay dài</strong></div></div>
+                                        <div class="quantity buttons_added">
+                                            <input type="button" value="-" class="minus button is-form"><label class="screen-reader-text" for="quantity_652665fb1fd1a">Áo sơ mi xanh tay dài</label>
+                                            <input type="number"
+                                                   id="quantity_652665fb1fd1a"
+                                                   class="input-text qty text"
+                                                   step="1"
+                                                   min="1"
+                                                   max="381"
+                                                   name="quantity"
+                                                   value="1"
+                                                   title="Qty"
+                                                   size="4"
+                                                   placeholder=""
+                                                   inputmode="numeric" />
+                                            <input type="button" value="+" class="plus button is-form">
+                                        </div>
+
+                                        <button type="submit" class="single_add_to_cart_button button alt wp-element-button">Thêm vào giỏ hàng</button>
+
+                                    </div>
+                                </div>
+                                <input type="hidden" name="add-to-cart" value="2231384" />
+                                <input type="hidden" name="product_id" value="2231384" />
+                                <input type="hidden" name="variation_id" class="variation_id" value="0" />
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+
+            </div>
+
+            <div id="product-sidebar" class="mfp-hide">
+                <div class="sidebar-inner">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="product-footer">
+        <div class="container">
+
+            <div class="woocommerce-tabs wc-tabs-wrapper container tabbed-content">
+                <ul class="tabs wc-tabs product-tabs small-nav-collapse nav nav-uppercase nav-line nav-left" role="tablist">
+                    <li class="description_tab active" id="tab-title-description" role="tab" aria-controls="tab-description">
+                        <a href="#tab-description">
+                            Description
+                        </a>
+                    </li>
+                    <li class="additional_information_tab " id="tab-title-additional_information" role="tab" aria-controls="tab-additional_information">
+                        <a href="#tab-additional_information">
+                            Additional information
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-panels">
+                    <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content active" id="tab-description" role="tabpanel" aria-labelledby="tab-title-description">
+
+
+                        <p class="short-description">A longer length, comfortable fit and airy fabric with a sweet print &#8212; the perfect dress does exist!</p>
+                        <div class="long-description">
+                            <p><strong>Details</strong></p>
+                            <ul>
+                                <li>Woven fabric</li>
+                                <li>Floral print</li>
+                                <li>Front keyhole detail with tie</li>
+                                <li>Large side slit</li>
+                                <li>Style: 9554</li>
+                                <li>Imported</li>
+                            </ul>
+                            <p><strong>Fit</strong></p>
+                            <ul>
+                                <li>Slim fit</li>
+                                <li>Square neck &amp; cap sleeves with elastic</li>
+                                <li>Stretchy smocked waist panel</li>
+                                <li>Approx. length (M): 47&#8243;</li>
+                                <li>Model height: 5&#8217;8&#8243; | Wear size: Small</li>
+                            </ul>
+                            <p><strong>Care &amp; Materials</strong></p>
+                            <ul>
+                                <li>Shell/lining: 100% viscose</li>
+                                <li>Machine wash/dry flat</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--additional_information panel entry-content " id="tab-additional_information" role="tabpanel" aria-labelledby="tab-title-additional_information">
+
+
+                        <table class="woocommerce-product-attributes shop_attributes">
+                            <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_size">
+                                <th class="woocommerce-product-attributes-item__label">Size</th>
+                                <td class="woocommerce-product-attributes-item__value">
+                                    <p>L, M, S, XL, XS, XXS</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="clear:both;"></div>
+            <div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-product-title='Pink Pulse Floral Square-Neck Midi Dress' data-id='2231384'>
+            </div>
+            <div style="clear:both;"></div>
+
+
+        </div>
+    </div>
+</div>

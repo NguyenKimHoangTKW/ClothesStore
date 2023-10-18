@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
+using PagedList.Mvc;
 namespace ClotheSstore.Controllers
 {
     public class HomeController : Controller
@@ -19,18 +20,31 @@ namespace ClotheSstore.Controllers
             var listProduct = db.Products.Where(p => p.stock == true && p.ProductCategory.codeProductCategory == "DMSP2223PT").Take(6);
             return PartialView(listProduct.ToList());
         }
-        public ActionResult About()
+        public ActionResult BoSuuTapPartial()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            var listProduct = db.ProductCategories.ToList();
+            return PartialView(listProduct);
+        }
+        public ActionResult QuanTayPartial()
+        {
+            var listProduct = db.Products.Where(p => p.stock == true && p.ProductCategory.codeProductCategory == "DMSP2423PT").Take(6);
+            return PartialView(listProduct.ToList());
         }
 
-        public ActionResult Contact()
+        public ActionResult ListSanPhamTheoCat(int? id, int? page)
         {
-            ViewBag.Message = "Your contact page.";
+            int pageSize = 15   ;
+            int pageNumber = (page ?? 1);
+            var listProduct = db.Products.Where(p => p.idProductCategory == id && p.stock == true).OrderBy(p => p.idProduct);
+            return PartialView(listProduct.ToPagedList(pageNumber, pageSize));
+        }
 
-            return View();
+        public ActionResult ChiTietDonHang(int id)
+        {
+            var listProduct = from b in db.Products
+                              where b.idProduct == id
+                              select b;
+            return View(listProduct.Single());
         }
     }
 }
