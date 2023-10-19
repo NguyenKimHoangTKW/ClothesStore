@@ -41,11 +41,11 @@ namespace ClotheSstore.Controllers
 
         public ActionResult ChiTietDonHang(int id)
         {
-            var listProduct = from b in db.Product_Size
+            var listProduct = from b in db.Products
                               where b.idProduct == id
                               select b;
     
-            return View(listProduct.First());
+            return View(listProduct.Single());
         }
 
         public ActionResult SizeTheoSanPham(int? id)

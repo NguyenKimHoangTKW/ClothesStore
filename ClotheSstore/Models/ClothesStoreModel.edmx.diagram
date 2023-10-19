@@ -17,9 +17,9 @@
         <AssociationConnector Association="dbClothesStoreModel.FK_Product_Size_Product" />
         <EntityTypeShape EntityType="dbClothesStoreModel.Order" Width="1.5" PointX="3" PointY="10.5" />
         <AssociationConnector Association="dbClothesStoreModel.FK_Order_Customer" />
-        <EntityTypeShape EntityType="dbClothesStoreModel.OrderDetail" Width="1.5" PointX="10.5" PointY="8" />
+        <EntityTypeShape EntityType="dbClothesStoreModel.OrderDetail" Width="1.5" PointX="8.25" PointY="8.125" />
         <AssociationConnector Association="dbClothesStoreModel.FK_OrderDetail_Order" />
-        <AssociationConnector Association="dbClothesStoreModel.FK_OrderDetail_Product_Size" />
+        <AssociationConnector Association="dbClothesStoreModel.FK_OrderDetail_Product" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

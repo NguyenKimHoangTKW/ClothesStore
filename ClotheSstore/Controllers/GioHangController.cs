@@ -119,7 +119,10 @@ namespace ClotheSstore.Controllers
         [HttpGet]
         public ActionResult Order()
         {
-           
+            if (Session["Customer"] == null || Session["Customer"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Account");
+            }
             if (Session["GioHang"] == null)
             {
                 return RedirectToAction("Index", "Home");
@@ -149,9 +152,9 @@ namespace ClotheSstore.Controllers
             {
                 OrderDetail orderdetail = new OrderDetail();
                 orderdetail.idOrder = order.idOrder;
-                orderdetail.idProduct_Size = item.iSanPham;
-                orderdetail.Size = item.iSize;
+                orderdetail.idProduct = item.iSanPham;
                 orderdetail.quantity = item.iSoLuong;
+                orderdetail.Size = item.iSize;
                 orderdetail.price = (decimal)item.dDonGia;
                 db.OrderDetails.Add(orderdetail);
             }

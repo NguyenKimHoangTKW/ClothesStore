@@ -1,13 +1,29 @@
-﻿  <!-- Right Elements -->
+﻿ 
+@{var usercus = Session["Customer"] as ClotheSstore.Models.Customer;}
+ <!-- Right Elements -->
 <div class="flex-col hide-for-medium flex-right">
     <ul class="header-nav header-nav-main nav nav-right  nav-uppercase">
         <li class="account-item has-icon">
             <div class="header-button">
-                <a href="../trangchu/workshirti.com/my-account/"
-                   class="nav-top-link nav-top-not-logged-in icon button circle is-outline is-small"
-                   data-open="#login-form-popup">
-                    <i class="icon-user"></i>
-                </a>
+                @if (usercus == null)
+                {
+                    <a href="@Url.Action("Login","Account")"
+                       class="nav-top-link nav-top-not-logged-in icon button circle is-outline is-small"
+                       data-open="#login-form-popup">
+                        <i class="icon-user"></i>
+                    </a>
+                }
+                else
+                {
+                    
+                        <i class="icon-user">Xin Chào : @usercus.nameCustomer</i>
+                        <a href="@Url.Action("Logout","Account")"
+                           class="nav-top-link nav-top-not-logged-in icon button circle is-outline is-small"
+                           data-open="#login-form-popup">
+                            <i class="icon-user"></i>
+                        </a>
+                }
+
 
             </div>
 

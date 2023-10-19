@@ -29,30 +29,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="dbClothesStoreModel.Order">
-        <MappingFragment StoreEntitySet="Order">
-          <ScalarProperty Name="idOrder" ColumnName="idOrder" />
-          <ScalarProperty Name="codeOrder" ColumnName="codeOrder" />
-          <ScalarProperty Name="checkPay" ColumnName="checkPay" />
-          <ScalarProperty Name="deliveryStatus" ColumnName="deliveryStatus" />
-          <ScalarProperty Name="orderDate" ColumnName="orderDate" />
-          <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
-          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
-          <ScalarProperty Name="idSize" ColumnName="idSize" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="OrderDetails">
-      <EntityTypeMapping TypeName="dbClothesStoreModel.OrderDetail">
-        <MappingFragment StoreEntitySet="OrderDetail">
-          <ScalarProperty Name="idOrder" ColumnName="idOrder" />
-          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
-          <ScalarProperty Name="quantity" ColumnName="quantity" />
-          <ScalarProperty Name="price" ColumnName="price" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ProductCategories">
       <EntityTypeMapping TypeName="dbClothesStoreModel.ProductCategory">
         <MappingFragment StoreEntitySet="ProductCategory">
@@ -104,6 +80,30 @@
           <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
           <ScalarProperty Name="codeProduct" ColumnName="codeProduct" />
           <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="dbClothesStoreModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+          <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
+          <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+          <ScalarProperty Name="deliveryStatus" ColumnName="deliveryStatus" />
+          <ScalarProperty Name="checkPay" ColumnName="checkPay" />
+          <ScalarProperty Name="codeOrder" ColumnName="codeOrder" />
+          <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="dbClothesStoreModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetail">
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="idOrder" ColumnName="idOrder" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

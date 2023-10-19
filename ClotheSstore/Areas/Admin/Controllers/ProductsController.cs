@@ -23,7 +23,7 @@ namespace ClotheSstore.Areas.Admin.Controllers
         {
             ViewBag.Keyword = searchString;
             ViewBag.Subject = product;
-            var products = db.Products.Include(p => p.ProductCategory).Include(p => p.OrderDetails);
+            var products = db.Products.Include(p => p.ProductCategory);
 
             if (!String.IsNullOrEmpty(searchString))
                 products = products.Where(b => b.nameProduct.Contains(searchString));

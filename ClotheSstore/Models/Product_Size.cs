@@ -14,12 +14,6 @@ namespace ClotheSstore.Models
     
     public partial class Product_Size
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product_Size()
-        {
-            this.OrderDetails = new HashSet<OrderDetail>();
-        }
-    
         public int idProduct_Size { get; set; }
         public int idProduct { get; set; }
         public int idSize { get; set; }
@@ -27,7 +21,5 @@ namespace ClotheSstore.Models
     
         public virtual Size Size { get; set; }
         public virtual Product Product { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

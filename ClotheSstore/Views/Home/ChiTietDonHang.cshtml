@@ -1,4 +1,4 @@
-﻿@model ClotheSstore.Models.Product_Size
+﻿@model ClotheSstore.Models.Product
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -29,11 +29,11 @@
                 "dragThreshold" : 15,
                 "pageDots": false,
                 "rightToLeft": false       }'>
-                        <div data-thumb="~/Areas/Admin/Images/Product_Images/@Model.Product.thumb" class="woocommerce-product-gallery__image slide first"><a href="~/Areas/Admin/Images/Product_Images/@Model.Product.thumb"><img width="800" height="800" src="~/Areas/Admin/Images/Product_Images/@Model.Product.thumb" class="lazy-load lazy-load wp-post-image " alt="" decoding="async" loading="lazy" title="w1" data-caption="" /></a></div>
+                        <div data-thumb="~/Areas/Admin/Images/Product_Images/@Model.thumb" class="woocommerce-product-gallery__image slide first"><a href="~/Areas/Admin/Images/Product_Images/@Model.thumb"><img width="800" height="800" src="~/Areas/Admin/Images/Product_Images/@Model.thumb" class="lazy-load lazy-load wp-post-image " alt="" decoding="async" loading="lazy" title="w1" data-caption="" /></a></div>
                     </figure>
 
                     <div class="image-tools absolute bottom left z-3">
-                        <a href="~/Areas/Admin/Images/Product_Images/@Model.Product.thumb" class="zoom-button button is-outline circle icon tooltip hide-for-small" title="Zoom">
+                        <a href="~/Areas/Admin/Images/Product_Images/@Model.thumb" class="zoom-button button is-outline circle icon tooltip hide-for-small" title="Zoom">
                             <i class="icon-expand"></i>
                         </a>
                     </div>
@@ -43,15 +43,15 @@
 
             <div class="product-info summary col-fit col entry-summary product-summary">
 
-                <nav class="woocommerce-breadcrumb breadcrumbs uppercase"><a href="@Url.Action("Index","Home")">Trang chủ</a> <span class="divider">&#47;</span> <a href="/">@Model.Product.nameProduct</a></nav><h1 class="product-title product_title entry-title">
-                    @Model.Product.nameProduct
+                <nav class="woocommerce-breadcrumb breadcrumbs uppercase"><a href="@Url.Action("Index","Home")">Trang chủ</a> <span class="divider">&#47;</span> <a href="/">@Model.nameProduct</a></nav><h1 class="product-title product_title entry-title">
+                    @Model.nameProduct
                 </h1>
                 <hr>
                 <div class='jdgm-widget jdgm-preview-badge' data-id='2231384'>
                 </div>
                 <div class="price-wrapper">
                     <p class="price product-page-price ">
-                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>@string.Format("{0:#,0} VNĐ", Model.Product.price) </bdi></span>
+                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>@string.Format("{0:#,0} VNĐ", Model.price) </bdi></span>
                     </p>
                 </div>
                 <div class="single_variation_wrap">
@@ -103,7 +103,7 @@
                         <div class="long-description">
                             <p><strong>Thông tin sản phẩm</strong></p>
                             <ul>
-                                <li>@Html.Raw(Model.Product.describe)</li>
+                                <li>@Html.Raw(Model.describe)</li>
 
                             </ul>
 

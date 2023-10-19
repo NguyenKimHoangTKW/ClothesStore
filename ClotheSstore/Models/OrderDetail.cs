@@ -17,10 +17,10 @@ namespace ClotheSstore.Models
         public int idOrder { get; set; }
         public int quantity { get; set; }
         public decimal price { get; set; }
-        public int idProduct_Size { get; set; }
+        public int idProduct { get; set; }
         public string Size { get; set; }
     
         public virtual Order Order { get; set; }
-        public virtual Product_Size Product_Size { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

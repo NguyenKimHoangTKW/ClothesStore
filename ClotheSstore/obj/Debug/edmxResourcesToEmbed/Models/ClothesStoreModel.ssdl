@@ -30,14 +30,13 @@
     <Key>
       <PropertyRef Name="idOrder" />
     </Key>
-    <Property Name="idOrder" Type="int" Nullable="false" />
-    <Property Name="codeOrder" Type="char" MaxLength="13" Nullable="false" />
+    <Property Name="idOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codeOrder" Type="char" MaxLength="50" Nullable="false" />
     <Property Name="checkPay" Type="bit" Nullable="false" />
-    <Property Name="deliveryStatus" Type="int" Nullable="false" />
-    <Property Name="orderDate" Type="smalldatetime" Nullable="false" />
-    <Property Name="deliveryDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="deliveryStatus" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="orderDate" Type="datetime" Nullable="false" />
+    <Property Name="deliveryDate" Type="datetime" Nullable="false" />
     <Property Name="idCustomer" Type="int" Nullable="false" />
-    <Property Name="idSize" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="OrderDetail">
     <Key>
@@ -45,9 +44,10 @@
       <PropertyRef Name="idProduct" />
     </Key>
     <Property Name="idOrder" Type="int" Nullable="false" />
-    <Property Name="idProduct" Type="int" Nullable="false" />
     <Property Name="quantity" Type="int" Nullable="false" />
-    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+    <Property Name="idProduct" Type="int" Nullable="false" />
+    <Property Name="Size" Type="char" MaxLength="5" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -107,18 +107,6 @@
       </Principal>
       <Dependent Role="Order">
         <PropertyRef Name="idCustomer" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Order_Size">
-    <End Role="Size" Type="Self.Size" Multiplicity="1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Size">
-        <PropertyRef Name="idSize" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="idSize" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -194,10 +182,6 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
       <End Role="Customer" EntitySet="Customer" />
-      <End Role="Order" EntitySet="Order" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Order_Size" Association="Self.FK_Order_Size">
-      <End Role="Size" EntitySet="Size" />
       <End Role="Order" EntitySet="Order" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
