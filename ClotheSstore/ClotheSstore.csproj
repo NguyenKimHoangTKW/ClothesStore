@@ -146,6 +146,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductSizeController.cs" />
     <Compile Include="Areas\Admin\Controllers\SizesController.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -171,6 +172,7 @@
     <Compile Include="Models\Customer.cs">
       <DependentUpon>ClothesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\Order.cs">
       <DependentUpon>ClothesStoreModel.tt</DependentUpon>
     </Compile>
@@ -1621,6 +1623,10 @@
     <Content Include="Views\Home\BoSuuTapPartial.cshtml" />
     <Content Include="Views\Home\ListSanPhamTheoCat.cshtml" />
     <Content Include="Views\Home\ChiTietDonHang.cshtml" />
+    <Content Include="Views\Home\SizeTheoSanPham.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\GioHang\GioHang.cshtml" />
+    <Content Include="Views\GioHang\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

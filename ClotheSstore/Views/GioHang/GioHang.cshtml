@@ -1,0 +1,70 @@
+﻿@using ClotheSstore.Models
+@model List<ClotheSstore.Models.GioHang>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+}
+<link href="~/Style/assets/app.min.css" rel="stylesheet" />
+<div class="table-responsive" style="margin-top: 50px;">
+    <h2 class="card-title" style="text-align:center;font-size:30px">THÔNG TIN GIỎ HÀNG</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên sách</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Cập nhật số lượng</th>
+                <th scope="col">Đơn giá</th>
+                <th scope="col">Thành tiền</th>
+                <th scope="col">Size</th>
+                <th scope="col">#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <th scope="row">@i</th>
+                    <td>
+                        <img class="img-fluid rounded" src="~/Areas/Admin/Images/Product_Images/@item.sAnhSanPham" style="max-width: 60px" alt="">
+                        <a href="@Url.Action("ChiTietDonHang","Home", new { id = item.iSanPham})"> @item.sTenSanPham </a>
+                    </td>
+                    <td>@item.iSoLuong</td>
+
+                    @using (Html.BeginForm("CapNhatGioHang", "GioHang"))
+                    {
+                        @Html.Hidden("iMaSanPham", item.iSanPham)
+                        @Html.Hidden("iSize", item.iSize)
+                        <td>
+                            <input type="number" min="1" name="txtSoLuong" value="@item.iSoLuong" style="background-color:white" />
+                        </td>
+                        <td>@string.Format("{0:#,##0,0}", @item.dDonGia)</td>
+                        <td>@string.Format("{0:#,##0,0}", @item.ThanhTien)</td>
+                        <td>@item.iSize</td>
+                        <td>
+                            <button class="btn btn-danger btn-tone m-r-5"><a style="color:white"> @Html.ActionLink("Xóa", "XoaSanPham", new { @iMaSanPham = item.iSanPham })</a></button> |
+                            <input class="btn btn-success btn-tone m-r-5" type="submit" value="Cập nhật" />
+
+                        </td>
+                    }
+
+                </tr>
+
+            }
+            <tr>
+                <td colspan="4" style="text-align:center; color:red; font-weight:bold; padding-right:5px;">
+                    Tổng số lượng: @string.Format("{0:#,##0}", @ViewBag.TongSoLuong)
+                </td>
+                <td colspan="5" style="text-align:center; color:red; font-weight:bold;"> Tổng tiền: @string.Format("{0:#,##0,0}", @ViewBag.TongTien) VNĐ</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<a href="@Url.Action("Order","Cart")">
+    <button class="btn btn-primary btn-tone m-r-5">Đặt hàng</button>
+</a>
+<a href="@Url.Action("XoaToanBoSanPham","GioHang")">
+    <button class="btn btn-danger btn-tone m-r-5">Xóa giỏ hàng</button>
+</a>

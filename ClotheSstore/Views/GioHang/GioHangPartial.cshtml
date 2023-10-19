@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ClotheSstore.Models.GioHang>
+
+
+<li class="cart-item has-icon has-dropdown">
+
+    <a href="@Url.Action("GioHang","GioHang")" title="GioHang" class="header-cart-link is-small">
+
+
+        <span class="header-cart-title">
+            <span class="cart-price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol"></span>@string.Format("{0:#,0} VNĐ", ViewBag.TongTien) </bdi></span></span>
+        </span>
+
+        <i class="icon-shopping-cart" data-icon-label="@ViewBag.TongSoLuong">
+        </i>
+    </a>
+
+</li>
