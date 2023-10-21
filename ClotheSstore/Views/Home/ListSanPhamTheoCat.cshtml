@@ -54,7 +54,7 @@
                                     <div class="box-text box-text-products text-center grid-style-2">
                                         <div class="title-wrapper">
                                             <p class="category uppercase is-smaller no-text-overflow product-cat op-7">
-                                               @item.nameProduct'
+                                                @item.nameProduct'
                                             </p>
                                             <p class="name product-title woocommerce-loop-product__title"><a href="@Url.Action("ChiTietDonHang","Home", new {id = item.idProduct})" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">@item.nameProduct</a></p>
                                         </div><div class="price-wrapper">
@@ -79,5 +79,49 @@
     </div>
 
 </main>
-Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<div style="margin: 50px auto; width: 600px; text-align:right">
+    <strong>Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</strong>
+</div>
+<div class="MenuTrang">
+
+    @Html.PagedListPager(Model, page => Url.Action("ListSanPhamTheoCat", new { id = ViewBag.idCat, page = page }))
+
+</div>
+<style>
+    .MenuTrang {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+        .MenuTrang .pagination {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+            .MenuTrang .pagination li {
+                margin: 0;
+                padding: 0;
+                margin-right: 5px;
+            }
+
+            .MenuTrang .pagination a {
+                color: black;
+                background-color: #E0FFFF;
+                border: 1px solid #007bff;
+                border-radius: 50%;
+                padding: 6px 12px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
+
+                .MenuTrang .pagination a:hover {
+                    background-color: #7FFFD4;
+                }
+
+            .MenuTrang .pagination .active a {
+                background-color: #00FFFF; /* Màu nền nút đã chọn */
+            }
+</style>

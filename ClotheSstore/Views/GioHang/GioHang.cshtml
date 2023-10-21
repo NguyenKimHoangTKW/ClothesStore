@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th scope="col">STT</th>
-                <th scope="col">Tên sách</th>
+                <th scope="col">Tên sản phẩm</th>
                 <th scope="col">Số lượng</th>
                 <th scope="col">Cập nhật số lượng</th>
                 <th scope="col">Đơn giá</th>
@@ -42,7 +42,7 @@
                         </td>
                         <td>@string.Format("{0:#,##0,0}", @item.dDonGia)</td>
                         <td>@string.Format("{0:#,##0,0}", @item.ThanhTien)</td>
-                        <td>@item.iSize</td>
+                        <td>@item.nameSize</td>
                         <td>
                             <button class="btn btn-danger btn-tone m-r-5"><a style="color:white"> @Html.ActionLink("Xóa", "XoaSanPham", new { @iMaSanPham = item.iSanPham })</a></button> |
                             <input class="btn btn-success btn-tone m-r-5" type="submit" value="Cập nhật" />

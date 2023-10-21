@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
+using PagedList.Mvc;
 namespace ClotheSstore.Controllers
 {
     public class GioHangController : Controller
@@ -25,7 +26,7 @@ namespace ClotheSstore.Controllers
         public ActionResult ThemGioHang(int ms, string url, FormCollection f)
         {
             List<GioHang> lstCart = LayGioHang();
-            string selectedSize = f["txtSize"].ToString(); 
+            int selectedSize = int.Parse(f["txtSize"].ToString()); 
 
             GioHang sp = lstCart.Find(n => n.iSanPham == ms && n.iSize == selectedSize);
 
@@ -99,7 +100,7 @@ namespace ClotheSstore.Controllers
             }
             return RedirectToAction("GioHang");
         }
-        public ActionResult CapNhatGioHang(int iMaSanPham,string iSize, FormCollection f)
+        public ActionResult CapNhatGioHang(int iMaSanPham,int iSize, FormCollection f)
         {
             List<GioHang> lstCart = LayGioHang();
             GioHang sp = lstCart.FirstOrDefault(n => n.iSanPham == iMaSanPham && n.iSize == iSize);
@@ -142,20 +143,19 @@ namespace ClotheSstore.Controllers
             order.codeOrder = "HĐ" + DateTime.Now.ToString("yyyyMMddHHmmss");
             order.idCustomer = customer.idCustomer;
             order.orderDate = DateTime.Now;
-            TimeSpan threeDays = new TimeSpan(7, 0, 0, 0);
-            order.deliveryDate = order.orderDate + threeDays;
             order.checkPay = false;
-            order.deliveryStatus = "Đã tiếp nhận đơn hàng";
+            order.deliveryStatus = "Chờ xác nhận";
             db.Orders.Add(order);
             db.SaveChanges();
             foreach (var item in lstCart)
             {
                 OrderDetail orderdetail = new OrderDetail();
                 orderdetail.idOrder = order.idOrder;
-                orderdetail.idProduct = item.iSanPham;
+                orderdetail.idProduct_Size = item.iSanPham;
                 orderdetail.quantity = item.iSoLuong;
-                orderdetail.Size = item.iSize;
+                orderdetail.idSize = item.iSize;
                 orderdetail.price = (decimal)item.dDonGia;
+                orderdetail.TotalPrice = (decimal)(item.iSoLuong * (decimal)item.dDonGia);
                 db.OrderDetails.Add(orderdetail);
             }
             db.SaveChanges();
@@ -165,6 +165,25 @@ namespace ClotheSstore.Controllers
         }
 
         public ActionResult OrderConfirm()
+        {
+            return View();
+        }
+        public ActionResult TinhTrangGiaoHang(int? id, int? page)
+        {
+            ViewBag.Orderid = id;
+
+            int iSizePage = 5;
+            int iPageNumber = (page ?? 1);
+            var order = db.Orders.Where(o => o.idCustomer == id).OrderByDescending(o => o.orderDate).ToList();
+            return View(order.ToPagedList(iPageNumber, iSizePage));
+        }
+
+        public ActionResult ThongTinDonHang(int? id)
+        {
+            var orderdetail = db.OrderDetails.Where(o => o.idOrder == id);
+            return PartialView(orderdetail);
+        }
+        public ActionResult ErrorThongTinHang()
         {
             return View();
         }

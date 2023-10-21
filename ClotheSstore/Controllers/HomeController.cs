@@ -33,7 +33,8 @@ namespace ClotheSstore.Controllers
 
         public ActionResult ListSanPhamTheoCat(int? id, int? page)
         {
-            int pageSize = 15   ;
+            ViewBag.idCat = id;
+            int pageSize = 15;
             int pageNumber = (page ?? 1);
             var listProduct = db.Products.Where(p => p.idProductCategory == id && p.stock == true).OrderBy(p => p.idProduct);
             return PartialView(listProduct.ToPagedList(pageNumber, pageSize));
@@ -52,6 +53,22 @@ namespace ClotheSstore.Controllers
         {
             var listProduct = db.Product_Size.Where(s => s.idProduct == id);
             return PartialView(listProduct);
+        }
+        public ActionResult HuongDanChonSize()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult LayTatCaSanPham(string searchString, int? page)
+        {
+            var lissanpham = (from p in db.Products
+                             select p).OrderBy(p => p.idProduct);
+            ViewBag.Keyword = searchString;
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            if (!String.IsNullOrEmpty(searchString))
+                lissanpham = lissanpham.Where(b => b.nameProduct.Contains(searchString)).OrderByDescending(a => a.updateDay);
+            return View(lissanpham.ToPagedList(pageNumber, pageSize));
         }
     }
 }

@@ -1,70 +1,74 @@
-﻿@model PagedList.IPagedList<ClotheSstore.Models.Size>
-@using PagedList.Mvc;
+﻿﻿@model IEnumerable<ClotheSstore.Models.Size>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     int i = 0;
 }
 
-<h2>Index</h2>
 
 
-<div class="table-responsive" style=" margin-top: 46px;">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Tên Size</th>
-                <th scope="col">Mô tả</th>
-                <th scope="col">#</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null)
-            {
-                foreach (var item in Model)
-                {
-                    i++;
-                    <tr>
-                        <th scope="row">#@i</th>
-                        <td>@item.nameSize</td>
-                        <td>@item.status</td>
-                        <td>
-                            <a href="/Admin/Sizes/Details?id=@item.idSize">
-                                <button class="btn btn-info btn-tone m-r-5">Xem</button>
-                            </a> |
-                            <a href="/Admin/Sizes/Edit?id=@item.idSize">
-                                <button class="btn btn-success btn-tone m-r-5">Sửa</button>
-                            </a> |
-                            <a href="/Admin/Sizes/Delete?id=@item.idSize">
-                                <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
-                            </a>
-                        </td>
-                    </tr>
-                }
-            }
 
+<div class="card" style="margin-top: 60px;">
+    <div class="card-body">
+        <div class="row m-b-30">
 
-        </tbody>
-    </table>
-    <a href="@Url.Action("Create", "Sizes")">
-        <button class="btn btn-primary btn-tone m-r-5">Thêm Sizes</button>
-    </a>
-</div>
-<!-- Thêm mã phân trang -->
-<br />
-<div class="row">
-    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
-        @using (Html.BeginForm("Index", "Sizes", FormMethod.Get))
-        {
-            <p>
-                Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
-            </p>
-        }
+            <div class="col-lg-4 text-left">
+                <a href="@Url.Action("Create", "Sizes")">
+                    <button class="btn btn-primary btn-tone m-r-5">
+                        <i class="anticon anticon-plus-circle m-r-5"></i>
+                        Thêm mới Size
+                    </button>
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover e-commerce-table" id="data-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên Size</th>
+                            <th scope="col">Mô tả</th>
+                            <th scope="col">#</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                i++;
+                                <tr>
+                                    <td>
+                                        #@i
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="m-b-0 m-l-10">@item.nameSize</h6>
+                                        </div>
+                                    </td>
+                              
+                              
+                                    <td>@Html.Raw(item.status)</td>
+                              
+                                    <td>
+                                        <a href="/Admin/Sizes/Details?id=@item.idSize">
+                                            <button class="btn btn-info btn-tone m-r-5">Xem</button>
+                                        </a> |
+                                        <a href="/Admin/Sizes/Edit?id=@item.idSize">
+                                            <button class="btn btn-success btn-tone m-r-5">Sửa</button>
+                                        </a> |
+                                        <a href="/Admin/Sizes/Delete?id=@item.idSize">
+                                            <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right">
-        Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-    </div>
-</div>
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.currentSize }))
-<!-- Kết thúc -->
+

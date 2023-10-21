@@ -6,7 +6,7 @@
     <title>Trang chủ - ClothesShop.com</title>
     @Styles.Render("~/Content/Usercss/css")
     @Styles.Render("~/Content/Usercss/jquery")
-
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <style>
         .bg {
             opacity: 0;
@@ -22,6 +22,7 @@
     <link rel="icon" href="~/Content/assets/wp-content/uploads/2023/07/workshirti.com-icon.jpg" sizes="192x192" />
     <link rel="apple-touch-icon" href="~/Content/assets/wp-content/uploads/2023/07/workshirti.com-icon.jpg" />
     <meta name="msapplication-TileImage" content="~/Content/assets/wp-content/uploads/2023/07/workshirti.com-icon.jpg" />
+
     <style type="text/css" id="wp-custom-css">
         .badge-inner.secondary.on-sale {
             display: none;
@@ -101,32 +102,35 @@
                             </ul>
                         </div>
                         <!-- Left Elements -->
-                        <div class="flex-col hide-for-medium flex-left">
-                            <ul class="header-nav header-nav-main nav nav-left  nav-uppercase">
-                                <li class="header-search-form search-form html relative has-icon">
-                                    <div class="header-search-form-wrapper">
-                                        <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
-                                            <form role="search" method="get" class="searchform" action="/trangchu/workshirti.com/">
-                                                <div class="flex-row relative">
-                                                    <div class="flex-col flex-grow">
-                                                        <label class="screen-reader-text" for="woocommerce-product-search-field-0">Search for:</label>
-                                                        <input type="search" id="woocommerce-product-search-field-0" class="search-field mb-0" placeholder="Search&hellip;" value="" name="s" />
-                                                        <input type="hidden" name="post_type" value="product" />
+                        
+                            <div class="flex-col hide-for-medium flex-left">
+                                <ul class="header-nav header-nav-main nav nav-left  nav-uppercase">
+                                    <li class="header-search-form search-form html relative has-icon">
+                                        <div class="header-search-form-wrapper">
+                                            <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
+                                                <form role="search" method="post" class="searchform" action="/Home/LayTatCaSanPham">
+                                                    <div class="flex-row relative">
+                                                        <div class="flex-col flex-grow">
+                                                            <label class="screen-reader-text" for="woocommerce-product-search-field-0">Search for:</label>
+                                                            <input type="text" id="woocommerce-product-search-field-0" class="search-field mb-0" placeholder="Nhập sản phẩm muốn tìm ..." value="@ViewBag.Keyword" name="searchString" />
+                                                            <input type="hidden" name="post_type" value="product" />
+                                                        </div>
+                                                        <div class="flex-col">
+                                                            <button type="submit" value="Search" class="ux-search-submit submit-button secondary button icon mb-0" aria-label="Submit">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                                                </svg>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div class="flex-col">
-                                                        <button type="submit" value="Search" class="ux-search-submit submit-button secondary button icon mb-0" aria-label="Submit">
-                                                            <i class="icon-search"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="live-search-results text-left z-top"></div>
-                                            </form>
+                                                    <div class="live-search-results text-left z-top"></div>
+                                                </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
+                                    </li>
+                                </ul>
+                            </div>
+               
                         @Html.Partial("_RheaderPartialView")
 
                     </div>

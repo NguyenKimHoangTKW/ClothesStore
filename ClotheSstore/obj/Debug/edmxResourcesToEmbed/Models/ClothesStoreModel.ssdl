@@ -25,29 +25,32 @@
     <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="address" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="credate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
       <PropertyRef Name="idOrder" />
     </Key>
     <Property Name="idOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="codeOrder" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="codeOrder" Type="char" MaxLength="30" Nullable="false" />
     <Property Name="checkPay" Type="bit" Nullable="false" />
     <Property Name="deliveryStatus" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="orderDate" Type="datetime" Nullable="false" />
-    <Property Name="deliveryDate" Type="datetime" Nullable="false" />
+    <Property Name="deliveryDate" Type="datetime" />
     <Property Name="idCustomer" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="OrderDetail">
     <Key>
       <PropertyRef Name="idOrder" />
-      <PropertyRef Name="idProduct" />
+      <PropertyRef Name="idProduct_Size" />
+      <PropertyRef Name="idSize" />
     </Key>
     <Property Name="idOrder" Type="int" Nullable="false" />
     <Property Name="quantity" Type="int" Nullable="false" />
     <Property Name="price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
-    <Property Name="idProduct" Type="int" Nullable="false" />
-    <Property Name="Size" Type="char" MaxLength="5" />
+    <Property Name="idProduct_Size" Type="int" Nullable="false" />
+    <Property Name="idSize" Type="int" Nullable="false" />
+    <Property Name="TotalPrice" Type="decimal" Precision="9" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -122,15 +125,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_OrderDetail_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+  <Association Name="FK_OrderDetail_Product_Size">
+    <End Role="Product_Size" Type="Self.Product_Size" Multiplicity="1" />
     <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="idProduct" />
+      <Principal Role="Product_Size">
+        <PropertyRef Name="idProduct_Size" />
       </Principal>
       <Dependent Role="OrderDetail">
-        <PropertyRef Name="idProduct" />
+        <PropertyRef Name="idProduct_Size" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Size">
+    <End Role="Size" Type="Self.Size" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Size">
+        <PropertyRef Name="idSize" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="idSize" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -188,8 +203,12 @@
       <End Role="Order" EntitySet="Order" />
       <End Role="OrderDetail" EntitySet="OrderDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
-      <End Role="Product" EntitySet="Product" />
+    <AssociationSet Name="FK_OrderDetail_Product_Size" Association="Self.FK_OrderDetail_Product_Size">
+      <End Role="Product_Size" EntitySet="Product_Size" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Size" Association="Self.FK_OrderDetail_Size">
+      <End Role="Size" EntitySet="Size" />
       <End Role="OrderDetail" EntitySet="OrderDetail" />
     </AssociationSet>
     <AssociationSet Name="FK_Product_ProductCategory" Association="Self.FK_Product_ProductCategory">

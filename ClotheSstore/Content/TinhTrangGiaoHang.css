@@ -1,0 +1,39 @@
+﻿.container1 {
+            margin: 50px auto;
+            padding: 20px;
+            width: 600px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+        }
+
+        .step-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .step-label {
+            font-weight: bold;
+        }
+
+        .completed {
+            color: #008000;
+        }
+
+        .in-progress {
+            color: #FFA500;
+        }

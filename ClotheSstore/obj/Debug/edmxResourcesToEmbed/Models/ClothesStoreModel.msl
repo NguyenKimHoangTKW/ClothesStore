@@ -14,21 +14,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Customers">
-      <EntityTypeMapping TypeName="dbClothesStoreModel.Customer">
-        <MappingFragment StoreEntitySet="Customer">
-          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
-          <ScalarProperty Name="codeCustomer" ColumnName="codeCustomer" />
-          <ScalarProperty Name="nameCustomer" ColumnName="nameCustomer" />
-          <ScalarProperty Name="userName" ColumnName="userName" />
-          <ScalarProperty Name="passWord" ColumnName="passWord" />
-          <ScalarProperty Name="birthDay" ColumnName="birthDay" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ProductCategories">
       <EntityTypeMapping TypeName="dbClothesStoreModel.ProductCategory">
         <MappingFragment StoreEntitySet="ProductCategory">
@@ -99,11 +84,28 @@
     <EntitySetMapping Name="OrderDetails">
       <EntityTypeMapping TypeName="dbClothesStoreModel.OrderDetail">
         <MappingFragment StoreEntitySet="OrderDetail">
-          <ScalarProperty Name="Size" ColumnName="Size" />
-          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="idSize" ColumnName="idSize" />
+          <ScalarProperty Name="idProduct_Size" ColumnName="idProduct_Size" />
           <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
           <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="dbClothesStoreModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="credate" ColumnName="credate" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="birthDay" ColumnName="birthDay" />
+          <ScalarProperty Name="passWord" ColumnName="passWord" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="nameCustomer" ColumnName="nameCustomer" />
+          <ScalarProperty Name="codeCustomer" ColumnName="codeCustomer" />
+          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

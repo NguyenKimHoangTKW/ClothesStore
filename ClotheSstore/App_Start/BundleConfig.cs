@@ -44,6 +44,12 @@ namespace ClotheSstore
             bundles.Add(new ScriptBundle("~/Style/ckeditor/jquery").Include(
                         "~/Areas/Style/ckeditor/ckeditor.js"));
 
+            bundles.Add(new StyleBundle("~/Style/TinhTrangGiaoHang/css").Include(
+                        "~/Content/TinhTrangGiaoHang.css"));
+
+            bundles.Add(new StyleBundle("~/Content/datatable/jquery").Include(
+                      "~/Content/datatables/dataTables.bootstrap.min.js",
+                      "~/Content/datatables/jquery.dataTables.min.js"));
         }
     }
 }

@@ -1,22 +1,22 @@
 ﻿@model ClotheSstore.Models.Customer
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
+    <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.idCustomer)
     @Html.HiddenFor(model => model.codeCustomer)
-    <div class="card" style="margin-top:75px;">
+    <div class="card">
         <div class="card-body">
-            <h4>Sửa khách hàng</h4>
+            <h4>Sửa đổi khách hàng</h4>
             <h2 style="color:red">@ViewBag.ThongBao</h2>
             <div class="m-t-15">
                 <form id="form-validation">
@@ -30,14 +30,14 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label control-label">Tài khoản*</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" name="userName" value="@Model.userName">
+                            <input type="text" class="form-control" name="userName" value="@Model.userName" readonly="False">
                             @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label control-label">Mật khẩu*</label>
                         <div class="col-md-5">
-                            <input type="password" class="form-control" name="passWord" value="@Model.passWord">
+                            <input type="password" class="form-control" name="passWord" readonly="False" value="@Model.passWord">
                             @Html.ValidationMessageFor(model => model.passWord, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -69,7 +69,13 @@
                             @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Ngày tạo*</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="credate" value="@string.Format("{0:yyyy-MM-dd HH:mm:ss}",Model.credate)" readonly="False">
+                            @Html.ValidationMessageFor(model => model.credate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                     <div class="form-group text-left">
                         <button class="btn btn-success btn-tone m-r-5">Submit</button>
                     </div>
@@ -80,5 +86,6 @@
             @Html.ActionLink("Quay về danh sách sản phẩm", "Index")
         </div>
     </div>
+
 </div>
 }

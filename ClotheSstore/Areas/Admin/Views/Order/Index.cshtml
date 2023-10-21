@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-content" style=" margin-top: 20px;">
+    <form>
+        <div class="page-header no-gutters has-tab">
+            <ul class="nav nav-tabs" style="margin-left: 600px;">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">Chưa xử lý</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#product-edit-option">Đã xử lý</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#product-edit-description">Đang giao</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#product-edit-succesfully">Giao thành công</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content m-t-15">
+            <div class="tab-pane fade show active" id="product-edit-basic">
+                <div class="card">
+                    <div class="card-body">
+                        @Html.Action("OrderChuaXuLy", "Order")
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="product-edit-option">
+                <div class="card">
+                    <div class="card-body">
+                        @Html.Action("OrderDaXuLy", "Order")
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="product-edit-description">
+                <div class="card">
+                    <div class="card-body">
+                        @Html.Action("OrderDangGiao", "Order")
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="product-edit-succesfully">
+                <div class="card">
+                    <div class="card-body">
+                        @Html.Action("OrderGiaoThanhCong", "Order")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="product-details-container"></div>
+    </form>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".order-details-link").click(function () {
+            var orderId = $(this).data("id");
+            var detailsContainer = $("#product-details-container");
+
+            // Kiểm tra nếu form đã hiển thị, thì ẩn nó đi
+            if (detailsContainer.is(":visible")) {
+                detailsContainer.hide();
+            } else {
+                // Nếu form không hiển thị, gọi AJAX để lấy thông tin sản phẩm
+                $.ajax({
+                    url: "@Url.Action("InfoOrderDetail", "Cart")",
+                    data: { id: orderId },
+                    type: "GET",
+                    success: function (data) {
+                        detailsContainer.html(data);
+                        detailsContainer.show(); // Hiển thị form
+                    },
+                    error: function () {
+                        alert("An error occurred while loading product details.");
+                    }
+                });
+            }
+        });
+    });
+</script>

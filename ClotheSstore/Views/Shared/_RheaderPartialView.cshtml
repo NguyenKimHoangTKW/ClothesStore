@@ -9,19 +9,24 @@
                 {
                     <a href="@Url.Action("Login","Account")"
                        class="nav-top-link nav-top-not-logged-in icon button circle is-outline is-small"
-                       data-open="#login-form-popup">
-                        <i class="icon-user"></i>
+                       data-open="#login-form-popup" style="color: black; width: 102px;">
+                        Đăng nhập
+                    </a>
+                    <a href="@Url.Action("Register","Account")"
+                       class="nav-top-link nav-top-not-logged-in icon button circle is-outline is-small"
+                       data-open="#login-form-popup" style="color: black; width: 95px;">
+                        Đăng ký
                     </a>
                 }
                 else
                 {
-                    
-                        <i class="icon-user">Xin Chào : @usercus.nameCustomer</i>
-                        <a href="@Url.Action("Logout","Account")"
-                           class="nav-top-link nav-top-not-logged-in icon button circle is-outline is-small"
-                           data-open="#login-form-popup">
-                            <i class="icon-user"></i>
-                        </a>
+
+                         <i > 🙆‍ Xin Chào : @usercus.nameCustomer</i>
+                    <a href="@Url.Action("Logout","Account")"
+                       class="nav-top-link nav-top-not-logged-in icon button circle is-outline is-small"
+                       data-open="#login-form-popup" style="color: gray; width: 95px;"> 
+                        Đăng xuất
+                    </a>
                 }
 
 

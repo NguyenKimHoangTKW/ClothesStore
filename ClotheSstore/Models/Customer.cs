@@ -29,6 +29,7 @@ namespace ClotheSstore.Models
         public string email { get; set; }
         public string address { get; set; }
         public string phone { get; set; }
+        public System.DateTime credate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

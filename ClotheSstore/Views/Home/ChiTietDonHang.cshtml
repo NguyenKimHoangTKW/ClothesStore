@@ -51,7 +51,7 @@
                 </div>
                 <div class="price-wrapper">
                     <p class="price product-page-price ">
-                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>@string.Format("{0:#,0} VNĐ", Model.price) </bdi></span>
+                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol"></span>@string.Format("{0:#,0} VNĐ", Model.price) </bdi></span>
                     </p>
                 </div>
                 <div class="single_variation_wrap">
@@ -64,11 +64,12 @@
                             {
 
                                 @Html.Action("SizeTheoSanPham", "Home", new { id = Model.idProduct })
-                                <input type="number" min="1" name="txtSoLuong" style="background-color:white" value="1" id="soLuongInput" />
+                            <input type="number" min="1" name="txtSoLuong" style="background-color: white; width: 70px;" value="1" id="soLuongInput" />
 
-                                <button id="add-to-cart-button" class="btn btn-success btn-tone m-r-5" style="height: 37px">
-                                    Thêm vào giỏ hàng
-                                </button>
+                            <button id="add-to-cart-button" class="btn btn-success btn-tone m-r-5" style="height: 37px; float: right">
+                                
+                                Thêm vào giỏ hàng
+                            </button>
                             }
                         </div>
                     </div>

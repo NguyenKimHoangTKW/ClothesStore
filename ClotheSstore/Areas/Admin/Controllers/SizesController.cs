@@ -16,34 +16,12 @@ namespace ClotheSstore.Areas.Admin.Controllers
         private dbClothesStoreEntities db = new dbClothesStoreEntities();
 
         // GET: Admin/Sizes
-        public ActionResult Index(int? size, int? page)
+        public ActionResult Index()
         {
             var sizes = db.Sizes.OrderBy(p => p.idSize);
-            ViewBag.Page = page;
-            List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = "5", Value = "5" });
-            items.Add(new SelectListItem { Text = "10", Value = "10" });
-            items.Add(new SelectListItem { Text = "20", Value = "20" });
-            items.Add(new SelectListItem { Text = "25", Value = "25" });
-            items.Add(new SelectListItem { Text = "50", Value = "50" });
-            items.Add(new SelectListItem { Text = "100", Value = "100" });
-            items.Add(new SelectListItem { Text = "200", Value = "200" });
-
-            foreach (var item in items)
-            {
-                if (item.Value == size.ToString()) item.Selected = true;
-            }
-            ViewBag.Size = items;
-            ViewBag.CurrentSize = size;
-            page = page ?? 1;
-
-            int pageSize = (size ?? 5);
-
-            ViewBag.pageSize = pageSize;
-            int pageNumber = (page ?? 1);
-            int checkTotal = (int)(sizes.ToList().Count / pageSize) + 1;
-            if (pageNumber > checkTotal) pageNumber = checkTotal;
-            return View(sizes.ToPagedList(pageNumber, pageSize));
+            
+          
+            return View(sizes.ToList());
         }
 
         // GET: Admin/Sizes/Details/5

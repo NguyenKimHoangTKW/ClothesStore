@@ -1,101 +1,72 @@
-﻿@model PagedList.IPagedList<ClotheSstore.Models.ProductCategory>
-@using PagedList.Mvc;
+﻿﻿@model IEnumerable<ClotheSstore.Models.ProductCategory>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     int i = 0;
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
-@using (Html.BeginForm("Index", "ProductCategories", FormMethod.Get, new { @class = "form-inline" }))
-{
 
+<div class="card" style="margin-top: 60px;">
     <div class="card-body">
-        <h4>Tên danh mục</h4>
-        <div class="m-t-25" style="max-width: 500px">
-            <form>
-                <div class="row">
-                    <div class="col">
-                        <input type="Text" class="form-control" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập danh mục cần tìm">
-                        <input type="submit" class="btn btn-danger" value="Tìm">
-                    </div>
-                </div>
-            </form>
+        <div class="row m-b-30">
+            
+            <div class="col-lg-4 text-left">
+                <a href="@Url.Action("Create", "ProductCategories")">
+                    <button class="btn btn-primary btn-tone m-r-5">
+                        <i class="anticon anticon-plus-circle m-r-5"></i>
+                        Thêm mới danh mục sản phẩm
+                    </button>
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover e-commerce-table" id="data-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên danh mục sản phẩm</th>
+                            <th scope="col">Mã danh mục sản phẩm</th>
+                            <th scope="col">#</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                i++;
+                                <tr>
+                                    <td>
+                                        #@i
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="m-b-0 m-l-10">@item.nameProductCategory</h6>
+                                        </div>
+                                    </td>
+                                    <td>@item.codeProductCategory</td>
+
+                                    <td>
+                                        <a href="/Admin/ProductCategories/Details?id=@item.idProductCategory">
+                                            <button class="btn btn-info btn-tone m-r-5">Xem</button>
+                                        </a> |
+                                        <a href="/Admin/ProductCategories/Edit?id=@item.idProductCategory">
+                                            <button class="btn btn-success btn-tone m-r-5">Sửa</button>
+                                        </a> |
+                                        <a href="/Admin/ProductCategories/Delete?id=@item.idProductCategory">
+                                            <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-
-}
-<a href="@Url.Action("Create", "ProductCategories")">
-    <button class="btn btn-primary btn-tone m-r-5" style="float: right;">Thêm danh mục sản phẩm</button>
-</a>
-<div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Mã Danh mục Sản phẩm</th>
-                <th scope="col">@Html.ActionLink("Tên danh mục sản phẩm", "Index", new { sortProperty = "nameProductCategory", sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword, productid = ViewBag.Subject })</th>
-                <th scope="col">#</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null)
-            {
-                foreach (var item in Model)
-                {
-                    i++;
-                    <tr>
-                        <th scope="row">#@i</th>
-                        <td>@item.codeProductCategory</td>
-                        <td>@item.nameProductCategory</td>
-                        <td>
-                            <a href="/Admin/ProductCategories/Details?id=@item.idProductCategory">
-                                <button class="btn btn-info btn-tone m-r-5">Xem</button>
-                            </a> |
-                            <a href="/Admin/ProductCategories/Edit?id=@item.idProductCategory">
-                                <button class="btn btn-success btn-tone m-r-5">Sửa</button>
-                            </a> |
-                            <a href="/Admin/ProductCategories/Delete?id=@item.idProductCategory">
-                                <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
-                            </a>
-                        </td>
-                    </tr>
-                }
-            }
-
-
-        </tbody>
-    </table>
-
-</div>
-<!-- Thêm mã phân trang -->
-<br />
-<div class="row">
-    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
-        @using (Html.BeginForm("Index", "ProductCategories", FormMethod.Get))
-        {
-            <p>
-                Kích thước trang: @Html.DropDownList("size", (List<SelectListItem>)ViewBag.Size, new { @onchange = "this.form.submit();", @class = "ProductCategories-select", @style = "width: 70px;" })
-
-            </p>
-
-            @Html.Hidden("page", (object)ViewBag.Page)
-            @Html.Hidden("sortProperty", (object)ViewBag.SortProperty)
-            @Html.Hidden("sortOrder", (object)ViewBag.SortOrder)
-            @Html.Hidden("searchString", (object)ViewBag.Keyword)
-            @Html.Hidden("categoryID", (object)ViewBag.Subject)
-        }
-    </div>
-    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right">
-        <h5 class="text-dark font-weight-semibold" style="margin-right: 20px">Trang: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</h5>
-    </div>
-</div>
-
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.CurrentSize, sortProperty = ViewBag.SortProperty, sortOrder = ViewBag.SortOrder, searchString = ViewBag.Keyword }))
-<!-- Kết thúc -->

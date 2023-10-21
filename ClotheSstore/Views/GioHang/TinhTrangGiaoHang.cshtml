@@ -1,0 +1,190 @@
+﻿@using ClotheSstore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Order>
+@{
+    ViewBag.Title = "TinhTrangGiaoHang";
+
+}
+
+@Styles.Render("~/Style/TinhTrangGiaoHang/css")
+
+@foreach (var item in Model)
+{
+    <div class="container1">
+        <b>Ngày đặt hàng :  @string.Format("{0:dd-MM-yyyy HH:mm:ss}", item.orderDate) </b>
+        <h1>Tình trạng giao hàng</h1>
+        <b>Số hóa đơn : #@item.codeOrder</b>
+        @if (item.deliveryStatus == "Chờ xác nhận")
+        {
+            <div class="progress-steps">
+                <div class="step in-progress">
+                    <div class="step-icon">&#9711;</div>
+                    <div class="step-label">Chờ xác nhận</div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">&#9711;</div>
+                    <div class="step-label">Đang đóng gói</div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">&#9711;</div>
+                    <div class="step-label">Đang giao hàng</div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">&#9711;</div>
+                    <div class="step-label">Chờ xử lý</div>
+                </div>
+            </div>
+        }
+        else if (item.deliveryStatus == "Đang chuẩn bị giao hàng")
+        {
+            <div class="progress-steps">
+                <div class="step completed">
+                    <div class="step-icon">&#10003;</div>
+                    <div class="step-label">Đã xác nhận</div>
+                </div>
+                <div class="step in-progress">
+                    <div class="step-icon">&#9711;</div>
+                    <div class="step-label">Đang chuẩn bị giao hàng</div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">&#9711;</div>
+                    <div class="step-label">Đang giao hàng</div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">&#9711;</div>
+                    <div class="step-label">Chờ xử lý</div>
+                </div>
+            </div>
+            
+        }
+        else if (item.deliveryStatus == "Đang giao hàng")
+        {
+            <div class="progress-steps">
+                <div class="step completed">
+                    <div class="step-icon">&#10003;</div>
+                    <div class="step-label">Đã xác nhận</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-icon">&#10003;</div>
+                    <div class="step-label">Đã bàn giao cho đơn vị giao hàng</div>
+                </div>
+                <div class="step in-progress">
+                    <div class="step-icon">&#9711;</div>
+                    <div class="step-label">Đang giao hàng</div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">&#9711;</div>
+                    <div class="step-label">Chờ xử lý</div>
+                </div>
+            </div>
+        }
+        else if (item.deliveryStatus == "Giao hàng thành công")
+        {
+            <div class="progress-steps">
+                <div class="step completed">
+                    <div class="step-icon">&#10003;</div>
+                    <div class="step-label">Đã xác nhận</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-icon">&#10003;</div>
+                    <div class="step-label">Đã bàn giao cho đơn vị giao hàng</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-icon">&#10003;</div>
+                    <div class="step-label">Đang giao hàng</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-icon">&#10003;</div>
+                    <div class="step-label">Giao hàng thành công</div>
+                </div>
+            </div>
+            <div>
+                <b>Ngày giao hàng : @string.Format("{0:dd-MM-yyyy HH:mm:ss}",item.deliveryDate)</b>
+            </div>
+        }
+
+        <a href="javascript:void(0);" class="order-details-link" data-id="@item.idOrder">
+            <div style="text-align: right; margin-top: 15px">
+                <b>Chi Tiết</b>
+            </div>
+        </a>
+
+        <div class="product-details-container"></div>
+   
+    </div>
+
+}
+<div style="margin: 50px auto; width: 600px; text-align:right">
+    <strong>Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</strong>
+</div>
+<div class="MenuTrang">
+
+    @Html.PagedListPager(Model, page => Url.Action("TinhTrangGiaoHang", new { id = ViewBag.Orderid, page = page }))
+
+</div>
+<style>
+    .MenuTrang {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+        .MenuTrang .pagination {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+            .MenuTrang .pagination li {
+                margin: 0;
+                padding: 0;
+                margin-right: 5px; 
+            }
+
+            .MenuTrang .pagination a {
+                color: black;
+                background-color: #E0FFFF;
+                border: 1px solid #007bff;
+                border-radius : 50%;
+                padding: 6px 12px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
+                .MenuTrang .pagination a:hover {
+                    background-color: #7FFFD4;
+                }
+
+            .MenuTrang .pagination .active a {
+                background-color: #00FFFF; /* Màu nền nút đã chọn */
+            }
+  
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".order-details-link").click(function () {
+            var orderId = $(this).data("id");
+            var detailsContainer = $(this).siblings(".product-details-container");
+
+            if (detailsContainer.is(":visible")) {
+                detailsContainer.hide();
+            } else {
+                $.ajax({
+                    url: "@Url.Action("ThongTinDonHang", "GioHang")",
+                    data: { id: orderId },
+                    type: "GET",
+                    success: function (data) {
+                        detailsContainer.html(data);
+                        detailsContainer.show();
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi trong quá trình tải chi tiết sản phẩm.");
+                    }
+                });
+            }
+        });
+    });
+</script>
+

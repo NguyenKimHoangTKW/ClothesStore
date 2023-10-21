@@ -18,6 +18,7 @@ namespace ClotheSstore.Models
         public Size()
         {
             this.Product_Size = new HashSet<Product_Size>();
+            this.OrderDetails = new HashSet<OrderDetail>();
         }
     
         public int idSize { get; set; }
@@ -26,5 +27,7 @@ namespace ClotheSstore.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product_Size> Product_Size { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

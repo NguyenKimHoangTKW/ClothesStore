@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="aab186bbb00d426193fb096ac7c36f7c" Name="Diagram1">
         <EntityTypeShape EntityType="dbClothesStoreModel.Admin" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbClothesStoreModel.Customer" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="dbClothesStoreModel.ProductCategory" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="dbClothesStoreModel.sysdiagram" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="dbClothesStoreModel.Size" Width="1.5" PointX="0.75" PointY="7.25" />
@@ -16,10 +15,12 @@
         <AssociationConnector Association="dbClothesStoreModel.FK_Product_ProductCategory" />
         <AssociationConnector Association="dbClothesStoreModel.FK_Product_Size_Product" />
         <EntityTypeShape EntityType="dbClothesStoreModel.Order" Width="1.5" PointX="3" PointY="10.5" />
-        <AssociationConnector Association="dbClothesStoreModel.FK_Order_Customer" />
-        <EntityTypeShape EntityType="dbClothesStoreModel.OrderDetail" Width="1.5" PointX="8.25" PointY="8.125" />
+        <EntityTypeShape EntityType="dbClothesStoreModel.OrderDetail" Width="1.5" PointX="10.5" PointY="7.875" />
         <AssociationConnector Association="dbClothesStoreModel.FK_OrderDetail_Order" />
-        <AssociationConnector Association="dbClothesStoreModel.FK_OrderDetail_Product" />
+        <AssociationConnector Association="dbClothesStoreModel.FK_OrderDetail_Product_Size" />
+        <AssociationConnector Association="dbClothesStoreModel.FK_OrderDetail_Size" />
+        <EntityTypeShape EntityType="dbClothesStoreModel.Customer" Width="1.5" PointX="0.75" PointY="10.25" />
+        <AssociationConnector Association="dbClothesStoreModel.FK_Order_Customer" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
