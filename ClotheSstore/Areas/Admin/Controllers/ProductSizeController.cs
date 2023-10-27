@@ -11,8 +11,11 @@ using ClotheSstore.Models;
 using PagedList;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
+using ClotheSstore.App_Start;
+
 namespace ClotheSstore.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class ProductSizeController : Controller
     {
         private dbClothesStoreEntities db = new dbClothesStoreEntities();
@@ -144,9 +147,17 @@ namespace ClotheSstore.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product_Size product_Size = db.Product_Size.Find(id);
-            db.Product_Size.Remove(product_Size);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if(db.OrderDetails.Any(p => p.idProduct_Size == product_Size.idProduct_Size))
+            {
+                ViewBag.ThongBao = "Không thể xóa vì Chi tiết hóa đơn đang tồn tại sản phẩm này, vui lòng kiểm tra lại dữ liệu !!!";
+            }
+            else
+            {
+                db.Product_Size.Remove(product_Size);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(product_Size);
         }
 
         protected override void Dispose(bool disposing)

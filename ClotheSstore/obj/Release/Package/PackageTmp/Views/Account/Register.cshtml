@@ -1,0 +1,100 @@
+﻿@model ClotheSstore.Models.Customer
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="">
+
+
+
+    <div class="my-account-header page-title normal-title
+		">
+
+
+        <div class="page-title-inner flex-row container
+	 text-left">
+            <div class="flex-col flex-grow text-center">
+
+                <div class="text-center social-login">
+                    <h1 class="uppercase mb-0">TÀI KHOẢN</h1>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper my-account mb">
+        <div class="container" role="main">
+
+
+
+
+            <div class="woocommerce">
+                <div class="woocommerce-notices-wrapper"></div>
+                <div class="account-container lightbox-inner">
+
+
+                    <div class="account-login-inner">
+
+                        <h3 class="uppercase">Đăng ký tài khoản</h3>
+                        <h2 style="color:red">@ViewBag.ThongBao</h2>
+                        <form class="woocommerce-form woocommerce-form-login login" method="post" action="/Account/Register">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="username">Họ và tên<span class="required">*</span></label>
+                                <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="nameCustomer" id="nameCustomer" value="" required data-validation-error-msg="Họ và tên không được để trống" data-validation="required" />
+                            </p>
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="username">Tên tài khoản<span class="required">*</span></label>
+                                <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="userName" id="userName" autocomplete="username" value="" required data-validation-error-msg="Tên tài khoản không được để trống" data-validation="required" />
+                            </p>
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="password">Mật khẩu<span class="required">*</span></label>
+                                <input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="Password" id="Password" autocomplete="current-password" required data-validation-error-msg="Mật khẩu không được để trống" data-validation="required" />
+                            </p>
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="password">Nhập lại mật khẩu<span class="required">*</span></label>
+                                <input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="CheckPassword" id="CheckPassword" autocomplete="current-password" required data-validation-error-msg="Không được để trống" data-validation="required" />
+                            </p>
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="password">Email<span class="required">*</span></label>
+                                <input class="woocommerce-Input woocommerce-Input--text input-text" type="email" name="email" id="email" required data-validation-error-msg="Email không được để trống" data-validation="required" />
+                            </p>
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="password">Địa chỉ<span class="required">*</span></label>
+                                <input class="woocommerce-Input woocommerce-Input--text input-text" type="text" name="address" id="address" required data-validation-error-msg="Địa chỉ không được để trống" data-validation="required" />
+                            </p>
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="password">Số điện thoại<span class="required">*</span></label>
+                                <input class="woocommerce-Input woocommerce-Input--text input-text" type="number" name="phone" id="phone" required data-validation-error-msg="Số điện thoại không được để trống" data-validation="required" />
+                            </p>
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="password">Ngày sinh<span class="required">*</span></label>
+                                <input class="woocommerce-Input woocommerce-Input--text input-text" type="date" name="birthDay" id="birthDay" required data-validation-error-msg="Ngày sinh không được để trống" data-validation="required" />
+                            </p>
+                            <p class="form-row">
+
+                                <input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="3d42384096" /><input type="hidden" name="_wp_http_referer" value="/my-account/" />
+                                <button type="submit" class="woocommerce-button button woocommerce-form-login__submit" name="login" value="Log in" style="color:black;">Đăng Ký</button>
+                            </p>
+
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+</main>

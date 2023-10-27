@@ -136,6 +136,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AdminAuthorize.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -147,14 +148,12 @@
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductSizeController.cs" />
     <Compile Include="Areas\Admin\Controllers\SizesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Admin.cs">
-      <DependentUpon>ClothesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ClothesStoreModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -196,9 +195,48 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>ClothesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserAdmin.cs">
+      <DependentUpon>ClothesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Images\Product_Images\1053x1260-3.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\3b0fd0dc-75c9-9b00-526b-001aa1dc92ad-20231026203914639.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\47c6ceca-b113-0300-5a2d-001a8636e39a-20231026204145331.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\53328de4-efc1-a301-8560-001aa1e6728b-20231026204032037.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\6c141d4b-75c8-2d00-272e-00198eb124ed-20231026211220749.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\6d5f896e-a3eb-3200-5241-001a6e04f492-20231026210116318.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\6ed561ac-db2b-d800-e20f-001a298a69ec-20231026204124273.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\783c439e-0473-3300-079f-0018b9fb8fee-20231026211138451.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\7e0c7fdd-e69f-f601-b96d-001a6e18c6cc-20231026210625789.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\a20df699-1bde-7801-c00a-001aa1e4c6e2-20231026203851721.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\abf303ca-bbae-a500-2f5c-001aa1dd64b8-20231026210017512.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\avatar-vit-vang-cute-cuc-ngau-20231006200010326.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\avatar-vit-vang-cute-cuc-ngau-20231006200108728.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\avatar-vit-vang-cute-cuc-ngau-20231006200306021.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\bfcc3378-2da1-2f00-e8f7-001a9dfa0b2c-20231026204057197.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\c1c7df29-aed6-b000-1dd7-001957b2d47e-20231026210901829.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\ClothesShopStore.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\e23b0711-84e9-0f00-3ff6-001a6e0381a7-20231026210154183.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\f4c558f3-e593-3b00-9233-00198eb28663-20231026210743577.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-1-20231004132824251.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-1-20231004133643446.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-1-20231004133949092.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-1-20231004134014912.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-1-20231004134734060.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-1-20231017185418096.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-1-20231017185452732.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-1-20231017190511872.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-1-20231017205505815.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-1-20231017222216475.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-1-20231017222328644.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-10-20231004133845493.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-11-20231004133722745.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-11-20231004165030702.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-11-20231004170710708.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-12-20231004165152170.jpg" />
+    <Content Include="Areas\Admin\Images\Product_Images\thumb-12-20231004171852603.jpg" />
     <Content Include="Areas\Style\assets\css\app.min.css" />
     <Content Include="Areas\Style\assets\es6\app.js" />
     <Content Include="Areas\Style\assets\es6\constant\theme-constant.js" />
@@ -1609,6 +1647,12 @@
     <Content Include="Areas\Admin\Views\Order\OrderDetailDaXuLy.cshtml" />
     <Content Include="Areas\Admin\Views\Order\OrderDetailDangGiaoHang.cshtml" />
     <Content Include="Areas\Admin\Views\Order\OrderDetailGiaoHangThanhCong.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\OrderChuaThanhToan.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1654,11 +1698,14 @@
     <Content Include="Views\GioHang\ErrorThongTinHang.cshtml" />
     <Content Include="Views\Home\HuongDanChonSize.cshtml" />
     <Content Include="Views\Home\LayTatCaSanPham.cshtml" />
+    <Content Include="Views\Account\TitleUser.cshtml" />
+    <Content Include="Views\Account\EditTitleUser.cshtml" />
+    <Content Include="Views\Account\EditPassWordUser.cshtml" />
+    <Content Include="Views\Account\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Images\Product_Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

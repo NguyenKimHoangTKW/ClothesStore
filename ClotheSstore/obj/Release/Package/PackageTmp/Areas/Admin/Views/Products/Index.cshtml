@@ -1,0 +1,134 @@
+﻿﻿@model IEnumerable<ClotheSstore.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+
+
+
+<div class="card" style="margin-top: 60px;">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-lg-8">
+
+
+
+                @using (Html.BeginForm("Index", "Products", FormMethod.Get, new { @class = "form-inline" }))
+                {
+                    @Html.DropDownList("product", null, htmlAttributes: new { @class = "form-control", @style = "min-width: 180px;" })
+
+
+
+                    <button class="btn btn-success btn-tone m-r-5">Tìm</button>
+
+                }
+                @using (Html.BeginForm("Index", "Products", FormMethod.Get, new { @class = "form-inline" }))
+                {
+
+                    <button class="btn btn-warning btn-tone m-r-5" style="margin-top:13px; margin-bottom:10px;">Reset</button>
+                }
+
+
+            </div>
+            <div class="col-lg-4 text-right">
+                <a href="@Url.Action("Create", "Products")">
+                    <button class="btn btn-primary btn-tone m-r-5">
+                        <i class="anticon anticon-plus-circle m-r-5"></i>
+                        Thêm sản phẩm
+                    </button>
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover e-commerce-table" id="data-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Mã sản phẩm</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Ngày nhập</th>
+                            <th scope="col">Mô tả</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col">#</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                i++;
+                                <tr>
+                                    <td>
+                                        #@i
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img class="img-fluid rounded" src="~/Areas/Admin/Images/Product_Images/@item.thumb" style="max-width: 60px" alt="">
+                                            <h6 class="m-b-0 m-l-10">@item.nameProduct</h6>
+                                        </div>
+                                    </td>
+                                    <td>@item.codeProduct</td>
+
+                                    <td>@string.Format("{0:#,0} VNĐ", item.price)</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div>@item.ProductCategory.nameProductCategory</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div>@string.Format("{0:dd-MM-yyyy}", item.updateDay)</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div>@Html.Raw(item.describe)</div>
+                                        </div>
+                                    </td>
+                                    @if (item.stock == true)
+                                    {
+
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>Mở bán</div>
+                                            </div>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-danger badge-dot m-r-10"></div>
+                                                <div>Không mở bán</div>
+                                            </div>
+                                        </td>
+                                    }
+                                    <td>
+                                        <a href="/Admin/Products/Details?id=@item.idProduct">
+                                            <button class="btn btn-info btn-tone m-r-5">Xem</button>
+                                        </a> |
+                                        <a href="/Admin/Products/Edit?id=@item.idProduct">
+                                            <button class="btn btn-success btn-tone m-r-5">Sửa</button>
+                                        </a> |
+                                        <a href="/Admin/Products/Delete?id=@item.idProduct">
+                                            <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+  

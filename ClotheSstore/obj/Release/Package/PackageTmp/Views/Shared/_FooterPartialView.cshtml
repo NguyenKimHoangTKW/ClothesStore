@@ -1,0 +1,57 @@
+﻿
+@{ var customer = Session["Customer"] as ClotheSstore.Models.Customer;}
+@if (customer == null)
+{
+    <!-- FOOTER 1 -->
+    <div class="footer-widgets footer footer-1">
+        <div class="row dark large-columns-3 mb-0">
+            <div id="nav_menu-4" class="col pb-0 widget widget_nav_menu">
+                <span class="widget-title">THÔNG TIN</span><div class="is-divider small"></div><div class="menu-store-information-container">
+                    <ul id="menu-store-information" class="menu">
+                        <li id="menu-item-2231308" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2231308"><a href="@Url.Action("HuongDanChonSize","Home")">Hướng dẫn chọn Size</a></li>
+                        <li id="menu-item-2231309" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2231309"><a href="@Url.Action("ErrorThongTinHang","GioHang")">Theo dõi đơn hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+else
+{
+    <!-- FOOTER 1 -->
+    <div class="footer-widgets footer footer-1">
+        <div class="row dark large-columns-3 mb-0">
+            <div id="nav_menu-4" class="col pb-0 widget widget_nav_menu">
+                <span class="widget-title">THÔNG TIN</span><div class="is-divider small"></div><div class="menu-store-information-container">
+                    <ul id="menu-store-information" class="menu">
+                        <li id="menu-item-2231308" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2231308"><a href="@Url.Action("HuongDanChonSize","Home")">Hướng dẫn chọn Size</a></li>
+                        <li id="menu-item-2231309" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2231309"><a href="@Url.Action("TinhTrangGiaoHang","GioHang", new {id = customer.idCustomer})">Theo dõi đơn hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+<!-- FOOTER 2 -->
+
+
+
+<div class="absolute-footer dark medium-text-center small-text-center">
+    <div class="container clearfix">
+
+
+        <div class="footer-primary pull-left">
+            <div class="copyright-footer">
+                Copyright 2023 © <strong>
+                </strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#top" class="back-to-top button icon invert plain fixed bottom z-1 is-outline circle" id="top-link" aria-label="Go to top"><i class="icon-angle-up"></i></a>
+

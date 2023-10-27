@@ -12,8 +12,11 @@ using ClotheSstore.Models;
 using PagedList;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
+using ClotheSstore.App_Start;
+
 namespace ClotheSstore.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class ProductsController : Controller
     {
         private dbClothesStoreEntities db = new dbClothesStoreEntities();

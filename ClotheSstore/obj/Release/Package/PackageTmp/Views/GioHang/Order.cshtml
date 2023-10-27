@@ -1,0 +1,156 @@
+﻿@using ClotheSstore.Models
+@model List<ClotheSstore.Models.GioHang>
+@{
+    ViewBag.Title = "ĐẶT HÀNG";
+    Layout = null;
+    int i = 0;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ĐẶT HÀNG</title>
+</head>
+<link href="~/Areas/Style/assets/css/app.min.css" rel="stylesheet">
+<body>
+    <h2 style="color:red;">@ViewBag.ThongBao</h2>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                @{
+                    Customer customer = (Customer)Session["Customer"];
+                }
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+
+
+                    <div id="invoice" class="p-h-30">
+
+                        <div class="m-t-15 lh-2">
+                            <div class="inline-block">
+                                <img class="img-fluid" src="assets/images/logo/logo.png" alt="">
+                                <address class="p-l-10">
+                                    <span class="font-weight-semibold text-dark"></span><br>
+                                    <span></span><br>
+                                    <span></span><br>
+                                    <abbr class="text-dark" title="Phone"></abbr>
+                                    <span></span>
+                                </address>
+                            </div>
+                            <div class="float-right">
+                                <h2>THÔNG TIN ĐƠN HÀNG</h2>
+                                <h2 style="color:red;">@ViewBag.ThongBao</h2>
+                            </div>
+                        </div>
+                        <div class="row m-t-20 lh-2">
+                            <div class="col-sm-9">
+                                <h3 class="p-l-10 m-t-10">THÔNG TIN KHÁCH HÀNG:</h3>
+                                <address class="p-l-10 m-t-10">
+                                    <span class="font-weight-semibold text-dark">Tên khách hàng : @customer.nameCustomer </span><br>
+                                    <span>Địa chỉ : @customer.address</span><br>
+                                </address>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="m-t-80">
+                                    <div class="text-dark text-uppercase d-inline-block">
+                                        <span class="font-weight-semibold text-dark">Số điện thoại :</span>
+                                    </div>
+                                    <div class="float-right">@customer.phone</div>
+                                </div>
+                                <div class="text-dark text-uppercase d-inline-block">
+                                    <span class="font-weight-semibold text-dark">Ngày đặt hàng :</span>
+                                </div>
+                                <div class="float-right">@DateTime.Now.ToShortDateString()</div>
+                            </div>
+                        </div>
+                        <div class="m-t-20">
+                            <div class="table-responsive">
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Hình</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Số lượng</th>
+                                            <th>Size</th>
+                                            <th>Đơn giá</th>
+                                            <th>Thành tiền</th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var item in Model)
+                                    {
+                                        i++;
+                                        <tbody>
+                                            <tr>
+                                                <th>#@i</th>
+                                                <td><img class="img-fluid rounded" src="~/Areas/Admin/Images/Product_Images/@item.sAnhSanPham" style="max-width: 60px" alt=""></td>
+                                                <td>@item.sTenSanPham</td>
+                                                <td>@item.iSoLuong</td>
+                                                <td>@item.nameSize</td>
+                                                <td>@string.Format("{0:#,##0,0}", @item.dDonGia)</td>
+                                                <td>@string.Format("{0:#,##0,0}", @item.ThanhTien)</td>
+
+                                            </tr>
+                                        </tbody>
+                                    }
+                                </table>
+
+                            </div>
+                            <div class="row m-t-30 lh-1-8">
+                                <div class="col-sm-12">
+                                    <div class="float-right text-right">
+                                        <p>Số lượng sản phẩm: @string.Format("{0:#,##0}", @ViewBag.TongSoLuong)</p>
+
+                                        <hr>
+                                        <h3><span class="font-weight-semibold text-dark">Thành tiền :</span> @string.Format("{0:#,##0,0} VNĐ", @ViewBag.TongTien)</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-t-30 lh-2">
+                                <div class="col-sm-12">
+                                    <div class="border-bottom p-v-20">
+                                        <p class="text-opacity"><small>Chúng tôi luôn đặt <b>Khách hàng</b> lên hàng đầu. Hãy tin tưởng và ủng hộ chúng tôi</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-v-20">
+                                <div class="col-sm-6">
+                                    <img class="img-fluid text-opacity m-t-5" width="100" src="assets/images/logo/logo.png" alt="">
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <small><span class="font-weight-semibold text-dark">Phone:</span> 0354384911</small>
+                                    <br>
+                                    <small>
+                                        2124802010292@student.tdmu.edu.vn
+                                    </small>
+                                    <div>
+                                        <small><span class="font-weight-semibold text-dark">Phone:</span> 0369924627</small>
+                                        <br>
+                                        <small>
+                                            2124802010524@student.tdmu.edu.vn
+                                        </small>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <tr style="height:40px;">
+                            <td></td>
+                            <td>
+                                <button class="btn btn-success btn-tone m-r-5">Đặt hàng</button>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("GioHang","GioHang")">Quay lại giỏ hàng</a>
+                            </td>
+                        </tr>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

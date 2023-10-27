@@ -1,0 +1,98 @@
+﻿﻿@model IEnumerable<ClotheSstore.Models.Product_Size>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+
+
+
+<div class="card" style="margin-top: 60px;">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-lg-8">
+
+
+
+                @using (Html.BeginForm("Index", "ProductSize", FormMethod.Get, new { @class = "form-inline" }))
+                {
+
+                    <div class="m-b-15" style="width:500px;">
+                        <select class="select2" name="productSizeid">
+                            <option value=@Html.DropDownList("productSizeid", null, htmlAttributes: new { @class = "form-control" }) 
+                        </select>
+                    </div>
+
+                    <button class="btn btn-success btn-tone m-r-5">Tìm</button>
+
+                }
+                @using (Html.BeginForm("Index", "ProductSize", FormMethod.Get, new { @class = "form-inline" }))
+                {
+
+                    <button class="btn btn-warning btn-tone m-r-5" style="margin-top:13px; margin-bottom:10px;">Reset</button>
+                }
+
+
+            </div>
+            <div class="col-lg-4 text-right">
+                <a href="@Url.Action("Create", "ProductSize")">
+                    <button class="btn btn-primary btn-tone m-r-5">
+                        <i class="anticon anticon-plus-circle m-r-5"></i>
+                        Thêm mới sản phẩm
+                    </button>
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover e-commerce-table" id="data-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Size</th>
+                            <th scope="col">Số lượng tồn</th>
+                            <th scope="col">#</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                i++;
+                                <tr>
+                                    <td>
+                                        #@i
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="m-b-0 m-l-10">@item.Product.nameProduct</h6>
+                                        </div>
+                                    </td>
+                                    <td>@item.Size.nameSize</td>
+
+                                    <td>@item.quantity</td>
+                                    
+                                    <td>
+                                        <a href="/Admin/ProductSize/Details?id=@item.idProduct_Size">
+                                            <button class="btn btn-info btn-tone m-r-5">Xem</button>
+                                        </a> |
+                                        <a href="/Admin/ProductSize/Edit?id=@item.idProduct_Size">
+                                            <button class="btn btn-success btn-tone m-r-5">Sửa</button>
+                                        </a> |
+                                        <a href="/Admin/ProductSize/Delete?id=@item.idProduct_Size">
+                                            <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

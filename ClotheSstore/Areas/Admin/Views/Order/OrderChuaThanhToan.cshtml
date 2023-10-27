@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ClotheSstore.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+<div class="card" style="margin-top:75px;">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-lg-8">
+
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover e-commerce-table">
+                    <thead>
+                        <tr>
+
+                            <th>STT</th>
+                            <th>Tên khách hàng</th>
+                            <th>Mã hóa đơn</th>
+                            <th>Ngày đặt</th>
+                            <th>Ngày giao</th>
+                            <th>Trạng thái đặt hàng</th>
+                            <th>Trạng thái thanh toán</th>
+                            <th>Số điện thoại</th>
+                            <th>Địa chỉ</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+
+                                <td>
+                                    @i
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+
+                                        <h6 class="m-b-0">@item.Customer.nameCustomer</h6>
+                                    </div>
+                                </td>
+                                <td>@item.codeOrder</td>
+                                <td>@item.orderDate</td>
+                                <td>@item.deliveryDate</td>
+                                <td>@item.deliveryStatus</td>
+                                @if (item.checkPay == false)
+                                {
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-primary badge-dot m-r-10"></div>
+                                            <div>Chờ thanh toán</div>
+                                        </div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-success badge-dot m-r-10"></div>
+                                            <div>Đã thanh toán</div>
+                                        </div>
+                                    </td>
+                                }
+                                <td>@item.Customer.phone</td>
+                                <td>@item.Customer.address</td>
+
+                                <td class="text-right">
+                                    <a href="@Url.Action("OrderXuLyThanhToan","Order", new {id = item.idOrder})">
+                                        <button class="btn btn-info btn-tone m-r-5">
+                                            Xử lý
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

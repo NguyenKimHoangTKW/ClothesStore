@@ -1,0 +1,64 @@
+﻿@model ClotheSstore.Models.UserAdmin
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idAdmin)
+        @Html.HiddenFor(model => model.codeAdmin)
+        <div class="card">
+            <div class="card-body">
+                <h4>Sửa đổi Admin</h4>
+                <h2 style="color:red">@ViewBag.ThongBao</h2>
+                <div class="m-t-15">
+                    <form id="form-validation">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label control-label">Tên khách hàng*</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" name="nameAdmin" value="@Model.nameAdmin">
+                                @Html.ValidationMessageFor(model => model.nameAdmin, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label control-label">Tài khoản*</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" name="userName" value="@Model.userName" readonly="False">
+                                @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label control-label">Mật khẩu*</label>
+                            <div class="col-md-5">
+                                <input type="password" class="form-control" name="password" value="@Model.passWord">
+                                @Html.ValidationMessageFor(model => model.passWord, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                      
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label control-label">Trạng thái hoạt động</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" name="access" value="@Model.access">
+                                @Html.ValidationMessageFor(model => model.access, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group text-left">
+                            <button class="btn btn-success btn-tone m-r-5">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div>
+                @Html.ActionLink("Quay về danh sách Admin", "Index")
+            </div>
+        </div>
+
+    </div>
+}

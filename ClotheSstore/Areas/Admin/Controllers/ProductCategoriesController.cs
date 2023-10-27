@@ -10,8 +10,11 @@ using ClotheSstore.Models;
 using PagedList;
 using System.Linq.Dynamic; // nhúng vào tập tin 
 using System.Linq.Expressions;
+using ClotheSstore.App_Start;
+
 namespace ClotheSstore.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class ProductCategoriesController : Controller
     {
         private dbClothesStoreEntities db = new dbClothesStoreEntities();
@@ -137,9 +140,17 @@ namespace ClotheSstore.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ProductCategory productCategory = db.ProductCategories.Find(id);
-            db.ProductCategories.Remove(productCategory);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if(db.Products.Any(p => p.idProductCategory == productCategory.idProductCategory))
+            {
+                ViewBag.ThongBao = "Danh mục này đang có bên Sản phẩm, vui lòng xóa sản phẩm liên quan đến danh mục này trước";
+            }
+            else
+            {
+                db.ProductCategories.Remove(productCategory);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(productCategory);
         }
 
         protected override void Dispose(bool disposing)

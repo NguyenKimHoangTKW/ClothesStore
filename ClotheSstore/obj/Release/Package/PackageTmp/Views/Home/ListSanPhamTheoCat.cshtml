@@ -1,0 +1,127 @@
+﻿@model PagedList.IPagedList<ClotheSstore.Models.Product>
+@using PagedList.Mvc;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="shop-page-title category-page-title page-title ">
+    <div class="page-title-inner flex-row  medium-flex-wrap container">
+        <div class="flex-col flex-grow medium-text-center">
+            <div class="is-large">
+                @if (Model.Any())
+                {
+                    <nav class="woocommerce-breadcrumb breadcrumbs uppercase"><a href="@Url.Action("Index","Home")">Trang chủ</a> <span class="divider">&#47;</span> Sản phẩm @Model.FirstOrDefault().ProductCategory.nameProductCategory</nav>
+                }
+                else
+                {
+                    <nav class="woocommerce-breadcrumb breadcrumbs uppercase"><a href="@Url.Action("Index","Home")">Trang chủ</a> <span class="divider">&#47;</span> Sản phẩm tạm hết hàng</nav>
+
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<main id="main" class="">
+    <div class="row category-page-row">
+
+        <div class="col large-12">
+            <div class="shop-container">
+                <div class="woocommerce-notices-wrapper"></div><div class="products row row-small large-columns-3 medium-columns-3 small-columns-2">
+                    @foreach (var item in Model)
+                    {
+                        <div class="product-small col has-hover product type-product post-2231383 status-publish instock product_cat-midi-dress-workshirti product_cat-new-arrivals-workshirti has-post-thumbnail taxable shipping-taxable purchasable product-type-variable">
+                            <div class="col-inner">
+
+                                <div class="badge-container absolute left top z-1">
+                                </div>
+                                <div class="product-small box ">
+                                    <div class="box-image">
+                                        <div class="image-fade_in_back">
+                                            <a href="@Url.Action("ChiTietDonHang","Home", new {id = item.idProduct})" aria-label="@item.nameProduct">
+                                                <img width="800" height="800" src="~/Areas/Admin/Images/Product_Images/@item.thumb" class="lazy-load lazy-load attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" decoding="async" loading="lazy" />
+                                            </a>
+                                        </div>
+                                        <div class="image-tools is-small top right show-on-hover">
+                                        </div>
+                                        <div class="image-tools is-small hide-for-small bottom left show-on-hover">
+                                        </div>
+                                        <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">
+                                            <a class="quick-view" data-prod="2231383" href="@Url.Action("ChiTietDonHang","Home", new {id = item.idProduct})">Xem chi tiết</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="box-text box-text-products text-center grid-style-2">
+                                        <div class="title-wrapper">
+                                            <p class="category uppercase is-smaller no-text-overflow product-cat op-7">
+                                                @item.nameProduct'
+                                            </p>
+                                            <p class="name product-title woocommerce-loop-product__title"><a href="@Url.Action("ChiTietDonHang","Home", new {id = item.idProduct})" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">@item.nameProduct</a></p>
+                                        </div><div class="price-wrapper">
+                                            <span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>@string.Format("{0:#,0} VNĐ", item.price)</bdi></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" class="wpmProductId" data-id="2231383">
+                                <script type="pmdelayedscript" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1">
+                                    (window.wpmDataLayer = window.wpmDataLayer || {}).products             = window.wpmDataLayer.products || {}
+                                    window.wpmDataLayer.products[2231383] = {"id":"2231383","sku":"W324024","price":46.95,"brand":"","quantity":1,"dyn_r_ids":{"post_id":"2231383","sku":"W324024","gpf":"woocommerce_gpf_2231383","gla":"gla_2231383"},"isVariable":true,"name":"Black Fox Floral Square-Neck Midi Dress","category":["Midi Dress","New Arrivals"],"isVariation":false};
+                                            window.wpmDataLayer.products[2231383]['position'] = window.wpmDataLayer.position++
+                                </script>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+<div style="margin: 50px auto; width: 600px; text-align:right">
+    <strong>Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</strong>
+</div>
+<div class="MenuTrang">
+
+    @Html.PagedListPager(Model, page => Url.Action("ListSanPhamTheoCat", new { id = ViewBag.idCat, page = page }))
+
+</div>
+<style>
+    .MenuTrang {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+        .MenuTrang .pagination {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+            .MenuTrang .pagination li {
+                margin: 0;
+                padding: 0;
+                margin-right: 5px;
+            }
+
+            .MenuTrang .pagination a {
+                color: black;
+                background-color: #E0FFFF;
+                border: 1px solid #007bff;
+                border-radius: 50%;
+                padding: 6px 12px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
+
+                .MenuTrang .pagination a:hover {
+                    background-color: #7FFFD4;
+                }
+
+            .MenuTrang .pagination .active a {
+                background-color: #00FFFF; /* Màu nền nút đã chọn */
+            }
+</style>

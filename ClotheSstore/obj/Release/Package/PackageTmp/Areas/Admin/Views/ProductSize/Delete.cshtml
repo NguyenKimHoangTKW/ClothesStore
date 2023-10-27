@@ -1,0 +1,58 @@
+﻿@model ClotheSstore.Models.Product_Size
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div>
+
+    <dl class="dl-horizontal">
+        <div class="card" style="margin-top:75px;">
+            <div class="card-body">
+                <h4 class="card-title">Thông tin size sản phẩm</h4>
+                <div class="table-responsive">
+                    <table class="product-info-table m-t-20">
+                        <tbody>
+                            <tr>
+                                <td>Mã sản phẩm:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Product.codeProduct)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tên sản phẩm:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Product.nameProduct)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Số lượng</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.quantity)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Size:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Size.nameSize)
+                                </td>
+                            </tr>
+                         
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ClotheSstore.Models.Product_Size>
+@if (Model.Any())
+{
+    <div data-product_id="2231384" data-threshold_min="30" data-threshold_max="100" data-total="6">
+        <table class="variations" cellspacing="0" role="presentation">
+            <tbody>
+                <tr>
+                    <th class="label"><label for="pa_size">Size</label></th>
+                    <td class="value">
+                        <div class="variable-items-wrapper button-variable-items-wrapper wvs-style-squared" data-attribute_name="attribute_pa_size" data-attribute_values="[&quot;xxs&quot;,&quot;extra-small&quot;,&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;,&quot;extra-large&quot;]">
+                            <select id="txtSize" name="txtSize" class="form-control" style="width: 60px;">
+                                @foreach (var item in Model)
+                                {
+                                    <option value="@item.Size.idSize" data-quantity="@item.quantity">@item.Size.nameSize</option>
+                                }
+                            </select>
+                        </div>
+
+                        <a class="reset_variations" href="#">Clear</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="product-info">
+        <p id="product-quantity">Số lượng sản phẩm tồn: <span id="quantity">0</span></p>
+    </div>
+}
+else
+{
+    <div data-product_id="2231384" data-threshold_min="30" data-threshold_max="100" data-total="6">
+        <table class="variations" cellspacing="0" role="presentation">
+            <tbody>
+                <tr>
+                    <th class="label"><label for="pa_size">Size</label></th>
+                    <td class="value">
+                        <div class="variable-items-wrapper button-variable-items-wrapper wvs-style-squared" data-attribute_name="attribute_pa_size" data-attribute_values="[&quot;xxs&quot;,&quot;extra-small&quot;,&quot;small&quot;,&quot;medium&quot;,&quot;large&quot;,&quot;extra-large&quot;]">
+                            <input type="text" value="Sản phẩm tạm hết hàng" readonly="False" style="width: 180px;"/>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="product-info">
+        <p id="product-quantity">Số lượng sản phẩm : <span id="quantity">0</span></p>
+    </div>
+}
+
+
+<script>
+    var ddlSize = document.getElementById('txtSize');
+    var quantityDisplay = document.getElementById('quantity');
+    var clearButton = document.querySelector('.reset_variations');
+
+    clearButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        ddlSize.selectedIndex = 0;
+        quantityDisplay.textContent = 0;
+    });
+
+    ddlSize.addEventListener('change', function () {
+        var selectedOption = ddlSize.options[ddlSize.selectedIndex];
+        var quantity = selectedOption.getAttribute('data-quantity');
+        quantityDisplay.textContent = quantity;
+    });
+</script>

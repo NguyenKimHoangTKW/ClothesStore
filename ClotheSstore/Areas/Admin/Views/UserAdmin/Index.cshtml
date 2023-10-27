@@ -1,0 +1,78 @@
+﻿﻿@model IEnumerable<ClotheSstore.Models.UserAdmin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+
+
+
+<div class="card" style="margin-top: 60px;">
+    <div class="card-body">
+        <div class="row m-b-30">
+
+            <div class="col-lg-4 text-left">
+                <a href="@Url.Action("Create", "UserAdmin")">
+                    <button class="btn btn-primary btn-tone m-r-5">
+                        <i class="anticon anticon-plus-circle m-r-5"></i>
+                        Thêm mới Admin
+                    </button>
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover e-commerce-table" id="data-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên Admin</th>
+                            <th scope="col">Mã Admin</th>
+                            <th scope="col">Tài khoản</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Trạng thái hoạt động</th>
+                          
+                            <th scope="col">#</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                i++;
+                                <tr>
+                                    <td>
+                                        #@i
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="m-b-0 m-l-10">@item.nameAdmin</h6>
+                                        </div>
+                                    </td>
+                                    <td>@item.codeAdmin</td>
+                                    <td>@item.userName</td>
+                                    <td>@item.phone</td>
+                                    <td>@item.access</td>
+                                    <td>
+                                        <a href="/Admin/UserAdmin/Details?id=@item.idAdmin">
+                                            <button class="btn btn-info btn-tone m-r-5">Xem</button>
+                                        </a> |
+                                        <a href="/Admin/UserAdmin/Edit?id=@item.idAdmin">
+                                            <button class="btn btn-success btn-tone m-r-5">Sửa</button>
+                                        </a> |
+                                        <a href="/Admin/UserAdmin/Delete?id=@item.idAdmin">
+                                            <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

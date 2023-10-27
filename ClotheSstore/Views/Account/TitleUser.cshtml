@@ -1,0 +1,65 @@
+﻿@model  IEnumerable<ClotheSstore.Models.Customer>
+
+@{
+    ViewBag.Title = "Cập nhật thông tin khách hàng";
+}
+<link href="~/Style/assets/app.min.css" rel="stylesheet" />
+<div class="main-content" style="margin-top:50px;">
+    <div class="container">
+        <div class="tab-content m-t-15">
+            <div class="tab-pane fade show active" id="tab-account">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">THÔNG TIN TÀI KHOẢN</h4>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            @foreach (var item in Model)
+                            {
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-semibold" for="userName">Họ và tên:</label>
+                                        <input type="text" class="form-control" name="nameCustomer" placeholder="User Name" value="@item.nameCustomer" readonly="False">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-semibold" for="email">Email:</label>
+                                        <input type="email" class="form-control" name="email" placeholder="email" value="@item.email" readonly="False">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-semibold" for="email">Tài khoản:</label>
+                                        <input type="text" class="form-control" name="userName" placeholder="email" value="@item.userName" readonly="False">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="font-weight-semibold" for="dob">Date of Birth:</label>
+                                        <input type="text" class="form-control" name="birthDay" placeholder="Date of Birth" value="@string.Format("{0:dd-MM-yyyy}",item.birthDay)" readonly="False">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label class="font-weight-semibold" for="phoneNumber">Số điện thoại</label>
+                                        <input type="text" class="form-control" name="phone" placeholder="Phone Number" value="@item.phone" readonly="False">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label class="font-weight-semibold" for="dob">Địa chỉ :</label>
+                                        <input type="text" class="form-control" name="address" placeholder="Date of Birth" value="@item.address" readonly="False">
+                                    </div>
+                                </div>
+                                <button class="btn btn-info btn-tone m-r-5">
+                                    <a href="@Url.Action("EditTitleUser","Account", new {id = item.idCustomer})">Thay đổi thông tin tài khoản</a>
+                                </button>
+                                <button class="btn btn-info btn-tone m-r-5">
+                                    <a href="@Url.Action("EditPassWordUser","Account", new {id = item.idCustomer})">Thay đổi mật khẩu</a>
+                                </button>
+                            }
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

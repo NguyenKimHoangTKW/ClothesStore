@@ -11,9 +11,11 @@ using PagedList;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using ClotheSstore.App_Start;
 
 namespace ClotheSstore.Areas.Admin.Controllers
 {
+    [AdminAuthorize]
     public class OrderController : Controller
     {
         private dbClothesStoreEntities db = new dbClothesStoreEntities();
@@ -137,6 +139,32 @@ namespace ClotheSstore.Areas.Admin.Controllers
         {
             var lstorderbyid = db.OrderDetails.Where(o => o.idOrder == id).ToList();
             return View(lstorderbyid);
+        }
+
+        public ActionResult OrderChuaThanhToan()
+        {
+            var lstorderbyid = db.Orders.Where(o => o.checkPay == false).ToList();
+            return View(lstorderbyid);
+        }
+
+        public async Task<ActionResult> OrderXuLyThanhToan(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Order order = db.Orders.Find(id);
+
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            order.checkPay = true;
+            db.Entry(order).State = EntityState.Modified;
+            await db.SaveChangesAsync();
+
+            return View();
         }
     }
 }

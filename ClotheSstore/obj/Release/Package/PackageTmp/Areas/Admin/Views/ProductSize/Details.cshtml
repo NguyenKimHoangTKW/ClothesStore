@@ -1,0 +1,45 @@
+﻿@model ClotheSstore.Models.Product_Size
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+   
+    <dl class="dl-horizontal">
+        <div class="card" style=" margin-top: 74px;">
+            <div class="card-body">
+                <h4 class="card-title">Thông tin size sản phẩm</h4>
+                <div class="table-responsive">
+                    <table class="product-info-table m-t-20">
+                        <tbody>
+                            <tr>
+                                <td>Tên sản phẩm:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Product.nameProduct)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tên Size:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Size.nameSize)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Số lượng tồn kho:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.quantity)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.idProduct_Size  }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

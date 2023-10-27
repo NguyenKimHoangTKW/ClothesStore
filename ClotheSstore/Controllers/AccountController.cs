@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,10 +22,13 @@ namespace ClotheSstore.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(Customer cus, Admin ad)
+        public ActionResult Login(Customer cus, UserAdmin ad)
         {
-            var isCustomer = db.Customers.SingleOrDefault(c => c.userName == cus.userName && c.passWord == cus.passWord);
-            var isAdmin = db.Admins.SingleOrDefault(a => a.userName == ad.userName && a.passWord == ad.passWord);
+            var fpassworduser = GetMD5(cus.passWord);
+            var fpasswordadmin = GetMD5(ad.passWord);
+            var isCustomer = db.Customers.SingleOrDefault(c => c.userName == cus.userName && c.passWord == fpassworduser);
+            var isAdmin = db.UserAdmins.SingleOrDefault(a => a.userName == ad.userName && a.passWord == fpasswordadmin);
+
             if (isCustomer != null)
             {
                 Session["Customer"] = isCustomer;
@@ -53,8 +59,8 @@ namespace ClotheSstore.Controllers
                 cus.idCustomer = nextId;
                 cus.codeCustomer = "KH" + nextId.ToString("2023BS");
                 cus.credate = DateTime.Now;
-                var password = f["Password"];
-                var checkpassword = f["CheckPassword"];
+                var password = GetMD5(f["Password"]);
+                var checkpassword = GetMD5(f["CheckPassword"]);
                 if (db.Customers.SingleOrDefault(c => c.userName == cus.userName) != null)
                 {
                     ViewBag.ThongBao = "Tài khoản đã tồn tại, vui lòng nhập tài khoản khác";
@@ -101,7 +107,6 @@ namespace ClotheSstore.Controllers
         public ActionResult ForgetPassword(string username, string password, string confirmPassword)
         {
             var customer = db.Customers.SingleOrDefault(c => c.email == username);
-
             if (customer != null)
             {
                 if (password != confirmPassword)
@@ -110,7 +115,7 @@ namespace ClotheSstore.Controllers
                     return View();
                 }
 
-                customer.passWord = password;
+                customer.passWord = GetMD5( password);
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 ViewBag.ThongBao = "Mật khẩu đã được thay đổi thành công.";
@@ -126,6 +131,96 @@ namespace ClotheSstore.Controllers
         {
             Session.Clear();
             return RedirectToAction("Index","Home");
+        }
+        public ActionResult TitleUser(int? id)
+        {
+            var titlecus = from cus in db.Customers
+                           where cus.idCustomer == id
+                           select cus;
+            return View(titlecus);
+        }
+        [HttpGet]
+        public ActionResult EditTitleUser(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditTitleUser([Bind(Include = "idCustomer,codeCustomer,nameCustomer,userName,passWord,birthDay,email,address,phone,credate")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewBag.ThongBao = "Thay đổi thông tin thành công";
+                db.Entry(customer).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return View(customer);
+        }
+        [HttpGet]
+        public ActionResult EditPassWordUser(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPassWordUser([Bind(Include = "idCustomer,codeCustomer,nameCustomer,userName,passWord,birthDay,email,address,phone,credate")] Customer customer, FormCollection f)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                var sPassword = GetMD5(f["PassWord"]);
+                var sCheckPassWord = GetMD5(f["CheckPassword"]);
+                if(sPassword != sCheckPassWord)
+                {
+                    ViewBag.ThongBao = "Mật khẩu nhập lại không chính xác";
+                }
+                else
+                {
+                    customer.passWord = sPassword;
+                    ViewBag.ThongBao = "Thay đổi mật khẩu thành công";
+                    db.Entry(customer).State = EntityState.Modified;
+                    db.SaveChanges();
+                } 
+            }
+            return View(customer);
+        }
+        public ActionResult Error()
+        {
+            return View();
+        }
+        public static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x2");
+
+            }
+            return byte2String;
         }
     }
 }

@@ -1,0 +1,79 @@
+﻿@model ClotheSstore.Models.Customer
+@{
+    ViewBag.Title = "EditTitleUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Style/assets/app.min.css" rel="stylesheet" />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idCustomer)
+    @Html.HiddenFor(model => model.codeCustomer)
+    @Html.HiddenFor(model => model.credate)
+    @Html.HiddenFor(model => model.passWord)
+    <link href="~/Style/assets/app.min.css" rel="stylesheet" />
+    <div class="main-content" style="margin-top:50px;">
+        <div class="container">
+            <div class="tab-content m-t-15">
+                <div class="tab-pane fade show active" id="tab-account">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">THÔNG TIN TÀI KHOẢN</h4>
+                            <h2 style="color:red">@ViewBag.ThongBao</h2>
+                        </div>
+                        <div class="card-body">
+                            <form>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-semibold" for="userName">Họ và tên:</label>
+                                        <input type="text" class="form-control" name="nameCustomer" placeholder="User Name" value="@Model.nameCustomer">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-semibold" for="email">Email:</label>
+                                        <input type="email" class="form-control" name="email" placeholder="email" value="@Model.email">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-semibold" for="email">Tài khoản:</label>
+                                        <input type="text" class="form-control" name="userName" placeholder="Username" value="@Model.userName" readonly="False">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="font-weight-semibold" for="dob">Date of Birth:</label>
+                                        <input type="text" class="form-control" name="birthDay" placeholder="Date of Birth" value="@string.Format("{0:yyyy-MM-dd}",Model.birthDay)">
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-row">
+                                   
+                                    <div class="form-group col-md-4">
+                                        <label class="font-weight-semibold" for="phoneNumber">Số điện thoại</label>
+                                        <input type="text" class="form-control" name="phone" placeholder="Phone Number" value="@Model.phone">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label class="font-weight-semibold" for="dob">Địa chỉ :</label>
+                                        <input type="text" class="form-control" name="address" placeholder="Date of Birth" value="@Model.address">
+                                    </div>
+                                </div>
+                                <div class="form-group text-left">
+                                    <button class="btn btn-success btn-tone m-r-5">Submit</button>
+                                </div>
+
+                            </form>
+                            <a href="@Url.Action("TitleUser","Account", new {id = Model.idCustomer})">
+                                Quay về thông tin tài khoản
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+

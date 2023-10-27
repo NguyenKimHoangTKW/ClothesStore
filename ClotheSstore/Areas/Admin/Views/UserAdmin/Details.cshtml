@@ -1,0 +1,56 @@
+﻿@model ClotheSstore.Models.UserAdmin
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div>
+    <dl class="dl-horizontal">
+        <div class="card" style=" margin-top: 75px;">
+            <div class="card-body">
+                <h4 class="card-title">Thông tin Admin</h4>
+                <div class="table-responsive">
+                    <table class="product-info-table m-t-20">
+                        <tbody>
+                            <tr>
+                                <td>Mã Admin:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.codeAdmin)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tên Admin:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.nameAdmin)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tên tài khoản:</td>
+                                <td> @Html.DisplayFor(model => model.userName)</td>
+                            </tr>
+                            <tr>
+                                <td>Mật khẩu:</td>
+                                <td> @Html.DisplayFor(model => model.passWord)</td>
+                            <tr>
+                                <td>Số điện thoại:</td>
+                                <td> @Html.DisplayFor(model => model.phone)</td>
+                            </tr>
+                            <tr>
+                                <td>Trạng thái hoạt động</td>
+                                <td> @Html.DisplayFor(model => model.access)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idAdmin }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

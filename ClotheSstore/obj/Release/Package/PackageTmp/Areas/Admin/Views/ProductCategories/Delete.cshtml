@@ -1,0 +1,47 @@
+﻿@model ClotheSstore.Models.ProductCategory
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Thông tin danh mục sản phẩm</h4>
+                <div class="table-responsive">
+                    <table class="product-info-table m-t-20">
+                        <tbody>
+                            <tr>
+                                <td>Mã danh mục:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.codeProductCategory)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tên danh mục:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.nameProductCategory)
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

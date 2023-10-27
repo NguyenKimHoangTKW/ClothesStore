@@ -1,0 +1,45 @@
+﻿@model ClotheSstore.Models.ProductCategory
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idProductCategory)
+    @Html.HiddenFor(model => model.codeProductCategory)
+    <div class="card" style="margin-top:45px">
+        <div class="card-body">
+            <h4>Thêm Danh mục</h4>
+            <h2 style="color:red">@ViewBag.ThongBao</h2>
+            <div class="m-t-25">
+                <form id="form-validation">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Tên danh mục*</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="nameProductCategory" value="@Model.nameProductCategory">
+                            @Html.ValidationMessageFor(model => model.nameProductCategory, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group text-left">
+                        <button class="btn btn-success btn-tone m-r-5">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Quay về danh sách sản phẩm", "Index")
+        </div>
+    </div>
+</div>
+}
+
+

@@ -84,19 +84,18 @@ namespace ClotheSstore.Controllers
             return PartialView();
         }
 
-        public ActionResult XoaSanPham(int iMaSanPham)
+        public ActionResult XoaSanPham(int iMaSanPham, int? iSize)
         {
             List<GioHang> lstCart = LayGioHang();
-            GioHang sp = lstCart.SingleOrDefault(n => n.iSanPham == iMaSanPham);
+            GioHang sp = lstCart.FirstOrDefault(n => n.iSanPham == iMaSanPham && n.iSize == iSize);
             if (sp != null)
             {
-                lstCart.RemoveAll(n => n.iSanPham == iMaSanPham);
+                lstCart.Remove(sp);
                 if (lstCart.Count == 0)
                 {
                     return RedirectToAction("Index", "Home");
 
                 }
-
             }
             return RedirectToAction("GioHang");
         }

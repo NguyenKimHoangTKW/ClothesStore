@@ -1,0 +1,46 @@
+﻿@model ClotheSstore.Models.Size
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div style=" margin-top: 46px;">
+ 
+    <dl class="dl-horizontal">
+        <div class="card" style="margin-top:75px;">
+            <div class="card-body">
+                <h4 class="card-title">Thông tin size</h4>
+                <div class="table-responsive">
+                    <table class="product-info-table m-t-20">
+                        <tbody>
+                            <tr>
+                                <td>Tên size:</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.nameSize)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mô tả</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.status)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

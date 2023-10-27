@@ -1,0 +1,34 @@
+﻿@model ClotheSstore.Models.ProductCategory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+<p>
+    asd
+</p>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Thông tin danh mục sản phẩm</h4>
+        <div class="table-responsive">
+            <table class="product-info-table m-t-20">
+                <tbody>
+                    <tr>
+                        <td>Mã Danh mục sản phẩm</td>
+                        <td class="text-dark font-weight-semibold">@Html.DisplayFor(model => model.codeProductCategory)</td>
+                    </tr>
+                    <tr>
+                        <td>Tên Danh mục sản phẩm</td>
+                        <td>@Html.DisplayFor(model => model.nameProductCategory)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idProductCategory }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,44 @@
+﻿@model ClotheSstore.Models.Size
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="card" style="margin-top: 75px">
+    <div class="card-body">
+        <h4>Thêm mới Size</h4>
+        <h2 style="color:red">@ViewBag.ThongBao</h2>
+        <div class="m-t-15">
+            <form id="form-validation">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Tên Size*</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="nameSize">
+                        @Html.ValidationMessageFor(m => m.nameSize, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label control-label">Mô tả*</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="status">
+                        @Html.ValidationMessageFor(m => m.status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                
+                <div class="form-group text-left">
+                    <button class="btn btn-success btn-tone m-r-5">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Quay về danh sách sản phẩm", "Index")
+    </div>
+</div>
+}

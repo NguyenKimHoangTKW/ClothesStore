@@ -1,0 +1,68 @@
+﻿@model ClotheSstore.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<div>
+    <hr />
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Thông tin khách hàng</h4>
+            <div class="table-responsive">
+                <table class="product-info-table m-t-20">
+                    <tbody>
+                        <tr>
+                            <td>Mã khách hàng:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.codeCustomer)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tên khách hàng:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.nameCustomer)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tên tài khoản:</td>
+                            <td> @Html.DisplayFor(model => model.userName)</td>
+                        </tr>
+                        <tr>
+                            <td>Mật khẩu:</td>
+                            <td> @Html.DisplayFor(model => model.passWord)</td>
+                        </tr>
+                        <tr>
+                            <td>Ngày sinh:</td>
+                            <td>@string.Format("{0:dd-MM-yyyy}",Model.birthDay)</td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td> @Html.DisplayFor(model => model.email)</td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ:</td>
+                            <td> @Html.DisplayFor(model => model.address)</td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại:</td>
+                            <td> @Html.DisplayFor(model => model.phone)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,91 @@
+﻿@model ClotheSstore.Models.Customer
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idCustomer)
+    @Html.HiddenFor(model => model.codeCustomer)
+    <div class="card">
+        <div class="card-body">
+            <h4>Sửa đổi khách hàng</h4>
+            <h2 style="color:red">@ViewBag.ThongBao</h2>
+            <div class="m-t-15">
+                <form id="form-validation">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Tên khách hàng*</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="nameCustomer" value="@Model.nameCustomer">
+                            @Html.ValidationMessageFor(model => model.nameCustomer, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Tài khoản*</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="userName" value="@Model.userName" readonly="False">
+                            @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Mật khẩu*</label>
+                        <div class="col-md-5">
+                            <input type="password" class="form-control" name="passWord" readonly="False" value="@Model.passWord">
+                            @Html.ValidationMessageFor(model => model.passWord, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Ngày sinh*</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="birthDay" value="@string.Format("{0:yyyy-MM-dd}",Model.birthDay)">
+                            @Html.ValidationMessageFor(model => model.birthDay, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Email</label>
+                        <div class="col-md-5">
+                            <input type="email" class="form-control" name="email" value="@Model.email">
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Địa chỉ*</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="address" value="@Model.address">
+                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Số điện thoại*</label>
+                        <div class="col-md-5">
+                            <input type="number" class="form-control" name="phone" value="@Model.phone">
+                            @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label control-label">Ngày tạo*</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="credate" value="@string.Format("{0:yyyy-MM-dd HH:mm:ss}",Model.credate)" readonly="False">
+                            @Html.ValidationMessageFor(model => model.credate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group text-left">
+                        <button class="btn btn-success btn-tone m-r-5">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Quay về danh sách sản phẩm", "Index")
+        </div>
+    </div>
+
+</div>
+}

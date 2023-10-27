@@ -1,0 +1,40 @@
+﻿@{ var customer = Session["Customer"] as ClotheSstore.Models.Customer;}
+@if (customer == null)
+{
+    <div class="flex-row container">
+        <div class="flex-col hide-for-medium flex-center">
+            <ul class="nav header-nav header-bottom-nav nav-center  nav-divided nav-size-medium nav-spacing-xlarge">
+                <li id="menu-item-2229086" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2229086 menu-item-design-default"><a href="@Url.Action("Index","Home")" class="nav-top-link">Trang chủ</a></li>
+                <li id="menu-item-2231076" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2231076 menu-item-design-default has-dropdown">
+                    <a href="/" class="nav-top-link">Bộ sưu tập</a>
+                    <ul class="sub-menu nav-dropdown nav-dropdown-default dark dropdown-uppercase">
+                        @Html.Action("BoSuuTapPartial", "Home")
+                    </ul>
+                </li>
+                <li id="menu-item-2231303" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2231303 menu-item-design-default"><a href="@Url.Action("ErrorThongTinHang","GioHang")" class="nav-top-link">Theo dõi đơn hàng</a></li>
+                <li id="menu-item-2231305" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2231305 menu-item-design-default"><a href="@Url.Action("HuongDanChonSize","Home")" class="nav-top-link">Hướng dẫn chọn Size</a></li>
+            </ul>
+        </div>
+    </div>
+}
+else
+{
+    <div class="flex-row container">
+        <div class="flex-col hide-for-medium flex-center">
+            <ul class="nav header-nav header-bottom-nav nav-center  nav-divided nav-size-medium nav-spacing-xlarge">
+                <li id="menu-item-2229086" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2229086 menu-item-design-default"><a href="@Url.Action("Index","Home")" class="nav-top-link">Trang chủ</a></li>
+                <li id="menu-item-2231076" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2231076 menu-item-design-default has-dropdown">
+                    <a href="/" class="nav-top-link">Bộ sưu tập</a>
+                    <ul class="sub-menu nav-dropdown nav-dropdown-default dark dropdown-uppercase">
+                        @Html.Action("BoSuuTapPartial", "Home")
+                    </ul>
+                </li>
+                <li id="menu-item-2231303" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2231303 menu-item-design-default"><a href="@Url.Action("TinhTrangGiaoHang","GioHang", new {id = customer.idCustomer})" class="nav-top-link">Theo dõi đơn hàng</a></li>
+                <li id="menu-item-2231305" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2231305 menu-item-design-default"><a href="@Url.Action("HuongDanChonSize","Home")" class="nav-top-link">Hướng dẫn chọn Size</a></li>
+            </ul>
+        </div>
+    </div>
+}
+
+
+

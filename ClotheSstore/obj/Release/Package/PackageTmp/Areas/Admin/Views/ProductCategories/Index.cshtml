@@ -1,0 +1,72 @@
+﻿﻿@model IEnumerable<ClotheSstore.Models.ProductCategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+
+
+
+<div class="card" style="margin-top: 60px;">
+    <div class="card-body">
+        <div class="row m-b-30">
+            
+            <div class="col-lg-4 text-left">
+                <a href="@Url.Action("Create", "ProductCategories")">
+                    <button class="btn btn-primary btn-tone m-r-5">
+                        <i class="anticon anticon-plus-circle m-r-5"></i>
+                        Thêm mới danh mục sản phẩm
+                    </button>
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover e-commerce-table" id="data-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên danh mục sản phẩm</th>
+                            <th scope="col">Mã danh mục sản phẩm</th>
+                            <th scope="col">#</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                i++;
+                                <tr>
+                                    <td>
+                                        #@i
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="m-b-0 m-l-10">@item.nameProductCategory</h6>
+                                        </div>
+                                    </td>
+                                    <td>@item.codeProductCategory</td>
+
+                                    <td>
+                                        <a href="/Admin/ProductCategories/Details?id=@item.idProductCategory">
+                                            <button class="btn btn-info btn-tone m-r-5">Xem</button>
+                                        </a> |
+                                        <a href="/Admin/ProductCategories/Edit?id=@item.idProductCategory">
+                                            <button class="btn btn-success btn-tone m-r-5">Sửa</button>
+                                        </a> |
+                                        <a href="/Admin/ProductCategories/Delete?id=@item.idProductCategory">
+                                            <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

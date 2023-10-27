@@ -1,0 +1,83 @@
+﻿﻿@model IEnumerable<ClotheSstore.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+
+
+
+<div class="card" style="margin-top: 60px;">
+    <div class="card-body">
+        <div class="row m-b-30">
+
+            <div class="col-lg-4 text-left">
+                <a href="@Url.Action("Create", "Customers")">
+                    <button class="btn btn-primary btn-tone m-r-5">
+                        <i class="anticon anticon-plus-circle m-r-5"></i>
+                        Thêm mới khách hàng
+                    </button>
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover e-commerce-table" id="data-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên khách hàng</th>
+                            <th scope="col">Mã khách hàng</th>
+                            <th scope="col">Tài khoản</th>
+                            <th scope="col">Ngày sinh</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">#</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                i++;
+                                <tr>
+                                    <td>
+                                        #@i
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="m-b-0 m-l-10">@item.nameCustomer</h6>
+                                        </div>
+                                    </td>
+                                    <td>@item.codeCustomer</td>
+                                    <td>@item.userName</td>
+                                    <td>@string.Format("{0:dd-MM-yyyy}", item.birthDay)</td>
+                                    <td>@item.email</td>
+                                    <td>@Html.Raw(item.address)</td>
+                                    <td>@item.phone</td>
+                                    <td>@string.Format("{0:dd-MM-yyyy HH:mm:ss}", item.credate)</td>
+                                    <td>
+                                        <a href="/Admin/Customers/Details?id=@item.idCustomer">
+                                            <button class="btn btn-info btn-tone m-r-5">Xem</button>
+                                        </a> |
+                                        <a href="/Admin/Customers/Edit?id=@item.idCustomer">
+                                            <button class="btn btn-success btn-tone m-r-5">Sửa</button>
+                                        </a> |
+                                        <a href="/Admin/Customers/Delete?id=@item.idCustomer">
+                                            <button class="btn btn-danger btn-tone m-r-5">Xóa</button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

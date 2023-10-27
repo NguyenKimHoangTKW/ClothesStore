@@ -1,0 +1,82 @@
+﻿@model ClotheSstore.Models.Customer
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="">
+
+
+
+    <div class="my-account-header page-title normal-title
+		">
+
+
+        <div class="page-title-inner flex-row container
+	 text-left">
+            <div class="flex-col flex-grow text-center">
+
+                <div class="text-center social-login">
+                    <h1 class="uppercase mb-0">TÀI KHOẢN CỦA TÔI</h1>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper my-account mb">
+        <div class="container" role="main">
+
+
+
+
+            <div class="woocommerce">
+                <div class="woocommerce-notices-wrapper"></div>
+                <div class="account-container lightbox-inner">
+
+
+                    <div class="account-login-inner">
+
+                        <h3 class="uppercase">Đăng nhập</h3>
+                        <h2 style="color:red">@ViewBag.ThongBao</h2>
+                        <form class="woocommerce-form woocommerce-form-login login" method="post" action="/Account/Login">
+
+
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="username">Tên tài khoản<span class="required">*</span></label>
+                                <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="userName" id="userName" autocomplete="username" value="" required data-validation-error-msg="Tên tài khoản không được để trống" data-validation="required"/>
+                            </p>
+                            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                <label for="password">Mật khẩu<span class="required">*</span></label>
+                                <input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="passWord" id="passWord" autocomplete="current-password" required data-validation-error-msg="Mật khẩu không được để trống" data-validation="required"/>
+                            </p>
+
+
+                            <p class="form-row">
+                                <label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
+                                    <input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" /> <span>Ghi nhớ mật khẩu</span>
+                                </label>
+                                <input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="3d42384096" /><input type="hidden" name="_wp_http_referer" value="/my-account/" />						
+                                <button type="submit" class="woocommerce-button button woocommerce-form-login__submit" name="login" value="Log in" style="color:black;">Đăng nhập</button>
+                            </p>
+                            <p class="woocommerce-LostPassword lost_password">
+                                <a href="@Url.Action("ForgetPassword","Account")">Quên mật khẩu?</a>
+                            </p>
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+</main>
